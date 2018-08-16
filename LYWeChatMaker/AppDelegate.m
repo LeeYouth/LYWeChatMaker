@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#define iOS11 ([[UIDevice currentDevice].systemVersion doubleValue] >= 11.0)
 
 @interface AppDelegate ()
 
@@ -16,9 +17,42 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    
+    if (iOS11) {
+        if (@available(iOS 11.0, *)) {
+            [UIScrollView appearance].
+            contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+        } else {
+            // Fallback on earlier versions
+        }
+    }
+#warning - 在这里配置正式、测试，log开关
+//    //配置服务器类型
+//    [LYServerConfig setLYConfigEnv:LYServerEnvDevelop];
+//    [LYNetworkTools enableInterfaceDebug:YES];
+//
+//    [[UITabBar appearance] setShadowImage:[[UIImage alloc]init]];
+//    [[UITabBar appearance] setBackgroundImage:[[UIImage alloc]init]];
+//    
+//
+//    [[UIApplication sharedApplication] setStatusBarHidden:NO];
+//    // 设置状态栏的状态
+//    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:NO];
+//
+
+    
+    self.window = [[UIWindow alloc] init];
+    
+    [self.window setRootViewController: [[LYTabbarViewController alloc] init]];
+
+    [self.window makeKeyAndVisible];
+    
+    // 开启网络状态监听
+//    [[LYNetworkStatusObserver defaultObserver] startNotifier];
+    
     return YES;
 }
+
 
 
 - (void)applicationWillResignActive:(UIApplication *)application {

@@ -15,6 +15,10 @@
 		CFDB566A2125173200501905 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CFDB56692125173200501905 /* main.m */; };
 		CFDB56742125173200501905 /* LYWeChatMakerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CFDB56732125173200501905 /* LYWeChatMakerTests.m */; };
 		CFDB567F2125173200501905 /* LYWeChatMakerUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = CFDB567E2125173200501905 /* LYWeChatMakerUITests.m */; };
+		CFDB56AA2125212D00501905 /* LYBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFDB56A82125212D00501905 /* LYBaseViewController.m */; };
+		CFDB56AD212521A300501905 /* LYTabbarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFDB56AC212521A300501905 /* LYTabbarViewController.m */; };
+		CFDB56B0212521BA00501905 /* LYBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CFDB56AF212521BA00501905 /* LYBaseModel.m */; };
+		CFDB56B32125251700501905 /* LYTimeLineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFDB56B22125251700501905 /* LYTimeLineViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +55,15 @@
 		CFDB567A2125173200501905 /* LYWeChatMakerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LYWeChatMakerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFDB567E2125173200501905 /* LYWeChatMakerUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LYWeChatMakerUITests.m; sourceTree = "<group>"; };
 		CFDB56802125173200501905 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CFDB56932125202600501905 /* LYWeChatMakerPrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LYWeChatMakerPrefixHeader.pch; sourceTree = "<group>"; };
+		CFDB56A82125212D00501905 /* LYBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYBaseViewController.m; sourceTree = "<group>"; };
+		CFDB56A92125212D00501905 /* LYBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYBaseViewController.h; sourceTree = "<group>"; };
+		CFDB56AB212521A300501905 /* LYTabbarViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LYTabbarViewController.h; sourceTree = "<group>"; };
+		CFDB56AC212521A300501905 /* LYTabbarViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LYTabbarViewController.m; sourceTree = "<group>"; };
+		CFDB56AE212521BA00501905 /* LYBaseModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LYBaseModel.h; sourceTree = "<group>"; };
+		CFDB56AF212521BA00501905 /* LYBaseModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LYBaseModel.m; sourceTree = "<group>"; };
+		CFDB56B12125251700501905 /* LYTimeLineViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LYTimeLineViewController.h; sourceTree = "<group>"; };
+		CFDB56B22125251700501905 /* LYTimeLineViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LYTimeLineViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,10 +114,12 @@
 		CFDB56592125172E00501905 /* LYWeChatMaker */ = {
 			isa = PBXGroup;
 			children = (
+				CFDB56972125210E00501905 /* Classes */,
 				CFDB565A2125172E00501905 /* AppDelegate.h */,
 				CFDB565B2125172E00501905 /* AppDelegate.m */,
 				CFDB565D2125172E00501905 /* ViewController.h */,
 				CFDB565E2125172E00501905 /* ViewController.m */,
+				CFDB56932125202600501905 /* LYWeChatMakerPrefixHeader.pch */,
 				CFDB56602125172E00501905 /* Main.storyboard */,
 				CFDB56632125173200501905 /* Assets.xcassets */,
 				CFDB56652125173200501905 /* LaunchScreen.storyboard */,
@@ -130,6 +145,149 @@
 				CFDB56802125173200501905 /* Info.plist */,
 			);
 			path = LYWeChatMakerUITests;
+			sourceTree = "<group>";
+		};
+		CFDB56972125210E00501905 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				CFDB56982125210E00501905 /* ChatList */,
+				CFDB569D2125210E00501905 /* Main */,
+				CFDB56A32125210E00501905 /* TimeLine */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		CFDB56982125210E00501905 /* ChatList */ = {
+			isa = PBXGroup;
+			children = (
+				CFDB56992125210E00501905 /* Controller */,
+				CFDB569A2125210E00501905 /* Model */,
+				CFDB569B2125210E00501905 /* View */,
+				CFDB569C2125210E00501905 /* Service */,
+			);
+			path = ChatList;
+			sourceTree = "<group>";
+		};
+		CFDB56992125210E00501905 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		CFDB569A2125210E00501905 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CFDB569B2125210E00501905 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CFDB569C2125210E00501905 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		CFDB569D2125210E00501905 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				CFDB569E2125210E00501905 /* Controller */,
+				CFDB569F2125210E00501905 /* Model */,
+				CFDB56A02125210E00501905 /* View */,
+				CFDB56A12125210E00501905 /* Service */,
+				CFDB56A22125210E00501905 /* Tool */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		CFDB569E2125210E00501905 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				CFDB56A92125212D00501905 /* LYBaseViewController.h */,
+				CFDB56A82125212D00501905 /* LYBaseViewController.m */,
+				CFDB56AB212521A300501905 /* LYTabbarViewController.h */,
+				CFDB56AC212521A300501905 /* LYTabbarViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		CFDB569F2125210E00501905 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CFDB56AE212521BA00501905 /* LYBaseModel.h */,
+				CFDB56AF212521BA00501905 /* LYBaseModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CFDB56A02125210E00501905 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CFDB56A12125210E00501905 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		CFDB56A22125210E00501905 /* Tool */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Tool;
+			sourceTree = "<group>";
+		};
+		CFDB56A32125210E00501905 /* TimeLine */ = {
+			isa = PBXGroup;
+			children = (
+				CFDB56A42125210E00501905 /* Controller */,
+				CFDB56A52125210E00501905 /* Model */,
+				CFDB56A62125210E00501905 /* View */,
+				CFDB56A72125210E00501905 /* Service */,
+			);
+			path = TimeLine;
+			sourceTree = "<group>";
+		};
+		CFDB56A42125210E00501905 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				CFDB56B12125251700501905 /* LYTimeLineViewController.h */,
+				CFDB56B22125251700501905 /* LYTimeLineViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		CFDB56A52125210E00501905 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CFDB56A62125210E00501905 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CFDB56A72125210E00501905 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -262,9 +420,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CFDB56AA2125212D00501905 /* LYBaseViewController.m in Sources */,
 				CFDB565F2125172E00501905 /* ViewController.m in Sources */,
 				CFDB566A2125173200501905 /* main.m in Sources */,
 				CFDB565C2125172E00501905 /* AppDelegate.m in Sources */,
+				CFDB56B32125251700501905 /* LYTimeLineViewController.m in Sources */,
+				CFDB56AD212521A300501905 /* LYTabbarViewController.m in Sources */,
+				CFDB56B0212521BA00501905 /* LYBaseModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -435,6 +597,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 385BQG9LRC;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/LYWeChatMaker/LYWeChatMakerPrefixHeader.pch";
 				INFOPLIST_FILE = LYWeChatMaker/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -452,6 +615,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 385BQG9LRC;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/LYWeChatMaker/LYWeChatMakerPrefixHeader.pch";
 				INFOPLIST_FILE = LYWeChatMaker/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
