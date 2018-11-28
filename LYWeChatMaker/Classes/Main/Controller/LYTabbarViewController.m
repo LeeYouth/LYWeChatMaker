@@ -7,6 +7,7 @@
 //
 
 #import "LYTabbarViewController.h"
+#import "LYTWatermarkViewController.h"
 
 @interface LYTabbarViewController ()
 
