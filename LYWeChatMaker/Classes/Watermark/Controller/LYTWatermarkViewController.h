@@ -10,4 +10,7 @@
 
 @interface LYTWatermarkViewController : LYBaseViewController
 
+/** 目标image */
+@property (nonatomic, strong)  UIImage *targetImage;
+
 @end

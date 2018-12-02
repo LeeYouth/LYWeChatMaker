@@ -29,6 +29,14 @@
 		CF6C431A21AE7703002287F9 /* LYWKWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF6C431921AE7703002287F9 /* LYWKWebViewController.m */; };
 		CF6C431D21AE78B2002287F9 /* UIColor+MTColorTool.m in Sources */ = {isa = PBXBuildFile; fileRef = CF6C431B21AE78B2002287F9 /* UIColor+MTColorTool.m */; };
 		CF6C432321AE7B57002287F9 /* LYAppTool.m in Sources */ = {isa = PBXBuildFile; fileRef = CF6C432221AE7B57002287F9 /* LYAppTool.m */; };
+		CF6C432621AE80AB002287F9 /* LYTWatermarkImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF6C432521AE80AB002287F9 /* LYTWatermarkImageView.m */; };
+		CF6C432D21AFC559002287F9 /* LYHomePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF6C432C21AFC559002287F9 /* LYHomePageViewController.m */; };
+		CF6C433021AFD0DC002287F9 /* LYTWatermarkBottomToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = CF6C432F21AFD0DB002287F9 /* LYTWatermarkBottomToolBar.m */; };
+		CF706EFA21AFE2E400442D67 /* LYWatermarkColorsListView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF706EF921AFE2E400442D67 /* LYWatermarkColorsListView.m */; };
+		CF706F0021B1077B00442D67 /* LYWatermarkInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF706EFF21B1077B00442D67 /* LYWatermarkInputView.m */; };
+		CF706F0321B26E2100442D67 /* LYWatermarkEditTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF706F0221B26E2100442D67 /* LYWatermarkEditTextView.m */; };
+		CF706F0621B2B02B00442D67 /* LYDrawRectangleView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF706F0521B2B02B00442D67 /* LYDrawRectangleView.m */; };
+		CF706F0921B382B900442D67 /* LYWatermarkBottomBtnsView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF706F0821B382B900442D67 /* LYWatermarkBottomBtnsView.m */; };
 		CFDB56642125173200501905 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CFDB56632125173200501905 /* Assets.xcassets */; };
 		CFDB566A2125173200501905 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CFDB56692125173200501905 /* main.m */; };
 		CFDB56742125173200501905 /* LYWeChatMakerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CFDB56732125173200501905 /* LYWeChatMakerTests.m */; };
@@ -98,6 +106,22 @@
 		CF6C431C21AE78B2002287F9 /* UIColor+MTColorTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+MTColorTool.h"; sourceTree = "<group>"; };
 		CF6C432121AE7B57002287F9 /* LYAppTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LYAppTool.h; sourceTree = "<group>"; };
 		CF6C432221AE7B57002287F9 /* LYAppTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LYAppTool.m; sourceTree = "<group>"; };
+		CF6C432421AE80AB002287F9 /* LYTWatermarkImageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LYTWatermarkImageView.h; sourceTree = "<group>"; };
+		CF6C432521AE80AB002287F9 /* LYTWatermarkImageView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LYTWatermarkImageView.m; sourceTree = "<group>"; };
+		CF6C432B21AFC559002287F9 /* LYHomePageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LYHomePageViewController.h; sourceTree = "<group>"; };
+		CF6C432C21AFC559002287F9 /* LYHomePageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LYHomePageViewController.m; sourceTree = "<group>"; };
+		CF6C432E21AFD0DB002287F9 /* LYTWatermarkBottomToolBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LYTWatermarkBottomToolBar.h; sourceTree = "<group>"; };
+		CF6C432F21AFD0DB002287F9 /* LYTWatermarkBottomToolBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LYTWatermarkBottomToolBar.m; sourceTree = "<group>"; };
+		CF706EF821AFE2E400442D67 /* LYWatermarkColorsListView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LYWatermarkColorsListView.h; sourceTree = "<group>"; };
+		CF706EF921AFE2E400442D67 /* LYWatermarkColorsListView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LYWatermarkColorsListView.m; sourceTree = "<group>"; };
+		CF706EFE21B1077B00442D67 /* LYWatermarkInputView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LYWatermarkInputView.h; sourceTree = "<group>"; };
+		CF706EFF21B1077B00442D67 /* LYWatermarkInputView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LYWatermarkInputView.m; sourceTree = "<group>"; };
+		CF706F0121B26E2100442D67 /* LYWatermarkEditTextView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LYWatermarkEditTextView.h; sourceTree = "<group>"; };
+		CF706F0221B26E2100442D67 /* LYWatermarkEditTextView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LYWatermarkEditTextView.m; sourceTree = "<group>"; };
+		CF706F0421B2B02B00442D67 /* LYDrawRectangleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LYDrawRectangleView.h; sourceTree = "<group>"; };
+		CF706F0521B2B02B00442D67 /* LYDrawRectangleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LYDrawRectangleView.m; sourceTree = "<group>"; };
+		CF706F0721B382B900442D67 /* LYWatermarkBottomBtnsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LYWatermarkBottomBtnsView.h; sourceTree = "<group>"; };
+		CF706F0821B382B900442D67 /* LYWatermarkBottomBtnsView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LYWatermarkBottomBtnsView.m; sourceTree = "<group>"; };
 		CFDB56572125172E00501905 /* LYWeChatMaker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LYWeChatMaker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFDB56632125173200501905 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CFDB56682125173200501905 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -201,6 +225,20 @@
 		CF5EE53921ABDABA00A5DF78 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				CF6C432421AE80AB002287F9 /* LYTWatermarkImageView.h */,
+				CF6C432521AE80AB002287F9 /* LYTWatermarkImageView.m */,
+				CF706EFE21B1077B00442D67 /* LYWatermarkInputView.h */,
+				CF706EFF21B1077B00442D67 /* LYWatermarkInputView.m */,
+				CF706F0121B26E2100442D67 /* LYWatermarkEditTextView.h */,
+				CF706F0221B26E2100442D67 /* LYWatermarkEditTextView.m */,
+				CF6C432E21AFD0DB002287F9 /* LYTWatermarkBottomToolBar.h */,
+				CF6C432F21AFD0DB002287F9 /* LYTWatermarkBottomToolBar.m */,
+				CF706EF821AFE2E400442D67 /* LYWatermarkColorsListView.h */,
+				CF706EF921AFE2E400442D67 /* LYWatermarkColorsListView.m */,
+				CF706F0721B382B900442D67 /* LYWatermarkBottomBtnsView.h */,
+				CF706F0821B382B900442D67 /* LYWatermarkBottomBtnsView.m */,
+				CF706F0421B2B02B00442D67 /* LYDrawRectangleView.h */,
+				CF706F0521B2B02B00442D67 /* LYDrawRectangleView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -271,6 +309,39 @@
 			path = LYTabbarControllerConfig;
 			sourceTree = "<group>";
 		};
+		CF6C432721AFC535002287F9 /* HomePage */ = {
+			isa = PBXGroup;
+			children = (
+				CF6C432821AFC535002287F9 /* Controller */,
+				CF6C432921AFC535002287F9 /* Model */,
+				CF6C432A21AFC535002287F9 /* View */,
+			);
+			path = HomePage;
+			sourceTree = "<group>";
+		};
+		CF6C432821AFC535002287F9 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				CF6C432B21AFC559002287F9 /* LYHomePageViewController.h */,
+				CF6C432C21AFC559002287F9 /* LYHomePageViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		CF6C432921AFC535002287F9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CF6C432A21AFC535002287F9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		CFDB564E2125172E00501905 = {
 			isa = PBXGroup;
 			children = (
@@ -327,6 +398,7 @@
 		CFDB56972125210E00501905 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				CF6C432721AFC535002287F9 /* HomePage */,
 				CF6C42E321AE334B002287F9 /* Other */,
 				CF5EE53621ABDABA00A5DF78 /* Watermark */,
 				CFDB56982125210E00501905 /* ChatList */,
@@ -641,10 +713,12 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-LYWeChatMaker/Pods-LYWeChatMaker-resources.sh",
 				"${PODS_ROOT}/IQKeyboardManager/IQKeyboardManager/Resources/IQKeyboardManager.bundle",
+				"${PODS_ROOT}/TZImagePickerController/TZImagePickerController/TZImagePickerController/TZImagePickerController.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/IQKeyboardManager.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/TZImagePickerController.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -660,12 +734,17 @@
 			files = (
 				CF6C431121AE6AD4002287F9 /* LYTabBarControllerConfig.m in Sources */,
 				CF6C431721AE73BF002287F9 /* UIImage+Extention.m in Sources */,
+				CF706EFA21AFE2E400442D67 /* LYWatermarkColorsListView.m in Sources */,
+				CF6C432621AE80AB002287F9 /* LYTWatermarkImageView.m in Sources */,
 				CF6C431D21AE78B2002287F9 /* UIColor+MTColorTool.m in Sources */,
 				CFDB56AA2125212D00501905 /* LYBaseViewController.m in Sources */,
+				CF706F0621B2B02B00442D67 /* LYDrawRectangleView.m in Sources */,
 				CF6C430021AE433F002287F9 /* UIViewController+LYUMTrack.m in Sources */,
+				CF706F0321B26E2100442D67 /* LYWatermarkEditTextView.m in Sources */,
 				CF6C431A21AE7703002287F9 /* LYWKWebViewController.m in Sources */,
 				CF6C431421AE6C5A002287F9 /* LYBaseNavigationController.m in Sources */,
 				CF6C42FC21AE36EC002287F9 /* LYServerConfig.m in Sources */,
+				CF706F0921B382B900442D67 /* LYWatermarkBottomBtnsView.m in Sources */,
 				CF6C42F621AE36C8002287F9 /* LYConst.m in Sources */,
 				CFDB566A2125173200501905 /* main.m in Sources */,
 				CFDB56B32125251700501905 /* LYTimeLineViewController.m in Sources */,
@@ -674,6 +753,9 @@
 				CF6C430A21AE66C8002287F9 /* LYAdvertisementAlertView.m in Sources */,
 				CF5EE53C21ABDAE400A5DF78 /* LYTWatermarkViewController.m in Sources */,
 				CF6C42EA21AE33BA002287F9 /* AppDelegate+UMSocial.m in Sources */,
+				CF706F0021B1077B00442D67 /* LYWatermarkInputView.m in Sources */,
+				CF6C432D21AFC559002287F9 /* LYHomePageViewController.m in Sources */,
+				CF6C433021AFD0DC002287F9 /* LYTWatermarkBottomToolBar.m in Sources */,
 				CFDB56AD212521A300501905 /* LYTabbarViewController.m in Sources */,
 				CF6C430421AE4677002287F9 /* UIControl+LYUMTrack.m in Sources */,
 				CF6C432321AE7B57002287F9 /* LYAppTool.m in Sources */,

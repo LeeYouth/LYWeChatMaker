@@ -8,8 +8,8 @@
 
 #import "AppDelegate.h"
 #import "AppDelegate+UMSocial.h"
-#import "LYTabBarControllerConfig.h"
-
+#import "LYHomePageViewController.h"
+#import "LYBaseNavigationController.h"
 
 @interface AppDelegate ()
 
@@ -44,8 +44,12 @@
 
     //配置服务器类型
     [LYServerConfig setLYConfigEnv:LYServerEnvProduct];
+    
+    [[UIApplication sharedApplication] setStatusBarHidden:YES];
     self.window = [[UIWindow alloc] init];
-    [self.window setRootViewController: [[LYTabBarControllerConfig alloc] init].tabBarController];
+    LYBaseNavigationController *nav = [[LYBaseNavigationController alloc] initWithRootViewController:[[LYHomePageViewController alloc] init]];
+    
+    [self.window setRootViewController: nav];
     [self.window makeKeyAndVisible];
     // 友盟UMSocial
     [self LYUMSocialApplication:application didFinishLaunchingWithOptions:launchOptions];
@@ -82,6 +86,13 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+#pragma mark - 禁止旋转屏幕
+- (NSUInteger)application:(UIApplication *)application
+supportedInterfaceOrientationsForWindow:(UIWindow *)window
+{
+    return UIInterfaceOrientationMaskPortrait;
 }
 
 

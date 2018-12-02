@@ -57,5 +57,18 @@ tmp;\
 
 #define LYSystemFont(font)       [UIFont systemFontOfSize:(font)]
 
+//主题颜色
+#define LYThemeColor       LYColor(@"#FA4B68")
+//线的颜色
+#define LYCellLineColor       LYColor(@"#EEEEEE")
+//线的高度
+#define LYCellLineHeight       0.7f
+
+//图片背景颜色
+#define LYImageBackColor       LYColor(@"#3B3B3B")
+//白色
+#define LYWhiteColorHex       @"#FFFFFF"
+//黑色
+#define LYBlackColorHex       @"#000000"
 
 #endif /* LYMacro_h */
