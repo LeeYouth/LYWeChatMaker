@@ -9,6 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "LYWatermarkColorsListView.h"
 #import "LYWatermarkBottomBtnsView.h"
+#import "LYWatermarkStyleListView.h"
+
+#define LYTWatermarkBottomToolBarH (LYWatermarkColorsListViewH + LYWatermarkBottomBtnsViewH)
 
 @interface LYTWatermarkBottomToolBar : UIView
 

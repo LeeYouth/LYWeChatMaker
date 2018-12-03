@@ -116,7 +116,7 @@
     [self.backImageView.layer renderInContext:UIGraphicsGetCurrentContext()];
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
-    // 保存图片，需要转换成二进制数据
+    // 保存图片
     [self saveImageToPhotos:image];
 }
 
@@ -134,12 +134,6 @@
     }else{
         msg = @"保存图片成功" ;
     }
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"保存图片结果提示"
-                                                    message:msg
-                                                   delegate:self
-                                          cancelButtonTitle:@"确定"
-                                          otherButtonTitles:nil];
-    [alert show];
 }
 
 - (void)setBackImage:(UIImage *)backImage{
@@ -208,24 +202,6 @@
 {
     UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), (__bridge void *)self);
 }
-
-
-
-
-//- (void)loadImageFinished:(UIImage *)image
-//{
-//    [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
-//
-//        //写入图片到相册
-//        PHAssetChangeRequest *req = [PHAssetChangeRequest creationRequestForAssetFromImage:image];
-//
-//
-//    } completionHandler:^(BOOL success, NSError * _Nullable error) {
-//
-//        NSLog(@"success = %d, error = %@", success, error);
-//
-//    }];
-//}
 
 #pragma mark - lazy loading
 - (UIImageView *)backImageView{

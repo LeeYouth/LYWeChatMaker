@@ -12,8 +12,6 @@
 #import "LYTWatermarkImageView.h"
 #import "LYTWatermarkBottomToolBar.h"
 
-#define kWatermarkbottomToolBarH 100.f
-
 @interface LYTWatermarkViewController ()
 
 @property (nonatomic, strong) LYTWatermarkImageView *backImageView;
@@ -46,7 +44,7 @@
     [self.view addSubview:self.backImageView];
     [self.view addSubview:self.bottomToolBar];
     
-    CGFloat toolBarH = kWatermarkbottomToolBarH;
+    CGFloat toolBarH = LYTWatermarkBottomToolBarH;
     
     [self.bottomToolBar mas_makeConstraints:^(MASConstraintMaker *make) {
         make.height.mas_equalTo(@(toolBarH));
@@ -93,7 +91,7 @@
 #pragma mark - 懒加载
 - (LYTWatermarkImageView *)backImageView{
     return LY_LAZY(_backImageView, ({
-        LYTWatermarkImageView *imageV = [[LYTWatermarkImageView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - kWatermarkbottomToolBarH)];
+        LYTWatermarkImageView *imageV = [[LYTWatermarkImageView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - LYTWatermarkBottomToolBarH)];
         imageV;
     }));
 }
@@ -101,7 +99,7 @@
     return LY_LAZY(_bottomToolBar, ({
         
         WEAKSELF(weakSelf);
-        CGFloat toolBarH = kWatermarkbottomToolBarH;
+        CGFloat toolBarH = LYTWatermarkBottomToolBarH;
         LYTWatermarkBottomToolBar *toolView = [[LYTWatermarkBottomToolBar alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT - toolBarH, SCREEN_WIDTH, toolBarH)];
         toolView.didSelectItemblock = ^(NSString *colorHex) {
             weakSelf.backImageView.colorHex = colorHex;

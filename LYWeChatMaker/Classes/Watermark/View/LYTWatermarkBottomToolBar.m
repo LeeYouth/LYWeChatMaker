@@ -12,6 +12,7 @@
 @interface LYTWatermarkBottomToolBar ()
 
 @property (nonatomic, strong) LYWatermarkColorsListView *colorListView;
+@property (nonatomic, strong) LYWatermarkStyleListView *styleListView;
 @property (nonatomic, strong) LYWatermarkBottomBtnsView *btnsView;
 
 @end
@@ -33,13 +34,19 @@
     [self.colorListView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.mas_top);
         make.left.right.equalTo(self);
-        make.height.mas_equalTo(@60);
+        make.height.mas_equalTo(@(LYWatermarkColorsListViewH));
+    }];
+    
+    [self.styleListView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.mas_top);
+        make.left.right.equalTo(self);
+        make.height.mas_equalTo(@(LYWatermarkColorsListViewH));
     }];
     
     [self.btnsView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.colorListView.mas_bottom);
         make.left.right.equalTo(self);
-        make.height.mas_equalTo(@40);
+        make.height.mas_equalTo(@(LYWatermarkBottomBtnsViewH));
     }];
     
     NSArray *hexArray = [NSArray arrayWithContentsOfFile:LYBUNDLE_PLISTPATH(@"LYWatermarkColorList")];
@@ -79,6 +86,15 @@
     if (self.bottomBtnblock) {
         self.bottomBtnblock(index);
     }
+    
+    if (index == 2) {
+        self.colorListView.hidden = NO;
+        self.styleListView.hidden = YES;
+    }else if(index == 3){
+        self.colorListView.hidden = YES;
+        self.styleListView.hidden = NO;
+    }
+    
 }
 
 #pragma mark - lazy loading
@@ -94,6 +110,15 @@
             [weakSelf didSelectBackColor:hasSelect];
         };
         [self addSubview:listView];
+        listView;
+    }));
+}
+- (LYWatermarkStyleListView *)styleListView{
+    return LY_LAZY(_styleListView, ({
+        WEAKSELF(weakSelf);
+        LYWatermarkStyleListView *listView = [[LYWatermarkStyleListView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 10)];
+        [self addSubview:listView];
+        listView.hidden = YES;
         listView;
     }));
 }

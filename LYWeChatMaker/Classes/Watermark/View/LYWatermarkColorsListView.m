@@ -31,7 +31,7 @@
 - (void)_setupSubViews {
     
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-    layout.itemSize = CGSizeMake(30, 60);
+    layout.itemSize = CGSizeMake(30, LYWatermarkColorsListViewH);
     layout.minimumLineSpacing = 15;//间距
     layout.sectionInset = UIEdgeInsetsMake(0, 10, 0, 10);//分别为上、左、下、右
     layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
@@ -94,7 +94,7 @@
     CGFloat rectWidth = rect.size.width;
 
     
-    CGFloat btnW = 35;
+    CGFloat btnW = 40;
     _backColorBtn.frame   = CGRectMake(10, (rectHeight - btnW)/2, btnW, btnW);
     
     CGFloat collectionX = self.showSelectButton?_backColorBtn.right:0;

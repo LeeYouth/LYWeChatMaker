@@ -60,7 +60,9 @@ tmp;\
 #define LYSystemFont(font)       [UIFont systemFontOfSize:(font)]
 
 //主题颜色
-#define LYThemeColor       LYColor(@"#FA4B68")
+//#define LYThemeColor       LYColor(@"#FA4B68")
+
+#define LYThemeColor       LYColor(@"#FE4365")
 //线的颜色
 #define LYCellLineColor       LYColor(@"#EEEEEE")
 //线的高度

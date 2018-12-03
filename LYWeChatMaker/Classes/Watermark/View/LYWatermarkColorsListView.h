@@ -4,13 +4,15 @@
 //
 //  Created by CNFOL_iOS on 2018/11/29.
 //  Copyright © 2018年 LYoung_iOS. All rights reserved.
-//  颜色裂变
+//  颜色列表
 
 #import <UIKit/UIKit.h>
 @class LYWatermarkColorsListViewItem,LYWatermarkColorHexModel;
 
 typedef void(^LYWatermarkColorsListViewDidSelectColorHexBlock)(NSString *colorHex);
 typedef void(^LYWatermarkColorsListViewDidSelectBackBlock)(BOOL hasSelect);
+
+#define LYWatermarkColorsListViewH  70
 
 @interface LYWatermarkColorsListView : UIView
 
