@@ -84,8 +84,8 @@
         //取消
         [self.navigationController popViewControllerAnimated:YES];
     }else if (index == 1){
-        //确定
-        
+        //确定(保存图片到相册)
+        [self.backImageView saveWatermarkImage];
     }
 }
 

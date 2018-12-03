@@ -13,8 +13,7 @@
 
 @interface LYWatermarkInputView()<UIGestureRecognizerDelegate>
 
-/** 文字水印 */
-@property (nonatomic, strong) UILabel *markLabel;
+
 /** 文字水印背景 */
 @property (nonatomic, strong) LYDrawRectangleView *rectangleView;
 /** 拖动按钮 */
@@ -71,7 +70,7 @@
     
     //双击
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapView:)];
-    tapGesture.numberOfTapsRequired = 2;
+    tapGesture.numberOfTapsRequired = 1;
     [self addGestureRecognizer:tapGesture];
     
     UIPanGestureRecognizer *gesture5 = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(onScaleAndRotate:)];
@@ -143,7 +142,7 @@
     return atan2(x, y);
 }
 
-#pragma mark - 单指拖动
+#pragma mark - 单指点击
 - (void)tapView:(UITapGestureRecognizer *)tapGestureRecognizer
 {
     
@@ -151,9 +150,17 @@
     {
         WEAKSELF(weakSelf);
         LYWatermarkEditTextView *textEditView = [[LYWatermarkEditTextView alloc] init];
+        textEditView.defultText = self.markLabel.text;
         textEditView.block = ^(NSString *inputText) {
             LYLog(@"-----填写的文字为 = %@",inputText);
-            weakSelf.markLabel.text = inputText;
+            if (inputText.length) {
+                weakSelf.markLabel.text = inputText;
+            }else{
+                weakSelf.markLabel.text = LYWatermarkInputViewDefultText;
+            }
+        };
+        textEditView.colorBlock = ^(NSString *inputColor) {
+            weakSelf.colorHex = inputColor;
         };
     }
 }
@@ -224,9 +231,19 @@
     }
 }
 
+- (void)setHiddenBox:(BOOL)hiddenBox{
+    _hiddenBox = hiddenBox;
+    self.rectangleView.hidden = hiddenBox;
+}
+
 - (void)setInputText:(NSString *)inputText{
     _inputText = inputText;
-    self.markLabel.text = inputText;
+    
+    if (inputText.length) {
+        self.markLabel.text = inputText;
+    }else{
+        self.markLabel.text = LYWatermarkInputViewDefultText;
+    }
 }
 
 - (void)layoutSubviews{
@@ -251,7 +268,7 @@
         label.font = LYSystemFont(26);
         label.textColor = [UIColor whiteColor];
         label.textAlignment = NSTextAlignmentCenter;
-        label.text = @"双点击输入文字";
+        label.text = LYWatermarkInputViewDefultText;
         label.adjustsFontSizeToFitWidth = YES;
         label.baselineAdjustment = UIBaselineAdjustmentAlignCenters;
         label.backgroundColor = [UIColor clearColor];

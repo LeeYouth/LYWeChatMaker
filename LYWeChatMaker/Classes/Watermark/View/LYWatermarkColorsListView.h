@@ -23,6 +23,8 @@ typedef void(^LYWatermarkColorsListViewDidSelectBackBlock)(BOOL hasSelect);
 
 /** 显示选择背景颜色按钮（默认为NO） */
 @property(nonatomic, assign) BOOL showSelectButton;
+/** 默认颜色色值 */
+@property(nonatomic, copy) NSString *defultColorHex;
 
 @end
 

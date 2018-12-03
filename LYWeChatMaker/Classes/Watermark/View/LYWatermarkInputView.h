@@ -13,6 +13,7 @@
 #define LYWatermarkInputViewTextMinWMargin 40
 #define LYWatermarkInputViewTextMinHMargin 20
 
+#define LYWatermarkInputViewDefultText @"点击输入文字"
 
 @protocol LYWatermarkInputViewDelegate <NSObject>
 @required
@@ -35,11 +36,15 @@
 @property (nonatomic, copy) NSString *inputText;
 
 
-
+/** 文字水印 */
+@property (nonatomic, strong) UILabel *markLabel;
 /** 是否显示旋转按钮（默认为NO） */
 @property (nonatomic, assign) BOOL showRotation;
 /** 是否显示边框（默认为NO） */
 @property (nonatomic, assign) BOOL showBorder;
+/** 隐藏边框（默认为NO） */
+@property (nonatomic, assign) BOOL hiddenBox;
+
 /** 代理 */
 @property(nonatomic, assign) id<LYWatermarkInputViewDelegate>delegate;
 

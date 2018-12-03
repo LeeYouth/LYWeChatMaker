@@ -17,4 +17,8 @@
 /** 是否选中了背景颜色 */
 @property (nonatomic, assign) BOOL selectBack;
 
+
+/** 保存水印 */
+- (void)saveWatermarkImage;
+
 @end

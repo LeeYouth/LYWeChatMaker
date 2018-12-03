@@ -53,6 +53,8 @@ tmp;\
 
 #define LYBUNDLE_NAME @"LYResources.bundle"
 #define LYBUNDLE_PATH [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent: LYBUNDLE_NAME]
+//加载plist文件
+#define LYBUNDLE_PLISTPATH(name)  [[NSBundle bundleWithPath:LYBUNDLE_PATH] pathForResource:(name) ofType:@"plist"]
 #define LYBUNDLE_IMAGEPATH(name)  [[NSBundle bundleWithPath:LYBUNDLE_PATH] pathForResource:(name) ofType:@"png"]
 
 #define LYSystemFont(font)       [UIFont systemFontOfSize:(font)]

@@ -13,6 +13,7 @@
 #import "MSWeakTimer.h"
 
 #define LYWatermarkEditTextViewH 60
+#define LYWatermarkEditTextViewTextFiledH 40
 #define LYWatermarkEditTextInputW (SCREEN_WIDTH - 80)
 #define LYWatermarkEditTextInputH ((SCREEN_WIDTH - 80)/3)
 
@@ -30,7 +31,8 @@
 @property (nonatomic, strong) UITextField *textView;
 /** 确定按钮 */
 @property (nonatomic, strong) UIButton *confirmBtn;
-
+/** 颜色裂变视图 */
+@property (nonatomic, strong) UIView *topLine;
 
 @end
 
@@ -43,7 +45,6 @@
     if (self) {
         self.frame = framef;
         
-//        self.backgroundColor = [UIColor redColor];
         UIBlurEffect *effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
         UIVisualEffectView *effectView = [[UIVisualEffectView alloc] initWithEffect:effect];
         //必须给effcetView的frame赋值,因为UIVisualEffectView是一个加到UIIamgeView上的子视图.
@@ -73,18 +74,18 @@
  
     CGFloat textViewX = leftMargin;
     CGFloat textViewY = topMargin;
-    CGFloat textViewH = LYWatermarkEditTextViewH - 2*topMargin;
-    CGFloat buttonW    = textViewH;
+    CGFloat textViewH = LYWatermarkEditTextViewTextFiledH;
+    CGFloat buttonW   = textViewH;
     CGFloat textViewW = SCREEN_WIDTH - 3*leftMargin - buttonW;
     
-    CGFloat buttonH    = textViewH;
-    CGFloat buttonX    = SCREEN_WIDTH - buttonW - leftMargin;
-    
-    CGFloat buttonY   = topMargin + (textViewH - buttonH)/2;
+    CGFloat buttonH   = buttonW;
+    CGFloat buttonX   = SCREEN_WIDTH - buttonW - leftMargin;
+    CGFloat buttonY   = textViewY;
     
     CGFloat backWidth = SCREEN_WIDTH;
     CGFloat backY     = SCREEN_HEIGHT - LYWatermarkEditTextViewH;
     CGFloat backH     = LYWatermarkEditTextViewH;
+    
     
     CGFloat putLeft = 40;
     self.inputView = [[LYWatermarkInputView alloc] initWithFrame:CGRectMake(putLeft, 0, LYWatermarkEditTextInputW, LYWatermarkEditTextInputH)];
@@ -102,13 +103,19 @@
     [self.textBgView addSubview:self.topLineView];
     
     
-    self.textView = [[UITextField alloc] initWithFrame:CGRectMake(textViewX, textViewY, textViewW, textViewH)];
+    UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, LYCellLineHeight)];
+    lineView.backgroundColor = LYCellLineColor;
+    [self.textBgView addSubview:lineView];
+
+    self.textView = [[UITextField alloc] initWithFrame:CGRectMake(textViewX, textViewY , textViewW, textViewH)];
     self.textView.layer.cornerRadius = 2;
     self.textView.layer.borderColor = cellColor.CGColor;
     self.textView.layer.borderWidth = 0.6;
     self.textView.textColor = LYColor(@"#333333");
     self.textView.font = LYSystemFont(16);
     self.textView.delegate = self;
+    self.textView.returnKeyType = UIReturnKeyDone;
+    self.textView.inputAccessoryView = [[UIView alloc] initWithFrame:CGRectZero];
     self.textView.backgroundColor  =  LYColor(@"#F9F9F9");
     self.textView.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"输入文字" attributes:@{NSForegroundColorAttributeName:LYColor(@"#808080")}] ;
     self.textView.clearButtonMode = UITextFieldViewModeWhileEditing;
@@ -141,6 +148,24 @@
     
 }
 
+
+- (void)setDefultText:(NSString *)defultText{
+    _defultText = defultText;
+    
+    self.inputView.inputText = defultText;
+    if (![defultText isEqualToString:LYWatermarkInputViewDefultText]) {
+        self.textView.text = defultText;
+    }
+}
+
+- (void)changeInputColor:(NSString *)colorhex
+{
+    self.inputView.colorHex = colorhex;
+    if (self.colorBlock) {
+        self.colorBlock(colorhex);
+    }
+}
+
 #pragma mark - 键盘变化通知
 - (void)keyboardChangeFrame:(NSNotification *)notifi{
     CGRect keyboardFrame = [notifi.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
@@ -149,7 +174,7 @@
     WEAKSELF(weakSelf);
     [UIView animateWithDuration:duration animations:^{
         weakSelf.textBgView.transform = CGAffineTransformMakeTranslation(0, keyboardFrame.origin.y - SCREEN_HEIGHT);
-        weakSelf.inputView.frame = CGRectMake(40, (SCREEN_HEIGHT - keyboardFrame.origin.y - LYWatermarkEditTextInputH)/2, LYWatermarkEditTextInputW, LYWatermarkEditTextInputH);
+        weakSelf.inputView.frame = CGRectMake(40, ( keyboardFrame.origin.y - LYWatermarkEditTextInputH)/2, LYWatermarkEditTextInputW, LYWatermarkEditTextInputH);
     }];
 }
 #pragma mark - YYTextViewDelegate内容变化
@@ -157,17 +182,14 @@
     if (textField.text.length) {
         self.inputView.inputText = textField.text;
     }else{
-        self.inputView.inputText = @"双点击输入文字";
+        self.inputView.inputText = LYWatermarkInputViewDefultText;
     }
 }
 
 #pragma mark - 发表按钮点击
 - (void)confirmBtnAction{
-    if (self.textView.text.length)
-    {
-        if (self.block) {
-            self.block(self.textView.text);
-        }
+    if (self.block) {
+        self.block(self.textView.text);
     }
     [self dismiss];
 }

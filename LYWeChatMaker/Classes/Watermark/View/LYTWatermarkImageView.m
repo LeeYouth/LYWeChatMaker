@@ -46,8 +46,8 @@
     
     [self.inputView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.size.mas_equalTo(CGSizeMake(LYWatermarkInputViewTextMinW + 2*LYWatermarkInputViewTextMinWMargin + 15, LYWatermarkInputViewTextMinH + 2*LYWatermarkInputViewTextMinHMargin + 15));
-        make.centerX.equalTo(self.mas_centerX);
-        make.centerY.equalTo(self.mas_centerY);
+        make.centerX.equalTo(self.backImageView.mas_centerX);
+        make.centerY.equalTo(self.backImageView.mas_centerY);
     }];
     
     //双手缩放
@@ -100,19 +100,46 @@
 - (void)LYWatermarkInputView:(id)inputView didViewTransformWithGesture:(YYGestureRecognizer *)gesture{
     
 }
-#pragma mark - 更新输入框约束
-- (void)updateInputViewLayout:(YYGestureRecognizer *)gesture
-{
-//    [self.inputView mas_updateConstraints:^(MASConstraintMaker *make) {
-//        make.size.mas_equalTo(size);
-//        make.centerX.equalTo(self.mas_centerX);
-//        make.centerY.equalTo(self.mas_centerY);
-//    }];
-}
 
 - (void)layoutSubviews{
     [super layoutSubviews];
     
+}
+
+
+- (void)saveWatermarkImage{
+    self.inputView.hiddenBox = YES;
+    self.inputView.showRotation = NO;
+
+    UIGraphicsBeginImageContextWithOptions(self.backImageView.size, NO, 0.0);
+    //获取图像
+    [self.backImageView.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    // 保存图片，需要转换成二进制数据
+    [self saveImageToPhotos:image];
+}
+
+- (void)saveImageToPhotos:(UIImage*)savedImage
+{
+    UIImageWriteToSavedPhotosAlbum(savedImage, self, @selector(image:didFinishSavingWithError:contextInfo:), NULL);
+}
+
+// 指定回调方法
+- (void)image: (UIImage *) image didFinishSavingWithError: (NSError *) error contextInfo: (void *) contextInfo
+{
+    NSString *msg = nil ;
+    if(error != NULL){
+        msg = @"保存图片失败" ;
+    }else{
+        msg = @"保存图片成功" ;
+    }
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"保存图片结果提示"
+                                                    message:msg
+                                                   delegate:self
+                                          cancelButtonTitle:@"确定"
+                                          otherButtonTitles:nil];
+    [alert show];
 }
 
 - (void)setBackImage:(UIImage *)backImage{
@@ -182,11 +209,7 @@
     UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), (__bridge void *)self);
 }
 
-- (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo
-{
-    
-    NSLog(@"image = %@, error = %@, contextInfo = %@", image, error, contextInfo);
-}
+
 
 
 //- (void)loadImageFinished:(UIImage *)image
@@ -208,6 +231,7 @@
 - (UIImageView *)backImageView{
     return LY_LAZY(_backImageView, ({
         UIImageView *imageV = [UIImageView new];
+        imageV.userInteractionEnabled = YES;
         [self addSubview:imageV];
         imageV;
     }));
@@ -215,11 +239,10 @@
 #pragma mark - lazy loading
 - (LYWatermarkInputView *)inputView{
     return LY_LAZY(_inputView, ({
-        WEAKSELF(weakSelf);
         LYWatermarkInputView *putView = [[LYWatermarkInputView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 10)];
         putView.showRotation = YES;
         putView.showBorder = YES;
-        [self addSubview:putView];
+        [self.backImageView addSubview:putView];
         putView;
     }));
 }

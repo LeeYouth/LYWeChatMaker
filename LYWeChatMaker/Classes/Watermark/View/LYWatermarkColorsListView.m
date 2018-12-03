@@ -22,7 +22,7 @@
 - (instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
         
-        self.backgroundColor = [UIColor whiteColor];
+        self.backgroundColor = [UIColor clearColor];
         [self _setupSubViews];
     }
     return self;
@@ -71,6 +71,19 @@
         self.didBackblock(sender.selected);
     }
     
+}
+
+- (void)setDefultColorHex:(NSString *)defultColorHex{
+    _defultColorHex = defultColorHex;
+    
+    for (LYWatermarkColorHexModel *fModel in _colorArray) {
+        if ([fModel.colorHex isEqualToString:defultColorHex]) {
+            fModel.hasSelect = YES;
+        }else{
+            fModel.hasSelect = NO;
+        }
+    }
+    [_collectionview reloadData];
 }
 
 - (void)layoutSubviews {

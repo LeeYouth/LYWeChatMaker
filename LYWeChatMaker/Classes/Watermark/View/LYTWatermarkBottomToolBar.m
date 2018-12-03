@@ -42,8 +42,8 @@
         make.height.mas_equalTo(@40);
     }];
     
-    NSArray *hexArray = @[@"#000000",@"#FFFFFF",@"#FF0000",@"#FFB6C1",@"#A9A9A9",@"#FF1493",@"#FF00FF",@"#9400D3",@"#4B0082",@"#0000FF",@"#000080",@"#B0C4DE",@"#778899",@"#00BFFF",@"#5F9EA0",@"#00FFFF",@"#2F4F4F",@"#00FF7F",@"#FFD700",@"#FFA500",@"#FFDEAD",@"#D2691E",@"#800000"];
-    
+    NSArray *hexArray = [NSArray arrayWithContentsOfFile:LYBUNDLE_PLISTPATH(@"LYWatermarkColorList")];
+
     NSMutableArray *array = [NSMutableArray array];
     for (NSString *colorHex in hexArray) {
         LYWatermarkColorHexModel *model = [[LYWatermarkColorHexModel alloc] init];
