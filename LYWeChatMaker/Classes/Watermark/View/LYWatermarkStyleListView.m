@@ -54,11 +54,16 @@
         make.centerX.equalTo(self.mas_centerX).offset(SCREEN_WIDTH/4);
         make.top.equalTo(self.mas_top).offset(btnY);
     }];
+    
+    self.shadowBtn.hidden = YES;
 }
 
 - (void)buttonClickAction:(UIButton *)sender
 {
     sender.selected = !sender.selected;
+    if (self.block) {
+        self.block(sender);
+    }
 }
 
 #pragma mark - lazy loading
@@ -67,8 +72,8 @@
         UIButton *btn = [[UIButton alloc] init];
         btn.titleLabel.font = LYSystemFont(13.f);
         [btn setTitle:@"描边" forState:UIControlStateNormal];
-        [btn setImage:[UIImage imageNamed:@"watermarkText_boldSetNormal"] forState:UIControlStateNormal];
-        [btn setImage:[UIImage imageNamed:@"watermarkText_boldSetSelect"] forState:UIControlStateSelected];
+        [btn setImage:[UIImage imageNamed:@"watermarkText_shhadowSetNormal"] forState:UIControlStateNormal];
+        [btn setImage:[UIImage imageNamed:@"watermarkText_shhadowSetSelect"] forState:UIControlStateSelected];
         [btn setTitleColor:LYColor(LYBlackColorHex) forState:UIControlStateNormal];
         [btn setTitleColor:LYThemeColor forState:UIControlStateSelected];
         [btn addTarget:self action:@selector(buttonClickAction:) forControlEvents:UIControlEventTouchUpInside];

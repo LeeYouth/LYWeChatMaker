@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void(^LYWatermarkStyleListViewBlock)(UIButton *sender);
+
 @interface LYWatermarkStyleListView : UIView
+
+@property(nonatomic, copy) LYWatermarkStyleListViewBlock block;
 
 @end

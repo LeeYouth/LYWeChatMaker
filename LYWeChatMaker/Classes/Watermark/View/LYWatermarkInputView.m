@@ -10,6 +10,8 @@
 #import "LYWatermarkEditTextView.h"
 #import "LYDrawRectangleView.h"
 #import "MSWeakTimer.h"
+#import "LYWatermarkInputConfig.h"
+#import "LYWatermarkInputLabel.h"
 
 @interface LYWatermarkInputView()<UIGestureRecognizerDelegate>
 
@@ -18,7 +20,9 @@
 @property (nonatomic, strong) LYDrawRectangleView *rectangleView;
 /** 拖动按钮 */
 @property (nonatomic, strong) UIImageView *rotationView;
-
+/** 文字水印 */
+@property (nonatomic, strong) LYWatermarkInputLabel *markLabel;
+/** timer */
 @property (nonatomic, strong) MSWeakTimer *timer;
 
 @end
@@ -150,17 +154,9 @@
     {
         WEAKSELF(weakSelf);
         LYWatermarkEditTextView *textEditView = [[LYWatermarkEditTextView alloc] init];
-        textEditView.defultText = self.markLabel.text;
-        textEditView.block = ^(NSString *inputText) {
-            LYLog(@"-----填写的文字为 = %@",inputText);
-            if (inputText.length) {
-                weakSelf.markLabel.text = inputText;
-            }else{
-                weakSelf.markLabel.text = LYWatermarkInputViewDefultText;
-            }
-        };
-        textEditView.colorBlock = ^(NSString *inputColor) {
-            weakSelf.colorHex = inputColor;
+        textEditView.inputConfig = self.inputConfig;
+        textEditView.block = ^(LYWatermarkInputConfig *config) {
+            weakSelf.inputConfig = config;
         };
     }
 }
@@ -179,42 +175,63 @@
 }
 
 
-- (void)setColorHex:(NSString *)colorHex{
-    _colorHex = colorHex;
+
+- (void)setInputConfig:(LYWatermarkInputConfig *)inputConfig{
+    _inputConfig = inputConfig;
     
-    if (self.selectBack){
-        if ([colorHex isEqualToString:LYWhiteColorHex]) {
+    //是否加粗
+    if (inputConfig.selectBold) {
+        self.markLabel.font = [UIFont boldSystemFontOfSize:LYWatermarkInputViewFont];
+    }else{
+        self.markLabel.font = LYSystemFont(LYWatermarkInputViewFont);
+    }
+    //是否阴影
+    if (inputConfig.selectShadow) {
+        
+        //设置阴影的颜色和阴影的偏移位置
+        self.markLabel.shadowColor = LYColor(LYBlackColorHex);
+        self.markLabel.shadowOffset = CGSizeMake(3.0,3.0);
+        self.markLabel.shadowBlur = 4;
+
+    }else{
+        self.markLabel.shadowColor = LYColor(@"#A9A9A9");
+        self.markLabel.shadowOffset = CGSizeMake(0.0,0.0);
+        self.markLabel.shadowBlur = 0;
+    }
+    //是否描边
+    if (inputConfig.selectStroke) {
+//        if ([inputConfig.colorHex isEqualToString:LYBlackColorHex]) {
+//            self.markLabel.strokeColor = LYColor(LYWhiteColorHex);
+//        }else{
+//            self.markLabel.strokeColor = LYColor(LYBlackColorHex);
+//        }
+        self.markLabel.strokeSize = 6;
+    }else{
+//        self.markLabel.strokeColor = LYColor(LYBlackColorHex);
+        self.markLabel.strokeSize = 0;
+    }
+
+    
+    if (inputConfig.selectBack) {
+        //选择了背景
+        if ([inputConfig.colorHex isEqualToString:LYWhiteColorHex]) {
             self.markLabel.textColor = LYColor(LYBlackColorHex);
         }else{
             self.markLabel.textColor = LYColor(LYWhiteColorHex);
         }
-        self.markLabel.backgroundColor = LYColor(colorHex);
+        self.markLabel.backgroundColor = LYColor(inputConfig.colorHex);
     }else{
-        self.markLabel.textColor = LYColor(colorHex);
-    }
-    
-}
-
-- (void)setSelectBack:(BOOL)selectBack{
-    _selectBack = selectBack;
-    if (selectBack) {
-        if (self.colorHex.length) {
-            //白字
-            if ([self.colorHex isEqualToString:LYWhiteColorHex]) {
-                self.markLabel.textColor = LYColor(LYBlackColorHex);
-            }else{
-                self.markLabel.textColor = LYColor(LYWhiteColorHex);
-            }
-            self.markLabel.backgroundColor = LYColor(self.colorHex);
-        }else{
-            //白底，黑字
-            self.markLabel.textColor = LYColor(LYBlackColorHex);
-            self.markLabel.backgroundColor = LYColor(LYWhiteColorHex);
-        }
-    }else{
-        self.markLabel.textColor = self.colorHex.length?LYColor(self.colorHex):LYColor(LYWhiteColorHex);
+        self.markLabel.textColor = LYColor(inputConfig.colorHex);
         self.markLabel.backgroundColor = [UIColor clearColor];
     }
+    
+    //输入的文字
+    if (inputConfig.inputText.length) {
+        self.markLabel.text = inputConfig.inputText;
+    }else{
+        self.markLabel.text = LYWatermarkInputViewDefultText;
+    }
+    
 }
 
 - (void)setShowRotation:(BOOL)showRotation{
@@ -236,15 +253,6 @@
     self.rectangleView.hidden = hiddenBox;
 }
 
-- (void)setInputText:(NSString *)inputText{
-    _inputText = inputText;
-    
-    if (inputText.length) {
-        self.markLabel.text = inputText;
-    }else{
-        self.markLabel.text = LYWatermarkInputViewDefultText;
-    }
-}
 
 - (void)layoutSubviews{
     [super layoutSubviews];
@@ -260,12 +268,12 @@
 }
 
 #pragma mark - 懒加载
-- (UILabel *)markLabel{
+- (LYWatermarkInputLabel *)markLabel{
     return LY_LAZY(_markLabel, ({
-        UILabel *label = [UILabel new];
+        LYWatermarkInputLabel *label = [LYWatermarkInputLabel new];
         label.userInteractionEnabled = YES;
         label.numberOfLines = 0;
-        label.font = LYSystemFont(26);
+        label.font = LYSystemFont(LYWatermarkInputViewFont);
         label.textColor = [UIColor whiteColor];
         label.textAlignment = NSTextAlignmentCenter;
         label.text = LYWatermarkInputViewDefultText;

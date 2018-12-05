@@ -131,8 +131,12 @@
     NSString *msg = nil ;
     if(error != NULL){
         msg = @"保存图片失败" ;
+        
     }else{
         msg = @"保存图片成功" ;
+        if (self.success) {
+            self.success();
+        }
     }
 }
 
@@ -148,14 +152,10 @@
     
 }
 
-- (void)setColorHex:(NSString *)colorHex{
-    _colorHex = colorHex;
+- (void)setInputConfig:(LYWatermarkInputConfig *)inputConfig{
+    _inputConfig = inputConfig;
     
-    self.inputView.colorHex = colorHex;
-}
-- (void)setSelectBack:(BOOL)selectBack{
-    _selectBack = selectBack;
-    self.inputView.selectBack = selectBack;
+    self.inputView.inputConfig = inputConfig;
 }
 
 #pragma mark - private method
@@ -216,7 +216,7 @@
 - (LYWatermarkInputView *)inputView{
     return LY_LAZY(_inputView, ({
         LYWatermarkInputView *putView = [[LYWatermarkInputView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 10)];
-        putView.showRotation = YES;
+        putView.showRotation = NO;
         putView.showBorder = YES;
         [self.backImageView addSubview:putView];
         putView;

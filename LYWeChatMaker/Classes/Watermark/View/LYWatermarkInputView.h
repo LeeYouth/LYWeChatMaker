@@ -7,11 +7,12 @@
 //  水印文本输入视图
 
 #import <UIKit/UIKit.h>
-@class LYWatermarkInputView;
+@class LYWatermarkInputView,LYWatermarkInputConfig;
 #define LYWatermarkInputViewTextMinW 160
 #define LYWatermarkInputViewTextMinH 40
 #define LYWatermarkInputViewTextMinWMargin 40
 #define LYWatermarkInputViewTextMinHMargin 20
+#define LYWatermarkInputViewFont 30.f
 
 #define LYWatermarkInputViewDefultText @"点击输入文字"
 
@@ -28,16 +29,11 @@
 
 @interface LYWatermarkInputView : UIView
 
-/** 文字颜色 */
-@property (nonatomic, copy) NSString *colorHex;
-/** 是否选中了背景颜色 */
-@property (nonatomic, assign) BOOL selectBack;
-/** 输入的文字 */
-@property (nonatomic, copy) NSString *inputText;
+/** 文字框配置 */
+@property (nonatomic, strong) LYWatermarkInputConfig *inputConfig;
 
 
-/** 文字水印 */
-@property (nonatomic, strong) UILabel *markLabel;
+
 /** 是否显示旋转按钮（默认为NO） */
 @property (nonatomic, assign) BOOL showRotation;
 /** 是否显示边框（默认为NO） */
@@ -52,3 +48,6 @@
 - (void)startRectangleViewAnimation;
 
 @end
+
+
+

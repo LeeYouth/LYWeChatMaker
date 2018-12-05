@@ -7,17 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+@class LYWatermarkInputConfig;
+
+typedef void(^LYTWatermarkImageViewBlock)();
 
 @interface LYTWatermarkImageView : UIView
 
 /** 背景图 */
 @property (nonatomic, strong) UIImage *backImage;
-/** 文字颜色 */
-@property (nonatomic, copy) NSString *colorHex;
-/** 是否选中了背景颜色 */
-@property (nonatomic, assign) BOOL selectBack;
-
-
+/** 文字框配置 */
+@property (nonatomic, strong) LYWatermarkInputConfig *inputConfig;
+@property(nonatomic, copy) LYTWatermarkImageViewBlock success;
 /** 保存水印 */
 - (void)saveWatermarkImage;
 

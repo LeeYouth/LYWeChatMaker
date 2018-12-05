@@ -80,7 +80,7 @@
     }
 }
 
-#pragma mark - 底部按钮点击
+#pragma mark - 底部颜色按钮点击
 - (void)bottomBtnClick:(NSInteger)index
 {
     if (self.bottomBtnblock) {
@@ -96,6 +96,17 @@
     }
     
 }
+
+#pragma mark - 底部样式按钮点击
+- (void)bottomStyleBtnClick:(UIButton *)sender
+{
+    if (self.styleBlock) {
+        self.styleBlock(sender);
+    }
+}
+
+
+
 
 #pragma mark - lazy loading
 - (LYWatermarkColorsListView *)colorListView{
@@ -117,6 +128,9 @@
     return LY_LAZY(_styleListView, ({
         WEAKSELF(weakSelf);
         LYWatermarkStyleListView *listView = [[LYWatermarkStyleListView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 10)];
+        listView.block = ^(UIButton *sender) {
+            [weakSelf bottomStyleBtnClick:sender];
+        };
         [self addSubview:listView];
         listView.hidden = YES;
         listView;

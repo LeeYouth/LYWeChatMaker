@@ -10,6 +10,7 @@ target 'LYWeChatMaker' do
     pod 'Masonry',:inhibit_warnings => true
     pod 'TZImagePickerController',:inhibit_warnings => true
     pod 'MSWeakTimer', '~> 1.1.0',:inhibit_warnings => true
+    pod 'THLabel', '~> 1.4.0',:inhibit_warnings => true
 
     pod 'UMCCommon'
     pod 'UMCSecurityPlugins'

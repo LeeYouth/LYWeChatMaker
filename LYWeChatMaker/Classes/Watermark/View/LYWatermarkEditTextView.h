@@ -7,20 +7,18 @@
 //  水印文字输入框
 
 #import <UIKit/UIKit.h>
+@class LYWatermarkInputConfig;
 
-typedef void(^LYWatermarkEditTextViewBlock)(NSString *inputText);
-typedef void(^LYWatermarkEditTextViewColorBlock)(NSString *inputColor);
+typedef void(^LYWatermarkEditTextViewBlock)(LYWatermarkInputConfig *config);
 
 @interface LYWatermarkEditTextView : UIView
 
 /** 视图消失的方法 */
 - (void)dismiss;
 
-
-@property (nonatomic,copy) LYWatermarkEditTextViewColorBlock colorBlock;
 /** block 内容传递 */
 @property (nonatomic,copy) LYWatermarkEditTextViewBlock block;
-/** 默认显示内容 */
-@property (nonatomic,copy) NSString *defultText;
+/** 文字框配置 */
+@property (nonatomic, strong) LYWatermarkInputConfig *inputConfig;
 
 @end

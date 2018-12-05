@@ -11,11 +11,13 @@
 #import "LYWKWebViewController.h"
 #import "LYTWatermarkImageView.h"
 #import "LYTWatermarkBottomToolBar.h"
+#import "LYWatermarkInputConfig.h"
 
 @interface LYTWatermarkViewController ()
 
 @property (nonatomic, strong) LYTWatermarkImageView *backImageView;
 @property (nonatomic, strong) LYTWatermarkBottomToolBar *bottomToolBar;
+@property (nonatomic, strong) LYWatermarkInputConfig *inputConfig;
 
 @end
 
@@ -57,7 +59,17 @@
     }];
     
 
+    
+    self.inputConfig = [[LYWatermarkInputConfig alloc] init];
+    self.inputConfig.inputText    = @"";
+    self.inputConfig.colorHex     = LYWhiteColorHex;
+    self.inputConfig.selectBack   = NO;
+    self.inputConfig.selectBold   = NO;
+    self.inputConfig.selectShadow = NO;
+    self.inputConfig.selectStroke = NO;
+
     self.backImageView.backImage = self.targetImage;
+    self.backImageView.inputConfig = self.inputConfig;
 
 }
 
@@ -86,12 +98,36 @@
         [self.backImageView saveWatermarkImage];
     }
 }
+#pragma mark - 底部样式按钮点击
+- (void)bottomStyleBtnClick:(UIButton *)sender
+{
+    if (sender.tag == 0) {
+        //阴影
+        self.inputConfig.selectStroke = sender.selected;
+        self.backImageView.inputConfig = self.inputConfig;
+    }else if (sender.tag == 1){
+        //阴影
+        self.inputConfig.selectShadow = sender.selected;
+        self.backImageView.inputConfig = self.inputConfig;
+    }else if (sender.tag == 2){
+        //加粗
+        self.inputConfig.selectBold = sender.selected;
+        self.backImageView.inputConfig = self.inputConfig;
+    }
+}
 
 
 #pragma mark - 懒加载
 - (LYTWatermarkImageView *)backImageView{
     return LY_LAZY(_backImageView, ({
+        WEAKSELF(weakSelf);
         LYTWatermarkImageView *imageV = [[LYTWatermarkImageView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - LYTWatermarkBottomToolBarH)];
+        imageV.success = ^{
+            
+            [MBProgressHUD showErrorMessage:@"保存成功"];
+            [weakSelf.navigationController popViewControllerAnimated:YES];
+
+        };
         imageV;
     }));
 }
@@ -102,13 +138,18 @@
         CGFloat toolBarH = LYTWatermarkBottomToolBarH;
         LYTWatermarkBottomToolBar *toolView = [[LYTWatermarkBottomToolBar alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT - toolBarH, SCREEN_WIDTH, toolBarH)];
         toolView.didSelectItemblock = ^(NSString *colorHex) {
-            weakSelf.backImageView.colorHex = colorHex;
+            weakSelf.inputConfig.colorHex = colorHex;
+            weakSelf.backImageView.inputConfig = weakSelf.inputConfig;
         };
         toolView.didSelectBackblock = ^(BOOL hasSelect) {
-            weakSelf.backImageView.selectBack = hasSelect;
+            weakSelf.inputConfig.selectBack = hasSelect;
+            weakSelf.backImageView.inputConfig = weakSelf.inputConfig;
         };
         toolView.bottomBtnblock = ^(NSInteger index) {
             [weakSelf bottomButtonClick:index];
+        };
+        toolView.styleBlock = ^(UIButton *sender) {
+            [weakSelf bottomStyleBtnClick:sender];
         };
         toolView;
     }));

@@ -24,8 +24,6 @@
 /** 底部线条 */
 @property (nonatomic, strong) UIView *bottomLine;
 
-@property (nonatomic, strong) NSMutableArray *buttonArray;
-
 @end
 
 @implementation LYWatermarkBottomBtnsView
@@ -51,9 +49,6 @@
     [self addSubview:self.colorBtn];
     [self addSubview:self.styleBtn];
     [self addSubview:self.bottomLine];
-
-    [self.buttonArray addObject:self.colorBtn];
-    [self.buttonArray addObject:self.styleBtn];
 
     CGFloat bottomLineH = 2;
     CGFloat bottomLineW = 60;
@@ -181,10 +176,5 @@
         view;
     }));
 }
-- (NSMutableArray *)buttonArray{
-    return LY_LAZY(_buttonArray, ({
-        NSMutableArray *array = [NSMutableArray array];
-        array;
-    }));
-}
+
 @end

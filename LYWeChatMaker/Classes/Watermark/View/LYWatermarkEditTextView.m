@@ -11,6 +11,7 @@
 #import "LYDrawRectangleView.h"
 #import "LYWatermarkInputView.h"
 #import "MSWeakTimer.h"
+#import "LYWatermarkInputConfig.h"
 
 #define LYWatermarkEditTextViewH 60
 #define LYWatermarkEditTextViewTextFiledH 40
@@ -149,21 +150,13 @@
 }
 
 
-- (void)setDefultText:(NSString *)defultText{
-    _defultText = defultText;
+- (void)setInputConfig:(LYWatermarkInputConfig *)inputConfig{
+    _inputConfig = inputConfig;
+    if (![inputConfig.inputText isEqualToString:LYWatermarkInputViewDefultText]) {
+        self.textView.text = inputConfig.inputText;
+    }
+    self.inputView.inputConfig = inputConfig;
     
-    self.inputView.inputText = defultText;
-    if (![defultText isEqualToString:LYWatermarkInputViewDefultText]) {
-        self.textView.text = defultText;
-    }
-}
-
-- (void)changeInputColor:(NSString *)colorhex
-{
-    self.inputView.colorHex = colorhex;
-    if (self.colorBlock) {
-        self.colorBlock(colorhex);
-    }
 }
 
 #pragma mark - 键盘变化通知
@@ -180,16 +173,18 @@
 #pragma mark - YYTextViewDelegate内容变化
 - (void)textFieldTextChange:(UITextField *)textField{
     if (textField.text.length) {
-        self.inputView.inputText = textField.text;
+        self.inputConfig.inputText = textField.text;
+        self.inputView.inputConfig = self.inputConfig;
     }else{
-        self.inputView.inputText = LYWatermarkInputViewDefultText;
+        self.inputConfig.inputText = LYWatermarkInputViewDefultText;
+        self.inputView.inputConfig = self.inputConfig;
     }
 }
 
 #pragma mark - 发表按钮点击
 - (void)confirmBtnAction{
     if (self.block) {
-        self.block(self.textView.text);
+        self.block(self.inputConfig);
     }
     [self dismiss];
 }

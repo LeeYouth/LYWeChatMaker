@@ -11,7 +11,7 @@
 #import "LYWatermarkBottomBtnsView.h"
 #import "LYWatermarkStyleListView.h"
 
-#define LYTWatermarkBottomToolBarH (LYWatermarkColorsListViewH + LYWatermarkBottomBtnsViewH)
+#define LYTWatermarkBottomToolBarH (LYWatermarkColorsListViewH + LYWatermarkBottomBtnsViewH + kTabbarExtra)
 
 @interface LYTWatermarkBottomToolBar : UIView
 
@@ -21,5 +21,7 @@
 @property(nonatomic, copy) LYWatermarkColorsListViewDidSelectBackBlock didSelectBackblock;
 /** 底部按钮点击 */
 @property(nonatomic, copy) LYWatermarkBottomBtnsViewBlock bottomBtnblock;
+/** 底部样式按钮点击 */
+@property(nonatomic, copy) LYWatermarkStyleListViewBlock styleBlock;
 
 @end
