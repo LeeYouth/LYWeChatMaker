@@ -41,6 +41,22 @@
 		CF706F1121B6169C00442D67 /* LYWatermarkInputConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = CF706F1021B6169C00442D67 /* LYWatermarkInputConfig.m */; };
 		CF706F1421B6237B00442D67 /* LYWatermarkInputLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = CF706F1321B6237B00442D67 /* LYWatermarkInputLabel.m */; };
 		CF706F1721B669D400442D67 /* MBProgressHUD+LYHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = CF706F1621B669D400442D67 /* MBProgressHUD+LYHUD.m */; };
+		CF706F1E21B7B63B00442D67 /* LYSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF706F1D21B7B63B00442D67 /* LYSettingViewController.m */; };
+		CF706F2121B7BBAA00442D67 /* LYAboutUsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF706F2021B7BBAA00442D67 /* LYAboutUsViewController.m */; };
+		CF706F2421B7C2AD00442D67 /* LYAboutUsInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF706F2321B7C2AD00442D67 /* LYAboutUsInfoView.m */; };
+		CF706F2A21B7C79C00442D67 /* LYNoviceManualViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF706F2921B7C79C00442D67 /* LYNoviceManualViewController.m */; };
+		CF706F2D21B7CF8F00442D67 /* LYPrivacyAgreementInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF706F2C21B7CF8F00442D67 /* LYPrivacyAgreementInfoView.m */; };
+		CF706F3621B8CD6400442D67 /* ZhanKuKuaiLeTi2016XiuDingBan-1.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF706F2F21B8CD6000442D67 /* ZhanKuKuaiLeTi2016XiuDingBan-1.ttf */; };
+		CF706F3B21B8CD6400442D67 /* HanYiXinDiShouZhaTi-2.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF706F3421B8CD6300442D67 /* HanYiXinDiShouZhaTi-2.ttf */; };
+		CF706F4321BE1A2F00442D67 /* LYTWatermarkTopToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = CF706F4221BE1A2F00442D67 /* LYTWatermarkTopToolBar.m */; };
+		CF706F4621BE647D00442D67 /* LYActionSheetView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF706F4521BE647D00442D67 /* LYActionSheetView.m */; };
+		CF706F6F21C7571900442D67 /* LYWatermarkFontListView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF706F6E21C7571800442D67 /* LYWatermarkFontListView.m */; };
+		CF706F7221C7988800442D67 /* LYWatermarkStyleBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF706F7121C7988800442D67 /* LYWatermarkStyleBottomView.m */; };
+		CF706FA121D229A300442D67 /* LYXMRImageResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CF706FA021D229A300442D67 /* LYXMRImageResources.bundle */; };
+		CF706FA421D319D400442D67 /* LYHomePageBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF706FA321D319D400442D67 /* LYHomePageBackgroundView.m */; };
+		CF706FA721D31A4800442D67 /* LYHomePageNavgationView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF706FA621D31A4800442D67 /* LYHomePageNavgationView.m */; };
+		CF706FAD21D3527E00442D67 /* LYEmoticonPackageListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF706FAC21D3527E00442D67 /* LYEmoticonPackageListViewController.m */; };
+		CF706FB021D3540000442D67 /* LYEmoticonPackageListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CF706FAF21D3540000442D67 /* LYEmoticonPackageListCell.m */; };
 		CFDB56642125173200501905 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CFDB56632125173200501905 /* Assets.xcassets */; };
 		CFDB566A2125173200501905 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CFDB56692125173200501905 /* main.m */; };
 		CFDB56742125173200501905 /* LYWeChatMakerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CFDB56732125173200501905 /* LYWeChatMakerTests.m */; };
@@ -49,6 +65,22 @@
 		CFDB56AD212521A300501905 /* LYTabbarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFDB56AC212521A300501905 /* LYTabbarViewController.m */; };
 		CFDB56B0212521BA00501905 /* LYBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CFDB56AF212521BA00501905 /* LYBaseModel.m */; };
 		CFDB56B32125251700501905 /* LYTimeLineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFDB56B22125251700501905 /* LYTimeLineViewController.m */; };
+		CFFF0D6A21D75B3100060A2B /* LYStickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = CFFF0D6921D75B3100060A2B /* LYStickerView.m */; };
+		CFFF0D7021DE1D2E00060A2B /* LYMGTImageResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CFFF0D6F21DE1D2E00060A2B /* LYMGTImageResources.bundle */; };
+		CFFF0D7321DEED7D00060A2B /* LYAllEmoticonsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFFF0D7221DEED7D00060A2B /* LYAllEmoticonsViewController.m */; };
+		CFFF0D7621DEEDE300060A2B /* LYBaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFFF0D7521DEEDE300060A2B /* LYBaseTableViewController.m */; };
+		CFFF0D7921DEEF5700060A2B /* LYAllEmoticonsTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CFFF0D7821DEEF5700060A2B /* LYAllEmoticonsTableCell.m */; };
+		CFFF0D7C21DEF10200060A2B /* LYEmoticonModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CFFF0D7B21DEF10200060A2B /* LYEmoticonModel.m */; };
+		CFFF0D7E21DEF8D200060A2B /* LYMyCollectionResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CFFF0D7D21DEF8D200060A2B /* LYMyCollectionResources.bundle */; };
+		CFFF0D8121DF2D0E00060A2B /* LYUnlockNewFeaturesAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = CFFF0D8021DF2D0E00060A2B /* LYUnlockNewFeaturesAlertView.m */; };
+		CFFF0D8421DF4D1600060A2B /* LTToastTool.m in Sources */ = {isa = PBXBuildFile; fileRef = CFFF0D8321DF4D1600060A2B /* LTToastTool.m */; };
+		CFFF0D8721DF4D6A00060A2B /* MTLoadingHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = CFFF0D8521DF4D6A00060A2B /* MTLoadingHUD.m */; };
+		CFFF0D8A21DF4D9A00060A2B /* MTProgressHUDManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CFFF0D8921DF4D9A00060A2B /* MTProgressHUDManager.m */; };
+		CFFF0D9721DF4EC700060A2B /* SVRadialGradientLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = CFFF0D8D21DF4EC700060A2B /* SVRadialGradientLayer.m */; };
+		CFFF0D9821DF4EC700060A2B /* SVProgressAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = CFFF0D9021DF4EC700060A2B /* SVProgressAnimatedView.m */; };
+		CFFF0D9921DF4EC700060A2B /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = CFFF0D9321DF4EC700060A2B /* SVProgressHUD.m */; };
+		CFFF0D9A21DF4EC700060A2B /* SVIndefiniteAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = CFFF0D9421DF4EC700060A2B /* SVIndefiniteAnimatedView.m */; };
+		CFFF0D9B21DF4EC700060A2B /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CFFF0D9521DF4EC700060A2B /* SVProgressHUD.bundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -134,6 +166,35 @@
 		CF706F1321B6237B00442D67 /* LYWatermarkInputLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LYWatermarkInputLabel.m; sourceTree = "<group>"; };
 		CF706F1521B669D400442D67 /* MBProgressHUD+LYHUD.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+LYHUD.h"; sourceTree = "<group>"; };
 		CF706F1621B669D400442D67 /* MBProgressHUD+LYHUD.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+LYHUD.m"; sourceTree = "<group>"; };
+		CF706F1C21B7B63B00442D67 /* LYSettingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LYSettingViewController.h; sourceTree = "<group>"; };
+		CF706F1D21B7B63B00442D67 /* LYSettingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LYSettingViewController.m; sourceTree = "<group>"; };
+		CF706F1F21B7BBAA00442D67 /* LYAboutUsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LYAboutUsViewController.h; sourceTree = "<group>"; };
+		CF706F2021B7BBAA00442D67 /* LYAboutUsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LYAboutUsViewController.m; sourceTree = "<group>"; };
+		CF706F2221B7C2AD00442D67 /* LYAboutUsInfoView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LYAboutUsInfoView.h; sourceTree = "<group>"; };
+		CF706F2321B7C2AD00442D67 /* LYAboutUsInfoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LYAboutUsInfoView.m; sourceTree = "<group>"; };
+		CF706F2821B7C79C00442D67 /* LYNoviceManualViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LYNoviceManualViewController.h; sourceTree = "<group>"; };
+		CF706F2921B7C79C00442D67 /* LYNoviceManualViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LYNoviceManualViewController.m; sourceTree = "<group>"; };
+		CF706F2B21B7CF8F00442D67 /* LYPrivacyAgreementInfoView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LYPrivacyAgreementInfoView.h; sourceTree = "<group>"; };
+		CF706F2C21B7CF8F00442D67 /* LYPrivacyAgreementInfoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LYPrivacyAgreementInfoView.m; sourceTree = "<group>"; };
+		CF706F2F21B8CD6000442D67 /* ZhanKuKuaiLeTi2016XiuDingBan-1.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ZhanKuKuaiLeTi2016XiuDingBan-1.ttf"; sourceTree = "<group>"; };
+		CF706F3421B8CD6300442D67 /* HanYiXinDiShouZhaTi-2.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "HanYiXinDiShouZhaTi-2.ttf"; sourceTree = "<group>"; };
+		CF706F4121BE1A2F00442D67 /* LYTWatermarkTopToolBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LYTWatermarkTopToolBar.h; sourceTree = "<group>"; };
+		CF706F4221BE1A2F00442D67 /* LYTWatermarkTopToolBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LYTWatermarkTopToolBar.m; sourceTree = "<group>"; };
+		CF706F4421BE647D00442D67 /* LYActionSheetView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LYActionSheetView.h; sourceTree = "<group>"; };
+		CF706F4521BE647D00442D67 /* LYActionSheetView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LYActionSheetView.m; sourceTree = "<group>"; };
+		CF706F6B21C74FEC00442D67 /* LYWatermarkFontListView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LYWatermarkFontListView.h; sourceTree = "<group>"; };
+		CF706F6E21C7571800442D67 /* LYWatermarkFontListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYWatermarkFontListView.m; sourceTree = "<group>"; };
+		CF706F7021C7988700442D67 /* LYWatermarkStyleBottomView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LYWatermarkStyleBottomView.h; sourceTree = "<group>"; };
+		CF706F7121C7988800442D67 /* LYWatermarkStyleBottomView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LYWatermarkStyleBottomView.m; sourceTree = "<group>"; };
+		CF706FA021D229A300442D67 /* LYXMRImageResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = LYXMRImageResources.bundle; sourceTree = "<group>"; };
+		CF706FA221D319D400442D67 /* LYHomePageBackgroundView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LYHomePageBackgroundView.h; sourceTree = "<group>"; };
+		CF706FA321D319D400442D67 /* LYHomePageBackgroundView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LYHomePageBackgroundView.m; sourceTree = "<group>"; };
+		CF706FA521D31A4800442D67 /* LYHomePageNavgationView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LYHomePageNavgationView.h; sourceTree = "<group>"; };
+		CF706FA621D31A4800442D67 /* LYHomePageNavgationView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LYHomePageNavgationView.m; sourceTree = "<group>"; };
+		CF706FAB21D3527E00442D67 /* LYEmoticonPackageListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LYEmoticonPackageListViewController.h; sourceTree = "<group>"; };
+		CF706FAC21D3527E00442D67 /* LYEmoticonPackageListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LYEmoticonPackageListViewController.m; sourceTree = "<group>"; };
+		CF706FAE21D3540000442D67 /* LYEmoticonPackageListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LYEmoticonPackageListCell.h; sourceTree = "<group>"; };
+		CF706FAF21D3540000442D67 /* LYEmoticonPackageListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LYEmoticonPackageListCell.m; sourceTree = "<group>"; };
 		CFDB56572125172E00501905 /* LYWeChatMaker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LYWeChatMaker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFDB56632125173200501905 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CFDB56682125173200501905 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -153,6 +214,36 @@
 		CFDB56AF212521BA00501905 /* LYBaseModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LYBaseModel.m; sourceTree = "<group>"; };
 		CFDB56B12125251700501905 /* LYTimeLineViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LYTimeLineViewController.h; sourceTree = "<group>"; };
 		CFDB56B22125251700501905 /* LYTimeLineViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LYTimeLineViewController.m; sourceTree = "<group>"; };
+		CFFF0D6821D75B3100060A2B /* LYStickerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LYStickerView.h; sourceTree = "<group>"; };
+		CFFF0D6921D75B3100060A2B /* LYStickerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LYStickerView.m; sourceTree = "<group>"; };
+		CFFF0D6F21DE1D2E00060A2B /* LYMGTImageResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = LYMGTImageResources.bundle; sourceTree = "<group>"; };
+		CFFF0D7121DEED7D00060A2B /* LYAllEmoticonsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LYAllEmoticonsViewController.h; sourceTree = "<group>"; };
+		CFFF0D7221DEED7D00060A2B /* LYAllEmoticonsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LYAllEmoticonsViewController.m; sourceTree = "<group>"; };
+		CFFF0D7421DEEDE300060A2B /* LYBaseTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LYBaseTableViewController.h; sourceTree = "<group>"; };
+		CFFF0D7521DEEDE300060A2B /* LYBaseTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LYBaseTableViewController.m; sourceTree = "<group>"; };
+		CFFF0D7721DEEF5700060A2B /* LYAllEmoticonsTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LYAllEmoticonsTableCell.h; sourceTree = "<group>"; };
+		CFFF0D7821DEEF5700060A2B /* LYAllEmoticonsTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LYAllEmoticonsTableCell.m; sourceTree = "<group>"; };
+		CFFF0D7A21DEF10200060A2B /* LYEmoticonModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LYEmoticonModel.h; sourceTree = "<group>"; };
+		CFFF0D7B21DEF10200060A2B /* LYEmoticonModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LYEmoticonModel.m; sourceTree = "<group>"; };
+		CFFF0D7D21DEF8D200060A2B /* LYMyCollectionResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = LYMyCollectionResources.bundle; sourceTree = "<group>"; };
+		CFFF0D7F21DF2D0E00060A2B /* LYUnlockNewFeaturesAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LYUnlockNewFeaturesAlertView.h; sourceTree = "<group>"; };
+		CFFF0D8021DF2D0E00060A2B /* LYUnlockNewFeaturesAlertView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LYUnlockNewFeaturesAlertView.m; sourceTree = "<group>"; };
+		CFFF0D8221DF4D1600060A2B /* LTToastTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTToastTool.h; sourceTree = "<group>"; };
+		CFFF0D8321DF4D1600060A2B /* LTToastTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTToastTool.m; sourceTree = "<group>"; };
+		CFFF0D8521DF4D6A00060A2B /* MTLoadingHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTLoadingHUD.m; sourceTree = "<group>"; };
+		CFFF0D8621DF4D6A00060A2B /* MTLoadingHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTLoadingHUD.h; sourceTree = "<group>"; };
+		CFFF0D8821DF4D9900060A2B /* MTProgressHUDManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTProgressHUDManager.h; sourceTree = "<group>"; };
+		CFFF0D8921DF4D9A00060A2B /* MTProgressHUDManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTProgressHUDManager.m; sourceTree = "<group>"; };
+		CFFF0D8D21DF4EC700060A2B /* SVRadialGradientLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVRadialGradientLayer.m; sourceTree = "<group>"; };
+		CFFF0D8E21DF4EC700060A2B /* SVIndefiniteAnimatedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVIndefiniteAnimatedView.h; sourceTree = "<group>"; };
+		CFFF0D8F21DF4EC700060A2B /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
+		CFFF0D9021DF4EC700060A2B /* SVProgressAnimatedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressAnimatedView.m; sourceTree = "<group>"; };
+		CFFF0D9121DF4EC700060A2B /* SVProgressHUD-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SVProgressHUD-Prefix.pch"; sourceTree = "<group>"; };
+		CFFF0D9221DF4EC700060A2B /* SVRadialGradientLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVRadialGradientLayer.h; sourceTree = "<group>"; };
+		CFFF0D9321DF4EC700060A2B /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
+		CFFF0D9421DF4EC700060A2B /* SVIndefiniteAnimatedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVIndefiniteAnimatedView.m; sourceTree = "<group>"; };
+		CFFF0D9521DF4EC700060A2B /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
+		CFFF0D9621DF4EC700060A2B /* SVProgressAnimatedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressAnimatedView.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -247,10 +338,16 @@
 				CF706F0221B26E2100442D67 /* LYWatermarkEditTextView.m */,
 				CF6C432E21AFD0DB002287F9 /* LYTWatermarkBottomToolBar.h */,
 				CF6C432F21AFD0DB002287F9 /* LYTWatermarkBottomToolBar.m */,
+				CF706F4121BE1A2F00442D67 /* LYTWatermarkTopToolBar.h */,
+				CF706F4221BE1A2F00442D67 /* LYTWatermarkTopToolBar.m */,
 				CF706EF821AFE2E400442D67 /* LYWatermarkColorsListView.h */,
 				CF706EF921AFE2E400442D67 /* LYWatermarkColorsListView.m */,
 				CF706F0C21B52A2A00442D67 /* LYWatermarkStyleListView.h */,
 				CF706F0D21B52A2A00442D67 /* LYWatermarkStyleListView.m */,
+				CF706F6B21C74FEC00442D67 /* LYWatermarkFontListView.h */,
+				CF706F6E21C7571800442D67 /* LYWatermarkFontListView.m */,
+				CF706F7021C7988700442D67 /* LYWatermarkStyleBottomView.h */,
+				CF706F7121C7988800442D67 /* LYWatermarkStyleBottomView.m */,
 				CF706F0721B382B900442D67 /* LYWatermarkBottomBtnsView.h */,
 				CF706F0821B382B900442D67 /* LYWatermarkBottomBtnsView.m */,
 				CF706F0421B2B02B00442D67 /* LYDrawRectangleView.h */,
@@ -316,6 +413,9 @@
 			isa = PBXGroup;
 			children = (
 				CF6C430C21AE69D6002287F9 /* LYResources.bundle */,
+				CF706FA021D229A300442D67 /* LYXMRImageResources.bundle */,
+				CFFF0D6F21DE1D2E00060A2B /* LYMGTImageResources.bundle */,
+				CFFF0D7D21DEF8D200060A2B /* LYMyCollectionResources.bundle */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -344,6 +444,10 @@
 			children = (
 				CF6C432B21AFC559002287F9 /* LYHomePageViewController.h */,
 				CF6C432C21AFC559002287F9 /* LYHomePageViewController.m */,
+				CFFF0D7121DEED7D00060A2B /* LYAllEmoticonsViewController.h */,
+				CFFF0D7221DEED7D00060A2B /* LYAllEmoticonsViewController.m */,
+				CF706FAB21D3527E00442D67 /* LYEmoticonPackageListViewController.h */,
+				CF706FAC21D3527E00442D67 /* LYEmoticonPackageListViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -351,6 +455,8 @@
 		CF6C432921AFC535002287F9 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				CFFF0D7A21DEF10200060A2B /* LYEmoticonModel.h */,
+				CFFF0D7B21DEF10200060A2B /* LYEmoticonModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -358,8 +464,68 @@
 		CF6C432A21AFC535002287F9 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				CF706FA221D319D400442D67 /* LYHomePageBackgroundView.h */,
+				CF706FA321D319D400442D67 /* LYHomePageBackgroundView.m */,
+				CF706FA521D31A4800442D67 /* LYHomePageNavgationView.h */,
+				CF706FA621D31A4800442D67 /* LYHomePageNavgationView.m */,
+				CF706FAE21D3540000442D67 /* LYEmoticonPackageListCell.h */,
+				CF706FAF21D3540000442D67 /* LYEmoticonPackageListCell.m */,
+				CFFF0D7721DEEF5700060A2B /* LYAllEmoticonsTableCell.h */,
+				CFFF0D7821DEEF5700060A2B /* LYAllEmoticonsTableCell.m */,
+				CFFF0D7F21DF2D0E00060A2B /* LYUnlockNewFeaturesAlertView.h */,
+				CFFF0D8021DF2D0E00060A2B /* LYUnlockNewFeaturesAlertView.m */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		CF706F1821B7B61F00442D67 /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				CF706F1921B7B61F00442D67 /* Controller */,
+				CF706F1A21B7B61F00442D67 /* Model */,
+				CF706F1B21B7B61F00442D67 /* View */,
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
+		CF706F1921B7B61F00442D67 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				CF706F1C21B7B63B00442D67 /* LYSettingViewController.h */,
+				CF706F1D21B7B63B00442D67 /* LYSettingViewController.m */,
+				CF706F1F21B7BBAA00442D67 /* LYAboutUsViewController.h */,
+				CF706F2021B7BBAA00442D67 /* LYAboutUsViewController.m */,
+				CF706F2821B7C79C00442D67 /* LYNoviceManualViewController.h */,
+				CF706F2921B7C79C00442D67 /* LYNoviceManualViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		CF706F1A21B7B61F00442D67 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CF706F1B21B7B61F00442D67 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CF706F2221B7C2AD00442D67 /* LYAboutUsInfoView.h */,
+				CF706F2321B7C2AD00442D67 /* LYAboutUsInfoView.m */,
+				CF706F2B21B7CF8F00442D67 /* LYPrivacyAgreementInfoView.h */,
+				CF706F2C21B7CF8F00442D67 /* LYPrivacyAgreementInfoView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CF706F2E21B8CD0C00442D67 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				CF706F3421B8CD6300442D67 /* HanYiXinDiShouZhaTi-2.ttf */,
+				CF706F2F21B8CD6000442D67 /* ZhanKuKuaiLeTi2016XiuDingBan-1.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		CFDB564E2125172E00501905 = {
@@ -418,6 +584,7 @@
 		CFDB56972125210E00501905 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				CF706F1821B7B61F00442D67 /* Setting */,
 				CF6C432721AFC535002287F9 /* HomePage */,
 				CF6C42E321AE334B002287F9 /* Other */,
 				CF5EE53621ABDABA00A5DF78 /* Watermark */,
@@ -470,6 +637,8 @@
 		CFDB569D2125210E00501905 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				CFFF0D8B21DF4EC700060A2B /* Lib */,
+				CF706F2E21B8CD0C00442D67 /* Fonts */,
 				CF6C430E21AE6AC0002287F9 /* LYTabbarControllerConfig */,
 				CF6C42FD21AE4314002287F9 /* Category */,
 				CF6C42F321AE369C002287F9 /* Configure */,
@@ -487,6 +656,8 @@
 			children = (
 				CFDB56A92125212D00501905 /* LYBaseViewController.h */,
 				CFDB56A82125212D00501905 /* LYBaseViewController.m */,
+				CFFF0D7421DEEDE300060A2B /* LYBaseTableViewController.h */,
+				CFFF0D7521DEEDE300060A2B /* LYBaseTableViewController.m */,
 				CFDB56AB212521A300501905 /* LYTabbarViewController.h */,
 				CFDB56AC212521A300501905 /* LYTabbarViewController.m */,
 				CF6C431221AE6C5A002287F9 /* LYBaseNavigationController.h */,
@@ -509,8 +680,14 @@
 		CFDB56A02125210E00501905 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				CFFF0D8621DF4D6A00060A2B /* MTLoadingHUD.h */,
+				CFFF0D8521DF4D6A00060A2B /* MTLoadingHUD.m */,
 				CF6C430821AE66C8002287F9 /* LYAdvertisementAlertView.h */,
 				CF6C430921AE66C8002287F9 /* LYAdvertisementAlertView.m */,
+				CF706F4421BE647D00442D67 /* LYActionSheetView.h */,
+				CF706F4521BE647D00442D67 /* LYActionSheetView.m */,
+				CFFF0D6821D75B3100060A2B /* LYStickerView.h */,
+				CFFF0D6921D75B3100060A2B /* LYStickerView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -525,8 +702,12 @@
 		CFDB56A22125210E00501905 /* Tool */ = {
 			isa = PBXGroup;
 			children = (
+				CFFF0D8821DF4D9900060A2B /* MTProgressHUDManager.h */,
+				CFFF0D8921DF4D9A00060A2B /* MTProgressHUDManager.m */,
 				CF6C432121AE7B57002287F9 /* LYAppTool.h */,
 				CF6C432221AE7B57002287F9 /* LYAppTool.m */,
+				CFFF0D8221DF4D1600060A2B /* LTToastTool.h */,
+				CFFF0D8321DF4D1600060A2B /* LTToastTool.m */,
 			);
 			path = Tool;
 			sourceTree = "<group>";
@@ -570,6 +751,31 @@
 			children = (
 			);
 			path = Service;
+			sourceTree = "<group>";
+		};
+		CFFF0D8B21DF4EC700060A2B /* Lib */ = {
+			isa = PBXGroup;
+			children = (
+				CFFF0D8C21DF4EC700060A2B /* SVProgressHUD */,
+			);
+			path = Lib;
+			sourceTree = "<group>";
+		};
+		CFFF0D8C21DF4EC700060A2B /* SVProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				CFFF0D8D21DF4EC700060A2B /* SVRadialGradientLayer.m */,
+				CFFF0D8E21DF4EC700060A2B /* SVIndefiniteAnimatedView.h */,
+				CFFF0D8F21DF4EC700060A2B /* SVProgressHUD.h */,
+				CFFF0D9021DF4EC700060A2B /* SVProgressAnimatedView.m */,
+				CFFF0D9121DF4EC700060A2B /* SVProgressHUD-Prefix.pch */,
+				CFFF0D9221DF4EC700060A2B /* SVRadialGradientLayer.h */,
+				CFFF0D9321DF4EC700060A2B /* SVProgressHUD.m */,
+				CFFF0D9421DF4EC700060A2B /* SVIndefiniteAnimatedView.m */,
+				CFFF0D9521DF4EC700060A2B /* SVProgressHUD.bundle */,
+				CFFF0D9621DF4EC700060A2B /* SVProgressAnimatedView.h */,
+			);
+			path = SVProgressHUD;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -685,8 +891,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CF706FA121D229A300442D67 /* LYXMRImageResources.bundle in Resources */,
+				CF706F3B21B8CD6400442D67 /* HanYiXinDiShouZhaTi-2.ttf in Resources */,
+				CFFF0D7E21DEF8D200060A2B /* LYMyCollectionResources.bundle in Resources */,
+				CFFF0D9B21DF4EC700060A2B /* SVProgressHUD.bundle in Resources */,
 				CF6C430D21AE69D6002287F9 /* LYResources.bundle in Resources */,
+				CFFF0D7021DE1D2E00060A2B /* LYMGTImageResources.bundle in Resources */,
 				CFDB56642125173200501905 /* Assets.xcassets in Resources */,
+				CF706F3621B8CD6400442D67 /* ZhanKuKuaiLeTi2016XiuDingBan-1.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -733,11 +945,13 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-LYWeChatMaker/Pods-LYWeChatMaker-resources.sh",
 				"${PODS_ROOT}/IQKeyboardManager/IQKeyboardManager/Resources/IQKeyboardManager.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/JGProgressHUD/JGProgressHUD.bundle",
 				"${PODS_ROOT}/TZImagePickerController/TZImagePickerController/TZImagePickerController/TZImagePickerController.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/IQKeyboardManager.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/JGProgressHUD.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/TZImagePickerController.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -753,37 +967,63 @@
 			buildActionMask = 2147483647;
 			files = (
 				CF6C431121AE6AD4002287F9 /* LYTabBarControllerConfig.m in Sources */,
+				CF706F2121B7BBAA00442D67 /* LYAboutUsViewController.m in Sources */,
+				CF706F7221C7988800442D67 /* LYWatermarkStyleBottomView.m in Sources */,
+				CF706F4321BE1A2F00442D67 /* LYTWatermarkTopToolBar.m in Sources */,
+				CFFF0D7C21DEF10200060A2B /* LYEmoticonModel.m in Sources */,
 				CF6C431721AE73BF002287F9 /* UIImage+Extention.m in Sources */,
 				CF706EFA21AFE2E400442D67 /* LYWatermarkColorsListView.m in Sources */,
 				CF6C432621AE80AB002287F9 /* LYTWatermarkImageView.m in Sources */,
 				CF6C431D21AE78B2002287F9 /* UIColor+MTColorTool.m in Sources */,
 				CF706F0E21B52A2A00442D67 /* LYWatermarkStyleListView.m in Sources */,
+				CFFF0D8721DF4D6A00060A2B /* MTLoadingHUD.m in Sources */,
+				CF706F2D21B7CF8F00442D67 /* LYPrivacyAgreementInfoView.m in Sources */,
 				CF706F1721B669D400442D67 /* MBProgressHUD+LYHUD.m in Sources */,
 				CFDB56AA2125212D00501905 /* LYBaseViewController.m in Sources */,
 				CF706F0621B2B02B00442D67 /* LYDrawRectangleView.m in Sources */,
+				CFFF0D6A21D75B3100060A2B /* LYStickerView.m in Sources */,
 				CF6C430021AE433F002287F9 /* UIViewController+LYUMTrack.m in Sources */,
+				CF706FA721D31A4800442D67 /* LYHomePageNavgationView.m in Sources */,
+				CF706F6F21C7571900442D67 /* LYWatermarkFontListView.m in Sources */,
 				CF706F0321B26E2100442D67 /* LYWatermarkEditTextView.m in Sources */,
 				CF6C431A21AE7703002287F9 /* LYWKWebViewController.m in Sources */,
+				CF706FB021D3540000442D67 /* LYEmoticonPackageListCell.m in Sources */,
 				CF6C431421AE6C5A002287F9 /* LYBaseNavigationController.m in Sources */,
 				CF6C42FC21AE36EC002287F9 /* LYServerConfig.m in Sources */,
 				CF706F0921B382B900442D67 /* LYWatermarkBottomBtnsView.m in Sources */,
 				CF6C42F621AE36C8002287F9 /* LYConst.m in Sources */,
+				CFFF0D9921DF4EC700060A2B /* SVProgressHUD.m in Sources */,
 				CFDB566A2125173200501905 /* main.m in Sources */,
+				CF706F1E21B7B63B00442D67 /* LYSettingViewController.m in Sources */,
 				CF706F1121B6169C00442D67 /* LYWatermarkInputConfig.m in Sources */,
 				CFDB56B32125251700501905 /* LYTimeLineViewController.m in Sources */,
+				CFFF0D8421DF4D1600060A2B /* LTToastTool.m in Sources */,
+				CFFF0D9821DF4EC700060A2B /* SVProgressAnimatedView.m in Sources */,
+				CF706FAD21D3527E00442D67 /* LYEmoticonPackageListViewController.m in Sources */,
+				CFFF0D7621DEEDE300060A2B /* LYBaseTableViewController.m in Sources */,
 				CF6C42F921AE36D9002287F9 /* LYURLConst.m in Sources */,
+				CFFF0D7921DEEF5700060A2B /* LYAllEmoticonsTableCell.m in Sources */,
 				CF706F1421B6237B00442D67 /* LYWatermarkInputLabel.m in Sources */,
 				CF6C42E721AE336B002287F9 /* AppDelegate.m in Sources */,
 				CF6C430A21AE66C8002287F9 /* LYAdvertisementAlertView.m in Sources */,
 				CF5EE53C21ABDAE400A5DF78 /* LYTWatermarkViewController.m in Sources */,
+				CFFF0D9A21DF4EC700060A2B /* SVIndefiniteAnimatedView.m in Sources */,
+				CFFF0D8121DF2D0E00060A2B /* LYUnlockNewFeaturesAlertView.m in Sources */,
 				CF6C42EA21AE33BA002287F9 /* AppDelegate+UMSocial.m in Sources */,
 				CF706F0021B1077B00442D67 /* LYWatermarkInputView.m in Sources */,
 				CF6C432D21AFC559002287F9 /* LYHomePageViewController.m in Sources */,
+				CF706F2421B7C2AD00442D67 /* LYAboutUsInfoView.m in Sources */,
+				CF706F4621BE647D00442D67 /* LYActionSheetView.m in Sources */,
 				CF6C433021AFD0DC002287F9 /* LYTWatermarkBottomToolBar.m in Sources */,
 				CFDB56AD212521A300501905 /* LYTabbarViewController.m in Sources */,
+				CFFF0D7321DEED7D00060A2B /* LYAllEmoticonsViewController.m in Sources */,
 				CF6C430421AE4677002287F9 /* UIControl+LYUMTrack.m in Sources */,
+				CFFF0D8A21DF4D9A00060A2B /* MTProgressHUDManager.m in Sources */,
 				CF6C432321AE7B57002287F9 /* LYAppTool.m in Sources */,
+				CF706FA421D319D400442D67 /* LYHomePageBackgroundView.m in Sources */,
 				CFDB56B0212521BA00501905 /* LYBaseModel.m in Sources */,
+				CF706F2A21B7C79C00442D67 /* LYNoviceManualViewController.m in Sources */,
+				CFFF0D9721DF4EC700060A2B /* SVRadialGradientLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

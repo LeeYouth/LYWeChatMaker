@@ -10,6 +10,7 @@
 #import "LYWatermarkColorsListView.h"
 #import "LYWatermarkBottomBtnsView.h"
 #import "LYWatermarkStyleListView.h"
+#import "LYWatermarkFontListView.h"
 
 #define LYTWatermarkBottomToolBarH (LYWatermarkColorsListViewH + LYWatermarkBottomBtnsViewH + kTabbarExtra)
 
@@ -23,5 +24,7 @@
 @property(nonatomic, copy) LYWatermarkBottomBtnsViewBlock bottomBtnblock;
 /** 底部样式按钮点击 */
 @property(nonatomic, copy) LYWatermarkStyleListViewBlock styleBlock;
+/** 底部字体按钮点击 */
+@property(nonatomic, copy) LYWatermarkFontListViewBlock fontBlock;
 
 @end

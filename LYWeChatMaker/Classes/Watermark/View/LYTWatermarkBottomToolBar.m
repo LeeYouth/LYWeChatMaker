@@ -14,6 +14,8 @@
 @property (nonatomic, strong) LYWatermarkColorsListView *colorListView;
 @property (nonatomic, strong) LYWatermarkStyleListView *styleListView;
 @property (nonatomic, strong) LYWatermarkBottomBtnsView *btnsView;
+@property (nonatomic, strong) LYWatermarkFontListView *fontListView;
+
 
 @end
 
@@ -38,6 +40,12 @@
     }];
     
     [self.styleListView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.mas_top);
+        make.left.right.equalTo(self);
+        make.height.mas_equalTo(@(LYWatermarkColorsListViewH));
+    }];
+    
+    [self.fontListView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.mas_top);
         make.left.right.equalTo(self);
         make.height.mas_equalTo(@(LYWatermarkColorsListViewH));
@@ -83,18 +91,23 @@
 #pragma mark - 底部颜色按钮点击
 - (void)bottomBtnClick:(NSInteger)index
 {
-    if (self.bottomBtnblock) {
-        self.bottomBtnblock(index);
-    }
-    
-    if (index == 2) {
+    if (index == 0) {
+        //颜色
         self.colorListView.hidden = NO;
         self.styleListView.hidden = YES;
-    }else if(index == 3){
+        self.fontListView.hidden  = YES;
+
+    }else if (index == 1){
+        //样式
         self.colorListView.hidden = YES;
         self.styleListView.hidden = NO;
+        self.fontListView.hidden  = YES;
+    }else if (index == 2){
+        //字体
+        self.colorListView.hidden = YES;
+        self.styleListView.hidden = YES;
+        self.fontListView.hidden  = NO;
     }
-    
 }
 
 #pragma mark - 底部样式按钮点击
@@ -105,6 +118,13 @@
     }
 }
 
+#pragma mark - 底部字体按钮点击
+- (void)bottomFontStyleBtnClick:(UIButton *)sender
+{
+    if (self.fontBlock) {
+        self.fontBlock(sender);
+    }
+}
 
 
 
@@ -136,7 +156,18 @@
         listView;
     }));
 }
-
+- (LYWatermarkFontListView *)fontListView{
+    return LY_LAZY(_fontListView, ({
+        WEAKSELF(weakSelf);
+        LYWatermarkFontListView *listView = [[LYWatermarkFontListView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 10)];
+        listView.block = ^(UIButton *sender) {
+            [weakSelf bottomFontStyleBtnClick:sender];
+        };
+        [self addSubview:listView];
+        listView.hidden = YES;
+        listView;
+    }));
+}
 - (LYWatermarkBottomBtnsView *)btnsView{
     return LY_LAZY(_btnsView, ({
         WEAKSELF(weakSelf);

@@ -61,7 +61,9 @@ static NSString *const canGoBack = @"canGoBack";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.view.backgroundColor = [UIColor whiteColor];
+    if (self.titleStr.length) {
+        self.title = self.titleStr;
+    }
     
 }
 

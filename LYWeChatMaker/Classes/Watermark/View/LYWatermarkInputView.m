@@ -13,7 +13,34 @@
 #import "LYWatermarkInputConfig.h"
 #import "LYWatermarkInputLabel.h"
 
+CG_INLINE CGPoint LYCGRectGetCenter(CGRect rect) {
+    return CGPointMake(CGRectGetMidX(rect), CGRectGetMidY(rect));
+}
+
+CG_INLINE CGRect CGRectScale(CGRect rect, CGFloat wScale, CGFloat hScale) {
+    return CGRectMake(rect.origin.x, rect.origin.y, rect.size.width * wScale, rect.size.height * hScale);
+}
+
+CG_INLINE CGFloat CGAffineTransformGetAngle(CGAffineTransform t) {
+    return atan2(t.b, t.a);
+}
+
+CG_INLINE CGFloat CGPointGetDistance(CGPoint point1, CGPoint point2) {
+    CGFloat fx = (point2.x - point1.x);
+    CGFloat fy = (point2.y - point1.y);
+    return sqrt((fx * fx + fy * fy));
+}
+
+
 @interface LYWatermarkInputView()<UIGestureRecognizerDelegate>
+{
+    /**
+     *  Variables for rotating and resizing view
+     */
+    CGRect initialBounds;
+    CGFloat initialDistance;
+    CGFloat deltaAngle;
+}
 
 
 /** 文字水印背景 */
@@ -24,6 +51,8 @@
 @property (nonatomic, strong) LYWatermarkInputLabel *markLabel;
 /** timer */
 @property (nonatomic, strong) MSWeakTimer *timer;
+
+@property (nonatomic) CGPoint prevPoint;
 
 @end
 
@@ -77,11 +106,13 @@
     tapGesture.numberOfTapsRequired = 1;
     [self addGestureRecognizer:tapGesture];
     
-    UIPanGestureRecognizer *gesture5 = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(onScaleAndRotate:)];
-    [self.rotationView addGestureRecognizer:gesture5];
+//    UIPanGestureRecognizer *gesture5 = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(onScaleAndRotate:)];
+//    [self.rotationView addGestureRecognizer:gesture5];
     
     
 }
+
+
 
 #pragma mark - 开始矩形闪烁东湖
 - (void)startRectangleViewAnimation
@@ -108,29 +139,30 @@
 -(void)onScaleAndRotate:(UIPanGestureRecognizer*)gesture
 {
 
-//    UIView *viewCtrl = gesture.view;
-//    UIView *viewImg = self;
-//
-//    CGPoint center = viewImg.center;
-//    CGPoint prePoint = viewCtrl.center;
-//    CGPoint translation = [gesture translationInView:gesture.view];
-//    CGPoint curPoint = CGPointMake(prePoint.x+translation.x, prePoint.y+translation.y);
-//
-//    // 计算缩放
-//    CGFloat preDistance = [self getDistance:prePoint withPointB:center];
-//    CGFloat curDistance = [self getDistance:curPoint withPointB:center];
-//    CGFloat scale = curDistance / preDistance;
-//
-//    // 计算弧度
-//    CGFloat preRadius = [self getRadius:center withPointB:prePoint];
-//    CGFloat curRadius = [self getRadius:center withPointB:curPoint];
-//    CGFloat radius = curRadius - preRadius;
-//    radius = - radius;
-//    CGAffineTransform transform = CGAffineTransformScale(viewImg.transform, scale, scale);
-//    viewImg.transform = CGAffineTransformRotate(transform, radius);
-//
-//    viewCtrl.frame = [viewImg convertRect:self.rotationView.frame toView:self];
-//    [gesture setTranslation:CGPointZero inView:viewCtrl];
+
+    UIView *viewCtrl = gesture.view;
+    UIView *viewImg = self;
+
+    CGPoint center = viewImg.center;
+    CGPoint prePoint = viewCtrl.center;
+    CGPoint translation = [gesture translationInView:gesture.view];
+    CGPoint curPoint = CGPointMake(prePoint.x+translation.x, prePoint.y+translation.y);
+
+    // 计算缩放
+    CGFloat preDistance = [self getDistance:prePoint withPointB:center];
+    CGFloat curDistance = [self getDistance:curPoint withPointB:center];
+    CGFloat scale = curDistance / preDistance;
+
+    // 计算弧度
+    CGFloat preRadius = [self getRadius:center withPointB:prePoint];
+    CGFloat curRadius = [self getRadius:center withPointB:curPoint];
+    CGFloat radius = curRadius - preRadius;
+    radius = - radius;
+    CGAffineTransform transform = CGAffineTransformScale(viewImg.transform, scale, scale);
+    viewImg.transform = CGAffineTransformRotate(transform, radius);
+
+    viewCtrl.frame = [viewImg convertRect:self.rotationView.frame toView:self];
+    [gesture setTranslation:CGPointZero inView:viewCtrl];
 }
 -(CGFloat)getDistance:(CGPoint)pointA withPointB:(CGPoint)pointB
 {
@@ -185,6 +217,11 @@
     }else{
         self.markLabel.font = LYSystemFont(LYWatermarkInputViewFont);
     }
+    
+    if (![inputConfig.fontName isEqualToString:@"defult"]) {
+        self.markLabel.font = [UIFont fontWithName:inputConfig.fontName size:LYWatermarkInputViewFont];
+    }
+   
     //是否阴影
     if (inputConfig.selectShadow) {
         
@@ -273,7 +310,9 @@
         LYWatermarkInputLabel *label = [LYWatermarkInputLabel new];
         label.userInteractionEnabled = YES;
         label.numberOfLines = 0;
-        label.font = LYSystemFont(LYWatermarkInputViewFont);
+        label.font = [UIFont fontWithName:@"Hanyi Senty Journal" size:LYWatermarkInputViewFont];
+
+//        label.font = LYSystemFont(LYWatermarkInputViewFont);
         label.textColor = [UIColor whiteColor];
         label.textAlignment = NSTextAlignmentCenter;
         label.text = LYWatermarkInputViewDefultText;

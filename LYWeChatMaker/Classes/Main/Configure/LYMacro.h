@@ -75,4 +75,13 @@ tmp;\
 //黑色
 #define LYBlackColorHex       @"#000000"
 
+//样式高度
+#define LYWatermarkStyleViewH  (70 + kTabbarExtra)
+
+
+#define LYWatermarkInputViewDefultText @"点击输入文字"
+
+//按钮点击block
+typedef void(^LYButtonClickBlock)(UIButton *sender);
+
 #endif /* LYMacro_h */

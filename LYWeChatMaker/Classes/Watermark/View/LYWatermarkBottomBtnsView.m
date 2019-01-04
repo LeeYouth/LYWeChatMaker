@@ -12,15 +12,13 @@
 
 /** 顶部线条 */
 @property (nonatomic, strong) UIView *topLine;
-/** 返回按钮 */
-@property (nonatomic, strong) UIButton *leftBtn;
-/** 确定按钮 */
-@property (nonatomic, strong) UIButton *rightBtn;
-
-/** 样式按钮 */
-@property (nonatomic, strong) UIButton *styleBtn;
 /** 颜色按钮 */
 @property (nonatomic, strong) UIButton *colorBtn;
+/** 样式按钮 */
+@property (nonatomic, strong) UIButton *styleBtn;
+/** 字体按钮 */
+@property (nonatomic, strong) UIButton *fontBtn;
+
 /** 底部线条 */
 @property (nonatomic, strong) UIView *bottomLine;
 
@@ -43,43 +41,40 @@
 
 - (void)_setupSubView{
     [self addSubview:self.topLine];
-    [self addSubview:self.leftBtn];
-    [self addSubview:self.rightBtn];
     
     [self addSubview:self.colorBtn];
     [self addSubview:self.styleBtn];
+    [self addSubview:self.fontBtn];
     [self addSubview:self.bottomLine];
 
     CGFloat bottomLineH = 2;
     CGFloat bottomLineW = 60;
-    CGFloat bottomLineX = LYWatermarkBottomBtnsViewH + (SCREEN_WIDTH/2 - LYWatermarkBottomBtnsViewH - bottomLineW)/2;
+    CGFloat bottomLineX  = (SCREEN_WIDTH/3 - bottomLineW)/2;
 
     [self.topLine mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.right.equalTo(self);
         make.height.mas_equalTo(@(LYCellLineHeight));
     }];
     
-    CGSize btnSize = CGSizeMake(LYWatermarkBottomBtnsViewH, LYWatermarkBottomBtnsViewH);
-    [self.leftBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.top.bottom.equalTo(self);
-        make.size.mas_equalTo(btnSize);
-    }];
-    
-    [self.rightBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.top.bottom.equalTo(self);
-        make.size.mas_equalTo(btnSize);
-    }];
+    CGFloat btnW = SCREEN_WIDTH/3;
     
     [self.colorBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.mas_top);
-        make.left.equalTo(self.leftBtn.mas_right);
-        make.right.equalTo(self.mas_centerX);
+        make.left.equalTo(self.mas_left);
+        make.width.mas_equalTo(@(btnW));
         make.bottom.equalTo(self.mas_bottom).offset(-bottomLineH);
     }];
     [self.styleBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.mas_top);
-        make.right.equalTo(self.rightBtn.mas_left);
-        make.left.equalTo(self.mas_centerX);
+        make.width.mas_equalTo(@(btnW));
+        make.left.equalTo(self.colorBtn.mas_right);
+        make.bottom.equalTo(self.mas_bottom).offset(-bottomLineH);
+    }];
+    
+    [self.fontBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.mas_top);
+        make.width.mas_equalTo(@(btnW));
+        make.left.equalTo(self.styleBtn.mas_right);
         make.bottom.equalTo(self.mas_bottom).offset(-bottomLineH);
     }];
     
@@ -97,22 +92,35 @@
     }
     
     CGFloat bottomLineW = 60;
-    CGFloat bottomLineX  = LYWatermarkBottomBtnsViewH + (SCREEN_WIDTH/2 - LYWatermarkBottomBtnsViewH - bottomLineW)/2;
-    CGFloat bottomLineX1 = SCREEN_WIDTH/2 + (SCREEN_WIDTH/2 - LYWatermarkBottomBtnsViewH - bottomLineW)/2;
+    CGFloat bottomLineX  = (SCREEN_WIDTH/3 - bottomLineW)/2;
+    CGFloat bottomLineX1 = SCREEN_WIDTH/3 + bottomLineX;
+    CGFloat bottomLineX2 = SCREEN_WIDTH/3 + bottomLineX1;
 
-    if (sender.tag == 2) {
+    if (sender.tag == 0) {
         //颜色
-        [self.colorBtn setTitleColor:LYThemeColor forState:UIControlStateNormal];
         [self.styleBtn setTitleColor:LYColor(LYBlackColorHex) forState:UIControlStateNormal];
+        [self.fontBtn setTitleColor:LYColor(LYBlackColorHex) forState:UIControlStateNormal];
+        
+        [self.colorBtn setTitleColor:LYThemeColor forState:UIControlStateNormal];
         [self.bottomLine mas_updateConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.mas_left).offset(bottomLineX);
         }];
         
-    }else if (sender.tag == 3){
+    }else if (sender.tag == 1){
         [self.colorBtn setTitleColor:LYColor(LYBlackColorHex) forState:UIControlStateNormal];
+        [self.fontBtn setTitleColor:LYColor(LYBlackColorHex) forState:UIControlStateNormal];
+
         [self.styleBtn setTitleColor:LYThemeColor forState:UIControlStateNormal];
         [self.bottomLine mas_updateConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.mas_left).offset(bottomLineX1);
+        }];
+    }else if (sender.tag == 2){
+        [self.colorBtn setTitleColor:LYColor(LYBlackColorHex) forState:UIControlStateNormal];
+        [self.styleBtn setTitleColor:LYColor(LYBlackColorHex) forState:UIControlStateNormal];
+        
+        [self.fontBtn setTitleColor:LYThemeColor forState:UIControlStateNormal];
+        [self.bottomLine mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.mas_left).offset(bottomLineX2);
         }];
     }
 
@@ -128,32 +136,14 @@
         view;
     }));
 }
-- (UIButton *)leftBtn{
-    return LY_LAZY(_leftBtn, ({
-        UIButton *btn = [[UIButton alloc] init];
-        [btn setImage:[UIImage imageNamed:@"bottomToolBar_close"] forState:UIControlStateNormal];
-        btn.tag = 0;
-        [btn addTarget:self action:@selector(buttonClickAction:) forControlEvents:UIControlEventTouchUpInside];
-        btn;
-    }));
-}
-- (UIButton *)rightBtn{
-    return LY_LAZY(_rightBtn, ({
-        UIButton *btn = [[UIButton alloc] init];
-        [btn setImage:[UIImage imageNamed:@"bottomToolBar_next"] forState:UIControlStateNormal];
-        btn.tag = 1;
-        [btn addTarget:self action:@selector(buttonClickAction:) forControlEvents:UIControlEventTouchUpInside];
-        btn;
-    }));
-}
-
 - (UIButton *)colorBtn{
     return LY_LAZY(_colorBtn, ({
         UIButton *btn = [[UIButton alloc] init];
         btn.titleLabel.font = LYSystemFont(15.f);
+        btn.showsTouchWhenHighlighted = YES;
         [btn setTitle:@"颜色" forState:UIControlStateNormal];
         [btn setTitleColor:LYThemeColor forState:UIControlStateNormal];
-        btn.tag = 2;
+        btn.tag = 0;
         [btn addTarget:self action:@selector(buttonClickAction:) forControlEvents:UIControlEventTouchUpInside];
         btn;
     }));
@@ -162,9 +152,22 @@
     return LY_LAZY(_styleBtn, ({
         UIButton *btn = [[UIButton alloc] init];
         btn.titleLabel.font = LYSystemFont(15.f);
+        btn.showsTouchWhenHighlighted = YES;
         [btn setTitle:@"样式" forState:UIControlStateNormal];
         [btn setTitleColor:LYColor(LYBlackColorHex) forState:UIControlStateNormal];
-        btn.tag = 3;
+        btn.tag = 1;
+        [btn addTarget:self action:@selector(buttonClickAction:) forControlEvents:UIControlEventTouchUpInside];
+        btn;
+    }));
+}
+- (UIButton *)fontBtn{
+    return LY_LAZY(_fontBtn, ({
+        UIButton *btn = [[UIButton alloc] init];
+        btn.titleLabel.font = LYSystemFont(15.f);
+        btn.showsTouchWhenHighlighted = YES;
+        [btn setTitle:@"字体" forState:UIControlStateNormal];
+        [btn setTitleColor:LYColor(LYBlackColorHex) forState:UIControlStateNormal];
+        btn.tag = 2;
         [btn addTarget:self action:@selector(buttonClickAction:) forControlEvents:UIControlEventTouchUpInside];
         btn;
     }));

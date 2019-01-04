@@ -18,5 +18,8 @@ target 'LYWeChatMaker' do
     pod 'UMCPush'
     pod 'UMCErrorCatch'
     pod 'YYKit',:inhibit_warnings => true
+    pod 'Google-Mobile-Ads-SDK'
+    pod 'JGProgressHUD'
+
 
 end

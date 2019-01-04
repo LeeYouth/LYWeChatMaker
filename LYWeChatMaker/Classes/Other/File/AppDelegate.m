@@ -10,6 +10,7 @@
 #import "AppDelegate+UMSocial.h"
 #import "LYHomePageViewController.h"
 #import "LYBaseNavigationController.h"
+#import <GoogleMobileAds/GoogleMobileAds.h>
 
 @interface AppDelegate ()
 
@@ -43,7 +44,7 @@
 //
 
     //配置服务器类型
-    [LYServerConfig setLYConfigEnv:LYServerEnvProduct];
+    [LYServerConfig setLYConfigEnv:LYServerEnvDevelop];
     
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
     self.window = [[UIWindow alloc] init];
@@ -53,7 +54,10 @@
     [self.window makeKeyAndVisible];
     // 友盟UMSocial
     [self LYUMSocialApplication:application didFinishLaunchingWithOptions:launchOptions];
-    
+    //谷歌广告
+    [GADMobileAds configureWithApplicationID:GOOGLEADS_APPID];
+
+
     // 开启网络状态监听
 //    [[LYNetworkStatusObserver defaultObserver] startNotifier];
     

@@ -19,7 +19,9 @@ PODS:
   - FMDB/common (2.5)
   - FMDB/standard (2.5):
     - FMDB/common
+  - Google-Mobile-Ads-SDK (7.36.0)
   - IQKeyboardManager (6.2.0)
+  - JGProgressHUD (2.0.3)
   - Masonry (0.6.4)
   - MBProgressHUD (1.0.0)
   - MSWeakTimer (1.1.0)
@@ -43,7 +45,9 @@ PODS:
 DEPENDENCIES:
   - AFNetworking (= 3.1.0)
   - FMDB (= 2.5)
+  - Google-Mobile-Ads-SDK
   - IQKeyboardManager
+  - JGProgressHUD
   - Masonry
   - MBProgressHUD (~> 1.0.0)
   - MSWeakTimer (~> 1.1.0)
@@ -61,7 +65,9 @@ SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - AFNetworking
     - FMDB
+    - Google-Mobile-Ads-SDK
     - IQKeyboardManager
+    - JGProgressHUD
     - Masonry
     - MBProgressHUD
     - MSWeakTimer
@@ -78,7 +84,9 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   FMDB: 96e8f1bcc1329e269330f99770ad4285d9003e52
+  Google-Mobile-Ads-SDK: 5bb4d2cea811842e104a24780caef63b4808e1bd
   IQKeyboardManager: 6194101620b73af5e67900b8f89707a99de0b804
+  JGProgressHUD: 12b20a8f4ffe05258f8635c1ab92816e451f904d
   Masonry: 281802d04d787ea2973179ee8bcb50500579ede2
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
   MSWeakTimer: 9426150f933b80ed3acf3f6d228e4b61f0e303c8
@@ -92,6 +100,6 @@ SPEC CHECKSUMS:
   UMCSecurityPlugins: 0831a08f3988f3cea9f1d3a7626cd9bee4fef150
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: a04aa0ab0a6c51368ca9d1cf7e370937c563fb91
+PODFILE CHECKSUM: dea4048b263f20e31165b4ddcacb30e6768354c7
 
 COCOAPODS: 1.5.3

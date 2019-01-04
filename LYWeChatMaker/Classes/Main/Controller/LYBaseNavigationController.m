@@ -27,8 +27,10 @@
     
     if (self.viewControllers.count > 0) {
         viewController.hidesBottomBarWhenPushed = YES;
-        //        viewController.fd_interactivePopMaxAllowedInitialDistanceToLeftEdge = CGRectGetWidth([UIScreen mainScreen].bounds)/3;
-        //        [self setUpCustomNavigationBarWithViewController:viewController];
+  
+        UIBarButtonItem *itemleft = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"lybaseLeftBackItemIcon"] style:UIBarButtonItemStyleDone target:self action:@selector(popAction)];
+        viewController.navigationItem.leftBarButtonItem = itemleft;
+
     }
     [super pushViewController:viewController animated:YES];
 }
@@ -51,10 +53,10 @@
 //    UIBarButtonItem * item = [UIBarButtonItem itemWithTarget: self action:@selector(btnLeftBtn) image:@"icon_nav_back_white_19x18_"  selectImage:@"icon_nav_back_white_19x18_"];
 //    viewController.navigationItem.leftBarButtonItem = item;
 //}
-//- (void)btnLeftBtn
-//{
-//    [self popViewControllerAnimated:YES];
-//}
+- (void)popAction
+{
+    [self popViewControllerAnimated:YES];
+}
 #pragma mark - UIStatusBar
 - (UIStatusBarStyle)preferredStatusBarStyle
 {

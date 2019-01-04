@@ -19,13 +19,27 @@
 	<key>CFBundleShortVersionString</key>
 	<string>1.0.0</string>
 	<key>CFBundleVersion</key>
-	<string>1.0.0</string>
+	<string>1.0.1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+		<key>NSAllowsArbitraryLoadsForMedia</key>
+		<true/>
+		<key>NSAllowsArbitraryLoadsInWebContent</key>
+		<true/>
+	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>如果不允许，您将无法选择手机相机进行拍照编辑。</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>如果不允许，您将无法选择手机相册里的照片进行编辑。</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>HanYiXinDiShouZhaTi-2.ttf</string>
+		<string>ZhanKuKuaiLeTi2016XiuDingBan-1.ttf</string>
+	</array>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>remote-notification</string>

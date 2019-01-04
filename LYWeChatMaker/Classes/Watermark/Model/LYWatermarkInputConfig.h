@@ -14,6 +14,8 @@
 @property (nonatomic, copy) NSString *colorHex;
 /** 输入的文字 */
 @property (nonatomic, copy) NSString *inputText;
+/** 字体名字defult */
+@property (nonatomic, copy) NSString *fontName;
 /** 是否选中了背景颜色(默认为NO) */
 @property (nonatomic, assign) BOOL selectBack;
 /** 是否选中了加粗(默认为NO) */

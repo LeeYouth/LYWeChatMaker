@@ -9,6 +9,7 @@
 #import "LYTWatermarkImageView.h"
 #import <UIKit/UIKit.h>
 #import "LYWatermarkInputView.h"
+#import "LYWatermarkInputLabel.h"
 
 @interface LYTWatermarkImageView()
 
@@ -25,18 +26,15 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.backgroundColor = LYImageBackColor;
-
+        
         [self _setupSubViews];
-
-     
-     
+        
     }
     return self;
 }
 
 - (void)_setupSubViews
 {
- 
     
     [self.backImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.size.mas_equalTo(CGSizeMake(SCREEN_WIDTH, 100));
@@ -50,16 +48,17 @@
         make.centerY.equalTo(self.backImageView.mas_centerY);
     }];
     
-    //双手缩放
+    
+   // 双手缩放
     UIPinchGestureRecognizer *pinchGesture = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(pinchView:)];
     [self addGestureRecognizer:pinchGesture];
-    
+
     //单指拖动
     UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panView:)];
     [panGesture setMinimumNumberOfTouches:1];
     [panGesture setMaximumNumberOfTouches:1];
     [self addGestureRecognizer:panGesture];
-    
+
     //旋转
     UIRotationGestureRecognizer *rotationGesture = [[UIRotationGestureRecognizer alloc] initWithTarget:self action:@selector(rotateView:)];
     [self addGestureRecognizer:rotationGesture];
@@ -110,7 +109,7 @@
 - (void)saveWatermarkImage{
     self.inputView.hiddenBox = YES;
     self.inputView.showRotation = NO;
-
+    
     UIGraphicsBeginImageContextWithOptions(self.backImageView.size, NO, 0.0);
     //获取图像
     [self.backImageView.layer renderInContext:UIGraphicsGetCurrentContext()];
@@ -122,12 +121,15 @@
 
 - (void)saveImageToPhotos:(UIImage*)savedImage
 {
+    [MBProgressHUD showActivityMessageInView:@"保存中"];
+    
     UIImageWriteToSavedPhotosAlbum(savedImage, self, @selector(image:didFinishSavingWithError:contextInfo:), NULL);
 }
 
 // 指定回调方法
 - (void)image: (UIImage *) image didFinishSavingWithError: (NSError *) error contextInfo: (void *) contextInfo
 {
+    [MBProgressHUD hideHUD];
     NSString *msg = nil ;
     if(error != NULL){
         msg = @"保存图片失败" ;
@@ -148,7 +150,7 @@
     [self.backImageView mas_updateConstraints:^(MASConstraintMaker *make) {
         make.size.mas_equalTo(size);
     }];
- 
+    
     
 }
 
@@ -172,10 +174,10 @@
     
     //宽度>高度
     if (photoW > photoH) {
-        iconW = SCREEN_WIDTH;
+        iconW = photoW > SCREEN_WIDTH ?SCREEN_WIDTH:photoW;
         iconH = iconW*photoScale1;
     }else{
-        iconH = self.frame.size.height;
+        iconH = photoH > self.height ?self.height:photoH;
         iconW = iconH*photoScale;
     }
     return CGSizeMake(iconW, iconH);
@@ -195,8 +197,8 @@
     
     self.backImageView.image = newImage;
     [self loadImageFinished:newImage];
-
-
+    
+    
 }
 - (void)loadImageFinished:(UIImage *)image
 {
@@ -216,7 +218,7 @@
 - (LYWatermarkInputView *)inputView{
     return LY_LAZY(_inputView, ({
         LYWatermarkInputView *putView = [[LYWatermarkInputView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 10)];
-        putView.showRotation = NO;
+        putView.showRotation = YES;
         putView.showBorder = YES;
         [self.backImageView addSubview:putView];
         putView;

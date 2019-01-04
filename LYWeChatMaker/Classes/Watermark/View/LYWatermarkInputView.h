@@ -14,8 +14,6 @@
 #define LYWatermarkInputViewTextMinHMargin 20
 #define LYWatermarkInputViewFont 30.f
 
-#define LYWatermarkInputViewDefultText @"点击输入文字"
-
 @protocol LYWatermarkInputViewDelegate <NSObject>
 @required
 /** 单指拖动 */
