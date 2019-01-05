@@ -13,6 +13,7 @@
 #import "LYHomePageNavgationView.h"
 #import "LYEmoticonPackageListViewController.h"
 #import "LYAllEmoticonsViewController.h"
+#import "LYWatermarkGuideView.h"
 
 @interface LYHomePageViewController ()<TZImagePickerControllerDelegate>
 
@@ -38,9 +39,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-
-
+ 
     [self.view addSubview:self.backImageView];
     [self.view addSubview:self.navView];
     [self.view addSubview:self.btnsView];
@@ -59,7 +58,8 @@
         make.top.equalTo(self.navView.mas_bottom);
     }];
 
-    
+  
+   
 }
 
 #pragma mark - 添加水印

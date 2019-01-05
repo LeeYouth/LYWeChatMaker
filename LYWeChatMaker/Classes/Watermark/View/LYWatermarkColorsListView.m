@@ -31,7 +31,7 @@
 - (void)_setupSubViews {
     
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-    layout.itemSize = CGSizeMake(30, LYWatermarkColorsListViewH);
+    layout.itemSize = CGSizeMake(30, kLYWatermarkColorsListViewH);
     layout.minimumLineSpacing = 15;//间距
     layout.sectionInset = UIEdgeInsetsMake(0, 10, 0, 10);//分别为上、左、下、右
     layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;

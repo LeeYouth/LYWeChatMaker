@@ -12,7 +12,6 @@
 #import "LYWatermarkStyleListView.h"
 #import "LYWatermarkFontListView.h"
 
-#define LYTWatermarkBottomToolBarH (LYWatermarkColorsListViewH + LYWatermarkBottomBtnsViewH + kTabbarExtra)
 
 @interface LYTWatermarkBottomToolBar : UIView
 

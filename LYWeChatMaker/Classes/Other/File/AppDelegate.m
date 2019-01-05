@@ -44,7 +44,7 @@
 //
 
     //配置服务器类型
-    [LYServerConfig setLYConfigEnv:LYServerEnvDevelop];
+    [LYServerConfig setLYConfigEnv:LYServerEnvProduct];
     
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
     self.window = [[UIWindow alloc] init];

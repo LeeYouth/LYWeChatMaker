@@ -7,11 +7,11 @@
 //
 
 #import "LYHomePageBackgroundView.h"
+#import "LYWatermarkGuideView.h"
 
 @interface LYHomePageBackgroundView()
 
 @property (nonatomic, strong) UILabel *titleLabel;
-@property (nonatomic, strong) UIButton *selectPhotoButton;
 @property (nonatomic, strong) UIButton *addMarkButton;
 @property (nonatomic, strong) UIImageView *hotView;
 
@@ -60,6 +60,8 @@
         make.bottom.equalTo(self.selectPhotoButton.mas_top).offset(4);
     }];
     
+    
+  
 }
 
 - (void)addWaterMark:(UIButton *)sender

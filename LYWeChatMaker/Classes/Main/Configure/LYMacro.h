@@ -59,9 +59,10 @@ tmp;\
 
 #define LYSystemFont(font)       [UIFont systemFontOfSize:(font)]
 
-//主题颜色
-//#define LYThemeColor       LYColor(@"#FA4B68")
+//按钮颜色
+#define LYButtonThemeColor       LYColor(@"#428BCA")
 
+//主题颜色
 #define LYThemeColor       LYColor(@"#FE4365")
 //线的颜色
 #define LYCellLineColor       LYColor(@"#EEEEEE")
@@ -69,7 +70,7 @@ tmp;\
 #define LYCellLineHeight       0.7f
 
 //图片背景颜色
-#define LYImageBackColor       LYColor(@"#3B3B3B")
+#define LYImageBackColor       LYColor(LYBlackColorHex)
 //白色
 #define LYWhiteColorHex       @"#FFFFFF"
 //黑色
@@ -80,6 +81,17 @@ tmp;\
 
 
 #define LYWatermarkInputViewDefultText @"点击输入文字"
+
+
+#define kLYWatermarkColorsListViewH  70
+#define kLYWatermarkBottomBtnsViewH 44.f
+
+#define kLYTWatermarkTopToolBarH (kiPhoneXLater?(kNavBarExtra + 44.f):(60.f))
+
+#define kLYTWatermarkBottomToolBarH (kLYWatermarkColorsListViewH + kLYWatermarkBottomBtnsViewH + kTabbarExtra)
+
+#define kLYTWatermarkImageMaxSize CGSizeMake(kScreenWidth, kScreenHeight - kLYTWatermarkTopToolBarH - kLYTWatermarkBottomToolBarH)
+
 
 //按钮点击block
 typedef void(^LYButtonClickBlock)(UIButton *sender);

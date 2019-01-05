@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-#define LYWatermarkBottomBtnsViewH 44.f
-
 typedef void(^LYWatermarkBottomBtnsViewBlock)(NSInteger index);
 
 @interface LYWatermarkBottomBtnsView : UIView

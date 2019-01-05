@@ -28,7 +28,7 @@
 
 - (instancetype)initWithFrame:(CGRect)frame{
     
-    CGRect framef = CGRectMake(0, 0, SCREEN_WIDTH, LYWatermarkBottomBtnsViewH);
+    CGRect framef = CGRectMake(0, 0, SCREEN_WIDTH, kLYWatermarkBottomBtnsViewH);
     self = [super initWithFrame:framef];
     if (self) {
         self.frame = framef;

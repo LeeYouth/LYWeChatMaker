@@ -13,7 +13,8 @@
 #import "LYTWatermarkBottomToolBar.h"
 #import "LYWatermarkInputConfig.h"
 #import "LYTWatermarkTopToolBar.h"
-#import "LYActionSheetView.h"
+#import "LYEnsureOrCancelAlertView.h"
+#import "LYTWatermarkSaveSuccessController.h"
 
 @interface LYTWatermarkViewController ()
 
@@ -50,8 +51,8 @@
     [self.view addSubview:self.backImageView];
     [self.view addSubview:self.bottomToolBar];
     
-    CGFloat topToolBarH    = LYTWatermarkTopToolBarH;
-    CGFloat bottomToolBarH = LYTWatermarkBottomToolBarH;
+    CGFloat topToolBarH    = kLYTWatermarkTopToolBarH;
+    CGFloat bottomToolBarH = kLYTWatermarkBottomToolBarH;
     
     [self.bottomToolBar mas_makeConstraints:^(MASConstraintMaker *make) {
         make.height.mas_equalTo(@(bottomToolBarH));
@@ -110,17 +111,16 @@
         
         if ((self.inputConfig.inputText.length && ![self.inputConfig.inputText isEqualToString:LYWatermarkInputViewDefultText]) || ![self.inputConfig.colorHex isEqualToString:LYWhiteColorHex] || self.inputConfig.selectBack || self.inputConfig.selectBold  || self.inputConfig.selectStroke || ![self.inputConfig.fontName isEqualToString:@"defult"]) {
             
-            NSMutableArray *titles = [NSMutableArray arrayWithObjects:@"丢弃",@"取消", nil];
-            
-            LYActionSheetView *alertView = [LYActionSheetView sharedInstance];
-            [alertView showInViewWithTitles:titles animated:YES];
-            alertView.btnBlock = ^(NSInteger buttonIndex) {
-                if (buttonIndex == 0)
+            LYEnsureOrCancelAlertView *alertView = [LYEnsureOrCancelAlertView sharedInstance];
+            [alertView showInViewWithTitle:@"确定丢弃吗？" leftTitle:@"取消" rightTitle:@"丢弃" animated:YES];
+            alertView.btnBlock = ^(UIButton *sender) {
+                if (sender.tag == 0)
+                {
+                   
+                }else if (sender.tag == 1)
                 {
                     //返回
                     [weakSelf popRootViewController];
-                }else if (buttonIndex == 1)
-                {
                 }
             };
         }else{
@@ -169,11 +169,12 @@
 - (LYTWatermarkImageView *)backImageView{
     return LY_LAZY(_backImageView, ({
         WEAKSELF(weakSelf);
-        LYTWatermarkImageView *imageV = [[LYTWatermarkImageView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - LYTWatermarkBottomToolBarH - LYTWatermarkTopToolBarH)];
-        imageV.success = ^{
-            
-            [MBProgressHUD showErrorMessage:@"保存成功"];
-            [weakSelf popRootViewController];
+        LYTWatermarkImageView *imageV = [[LYTWatermarkImageView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - kLYTWatermarkBottomToolBarH - kLYTWatermarkTopToolBarH)];
+        imageV.success = ^(UIImage *image) {
+            [LYToastTool bottomShowWithText:@"保存成功" delay:1];
+            LYTWatermarkSaveSuccessController *vc = [[LYTWatermarkSaveSuccessController alloc] init];
+            vc.backImage = image;
+            [weakSelf.navigationController pushViewController:vc animated:YES];
         };
         imageV;
     }));
@@ -183,7 +184,7 @@
 - (LYTWatermarkTopToolBar *)topToolBar{
     return LY_LAZY(_topToolBar, ({
         WEAKSELF(weakSelf);
-        CGFloat toolBarH = LYTWatermarkTopToolBarH;
+        CGFloat toolBarH = kLYTWatermarkTopToolBarH;
         LYTWatermarkTopToolBar *toolView = [[LYTWatermarkTopToolBar alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, toolBarH)];
         toolView.block = ^(NSInteger index) {
             [weakSelf bottomButtonClick:index];
@@ -195,7 +196,7 @@
     return LY_LAZY(_bottomToolBar, ({
         
         WEAKSELF(weakSelf);
-        CGFloat toolBarH = LYTWatermarkBottomToolBarH;
+        CGFloat toolBarH = kLYTWatermarkBottomToolBarH;
         LYTWatermarkBottomToolBar *toolView = [[LYTWatermarkBottomToolBar alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT - toolBarH, SCREEN_WIDTH, toolBarH)];
         toolView.didSelectItemblock = ^(NSString *colorHex) {
             weakSelf.inputConfig.colorHex = colorHex;

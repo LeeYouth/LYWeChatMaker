@@ -12,7 +12,6 @@
 typedef void(^LYWatermarkColorsListViewDidSelectColorHexBlock)(NSString *colorHex);
 typedef void(^LYWatermarkColorsListViewDidSelectBackBlock)(BOOL hasSelect);
 
-#define LYWatermarkColorsListViewH  70
 
 @interface LYWatermarkColorsListView : UIView
 

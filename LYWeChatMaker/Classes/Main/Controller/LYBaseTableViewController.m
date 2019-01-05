@@ -20,8 +20,14 @@
     
     [self.view addSubview:self.tableView];
     
+//    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.edges.equalTo(self.view);
+//    }];
+    
+    CGFloat topMargin = iOS11?(NAVBAR_HEIGHT - (kiPhoneXLater?0:STATUSBAR_HEIGHT)):0;
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(self.view);
+        make.top.equalTo(self.view.mas_top).offset(topMargin);
+        make.left.right.bottom.equalTo(self.view);
     }];
 }
 
@@ -41,11 +47,9 @@
         _tableView.dataSource = self;
         _tableView.delegate = self;
 
-        _tableView.contentInset = UIEdgeInsetsMake(kiPhoneXLater?NAVBAR_HEIGHT:0, 0, kTabbarExtra, 0);
-        _tableView.scrollIndicatorInsets = _tableView.contentInset;
-        if (@available(iOS 11.0, *)) {
-            _tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-        }
+//        _tableView.contentInset = UIEdgeInsetsMake(kiPhoneXLater?NAVBAR_HEIGHT:0, 0, kTabbarExtra, 0);
+//        _tableView.scrollIndicatorInsets = _tableView.contentInset;
+//
     }
     return _tableView;
 }

@@ -49,14 +49,21 @@
     CGFloat cellW = (kScreenWidth - 30)/2;
     layout.itemSize = CGSizeMake(cellW, cellW);
     
+
     UICollectionView *collectionView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:layout];
     self.collectionView = collectionView;
     collectionView.backgroundColor = LYCellLineColor;
-    collectionView.contentInset = UIEdgeInsetsMake(kiPhoneXLater?NAVBAR_HEIGHT:0, 0, kTabbarExtra, 0);
-    collectionView.scrollIndicatorInsets = collectionView.contentInset;
+//    collectionView.contentInset = UIEdgeInsetsMake(kiPhoneXLater?NAVBAR_HEIGHT:0, 0, kTabbarExtra, 0);
+//    collectionView.scrollIndicatorInsets = collectionView.contentInset;
     collectionView.dataSource = self;
     collectionView.delegate = self;
     [self.view addSubview:collectionView];
+    
+    CGFloat topMargin = iOS11?(NAVBAR_HEIGHT - (kiPhoneXLater?0:STATUSBAR_HEIGHT)):0;
+    [collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.view.mas_top).offset(topMargin);
+        make.left.right.bottom.equalTo(self.view);
+    }];
 }
 
 - (void)setDataListArray:(NSMutableArray *)dataListArray{

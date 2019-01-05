@@ -36,25 +36,25 @@
     [self.colorListView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.mas_top);
         make.left.right.equalTo(self);
-        make.height.mas_equalTo(@(LYWatermarkColorsListViewH));
+        make.height.mas_equalTo(@(kLYWatermarkColorsListViewH));
     }];
     
     [self.styleListView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.mas_top);
         make.left.right.equalTo(self);
-        make.height.mas_equalTo(@(LYWatermarkColorsListViewH));
+        make.height.mas_equalTo(@(kLYWatermarkColorsListViewH));
     }];
     
     [self.fontListView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.mas_top);
         make.left.right.equalTo(self);
-        make.height.mas_equalTo(@(LYWatermarkColorsListViewH));
+        make.height.mas_equalTo(@(kLYWatermarkColorsListViewH));
     }];
     
     [self.btnsView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.colorListView.mas_bottom);
         make.left.right.equalTo(self);
-        make.height.mas_equalTo(@(LYWatermarkBottomBtnsViewH));
+        make.height.mas_equalTo(@(kLYWatermarkBottomBtnsViewH));
     }];
     
     NSArray *hexArray = [NSArray arrayWithContentsOfFile:LYBUNDLE_PLISTPATH(@"LYWatermarkColorList")];

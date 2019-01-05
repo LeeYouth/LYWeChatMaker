@@ -87,7 +87,7 @@
 {
     UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
     pasteboard.string = LYAboutUsInfoViewEmail;
-    [MBProgressHUD showSuccessMessage:@"复制成功"];
+    [LYToastTool bottomShowWithText:@"复制成功" delay:1];
 }
 
 #pragma mark - lazy

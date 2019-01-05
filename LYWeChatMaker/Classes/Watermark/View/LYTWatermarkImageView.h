@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 @class LYWatermarkInputConfig;
 
-typedef void(^LYTWatermarkImageViewBlock)();
+typedef void(^LYTWatermarkImageViewImageBlock)(UIImage *image);
 
 @interface LYTWatermarkImageView : UIView
 
@@ -17,7 +17,7 @@ typedef void(^LYTWatermarkImageViewBlock)();
 @property (nonatomic, strong) UIImage *backImage;
 /** 文字框配置 */
 @property (nonatomic, strong) LYWatermarkInputConfig *inputConfig;
-@property(nonatomic, copy) LYTWatermarkImageViewBlock success;
+@property(nonatomic, copy) LYTWatermarkImageViewImageBlock success;
 /** 保存水印 */
 - (void)saveWatermarkImage;
 

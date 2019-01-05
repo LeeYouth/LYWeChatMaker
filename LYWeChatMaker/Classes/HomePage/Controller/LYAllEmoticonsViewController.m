@@ -188,7 +188,7 @@
 #pragma mark - 加载广告
 #pragma mark - 展示倒计时广告
 - (void)showAdViewController{
-    [LTToastTool showLoadingWithStatus:@""];
+    [LYToastTool showLoadingWithStatus:@""];
     NSString *interstitialID = [LYServerConfig LYConfigEnv] == LYServerEnvProduct?GOOGLEFULLAD_UNITID:GOOGLEFULLAD_TEST_UNITID;
     self.interstitial = [[GADInterstitial alloc]
                          initWithAdUnitID:interstitialID];
@@ -202,7 +202,7 @@
 - (void)interstitialDidReceiveAd:(GADInterstitial *)ad {
     NSLog(@"interstitialDidReceiveAd");
     if (self.interstitial.isReady) {
-        [LTToastTool dismiss];
+        [LYToastTool dismiss];
         [self.interstitial presentFromRootViewController:self];
     } else {
         LYLog(@"Ad wasn't ready");
@@ -214,6 +214,13 @@
 - (void)interstitial:(GADInterstitial *)ad
 didFailToReceiveAdWithError:(GADRequestError *)error {
     LYLog(@"interstitial:didFailToReceiveAdWithError: %@", [error localizedDescription]);
+    [LYToastTool dismiss];
+    if (_currentIndex == 0) {
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kXMRUNLOCKSTATUS];
+    }else if (_currentIndex == 1){
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kMGTUNLOCKSTATUS];
+    }
+    [self loadEmoticonsData];
 }
 
 /// Tells the delegate that an interstitial will be presented.

@@ -1,5 +1,5 @@
 //
-//  LTToastTool.h
+//  LYToastTool.h
 //  LYWeChatMaker
 //
 //  Created by CNFOL_iOS on 2019/1/4.
@@ -10,7 +10,7 @@
 #import "JGProgressHUD.h"
 #import "SVProgressHUD.h"
 
-@interface LTToastTool : NSObject
+@interface LYToastTool : NSObject
 
 
 /** loading的HUD */
@@ -38,3 +38,4 @@
 + (void)dismiss;
 
 @end
+

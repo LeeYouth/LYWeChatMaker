@@ -1,23 +1,24 @@
 //
-//  LTToastTool.m
+//  LYToastTool.m
 //  LYWeChatMaker
 //
 //  Created by CNFOL_iOS on 2019/1/4.
 //  Copyright © 2019年 LYoung_iOS. All rights reserved.
 //
 
-#import "LTToastTool.h"
+#import "LYToastTool.h"
+
 #import "MTLoadingHUD.h"
 #import "MTProgressHUDManager.h"
 
 #define TOAST_TIMEOUT 20
 #define kDefaultView [UIApplication sharedApplication].delegate.window
 
-@interface LTToastTool ()
+@interface LYToastTool ()
 
 @end
 
-@implementation LTToastTool
+@implementation LYToastTool
 
 #pragma mark - loading的HUD
 + (void)showLoadingWithStatus:(NSString *)text{
@@ -189,3 +190,4 @@
 
 
 @end
+

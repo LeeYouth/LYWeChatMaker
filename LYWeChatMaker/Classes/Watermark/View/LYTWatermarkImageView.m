@@ -10,6 +10,8 @@
 #import <UIKit/UIKit.h>
 #import "LYWatermarkInputView.h"
 #import "LYWatermarkInputLabel.h"
+#import "LYWatermarkGuideView.h"
+
 
 @interface LYTWatermarkImageView()
 
@@ -29,6 +31,8 @@
         
         [self _setupSubViews];
         
+                
+        
     }
     return self;
 }
@@ -37,7 +41,7 @@
 {
     
     [self.backImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.size.mas_equalTo(CGSizeMake(SCREEN_WIDTH, 100));
+        make.size.mas_equalTo(kLYTWatermarkImageMaxSize);
         make.centerX.equalTo(self.mas_centerX);
         make.centerY.equalTo(self.mas_centerY);
     }];
@@ -47,6 +51,8 @@
         make.centerX.equalTo(self.backImageView.mas_centerX);
         make.centerY.equalTo(self.backImageView.mas_centerY);
     }];
+    
+
     
     
    // 双手缩放
@@ -121,15 +127,19 @@
 
 - (void)saveImageToPhotos:(UIImage*)savedImage
 {
-    [MBProgressHUD showActivityMessageInView:@"保存中"];
+//    if (self.success) {
+//        self.success(savedImage);
+//    }
     
+    [LYToastTool showLoadingWithStatus:@""];
+
     UIImageWriteToSavedPhotosAlbum(savedImage, self, @selector(image:didFinishSavingWithError:contextInfo:), NULL);
 }
 
 // 指定回调方法
 - (void)image: (UIImage *) image didFinishSavingWithError: (NSError *) error contextInfo: (void *) contextInfo
 {
-    [MBProgressHUD hideHUD];
+    [LYToastTool dismiss];
     NSString *msg = nil ;
     if(error != NULL){
         msg = @"保存图片失败" ;
@@ -137,7 +147,7 @@
     }else{
         msg = @"保存图片成功" ;
         if (self.success) {
-            self.success();
+            self.success(image);
         }
     }
 }
@@ -147,10 +157,9 @@
     
     CGSize size = [self getImageViewSizeWithImage:backImage];
     self.backImageView.image = backImage;
-    [self.backImageView mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.size.mas_equalTo(size);
-    }];
-    
+//    [self.backImageView mas_updateConstraints:^(MASConstraintMaker *make) {
+//        make.size.mas_equalTo(size);
+//    }];
     
 }
 
@@ -210,6 +219,7 @@
     return LY_LAZY(_backImageView, ({
         UIImageView *imageV = [UIImageView new];
         imageV.userInteractionEnabled = YES;
+        imageV.contentMode = UIViewContentModeScaleAspectFit;
         [self addSubview:imageV];
         imageV;
     }));
@@ -218,7 +228,7 @@
 - (LYWatermarkInputView *)inputView{
     return LY_LAZY(_inputView, ({
         LYWatermarkInputView *putView = [[LYWatermarkInputView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 10)];
-        putView.showRotation = YES;
+        putView.showRotation = NO;
         putView.showBorder = YES;
         [self.backImageView addSubview:putView];
         putView;

@@ -13,5 +13,6 @@
 @interface LYHomePageBackgroundView : UIView
 
 @property(nonatomic, copy) LYButtonClickBlock btnBlock;
+@property (nonatomic, strong) UIButton *selectPhotoButton;
 
 @end

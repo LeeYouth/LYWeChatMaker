@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-#define LYTWatermarkTopToolBarH (kiPhoneXLater?(kNavBarExtra + 44.f):(60.f))
 
 typedef void(^LYTWatermarkTopToolBarBlock)(NSInteger index);
 
