@@ -11,8 +11,6 @@
 
 @interface LYAboutUsViewController ()
 
-@property (nonatomic, strong) LYAboutUsInfoView *aboutUsView;
-
 @end
 
 @implementation LYAboutUsViewController
@@ -20,23 +18,37 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.title = @"关于简单水印";
+    self.title = [NSString stringWithFormat:@"关于%@",[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleDisplayName"]];
     
-    [self.aboutUsView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.equalTo(self.view);
-        make.centerX.equalTo(self.view.mas_centerX);
-        make.centerY.equalTo(self.view.mas_centerY);
-        make.height.mas_equalTo(@300);
-    }];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 
-- (LYAboutUsInfoView *)aboutUsView{
-    return LY_LAZY(_aboutUsView, ({
-        LYAboutUsInfoView *view = [[LYAboutUsInfoView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 10)];
-        [self.view addSubview:view];
-        view;
-    }));
+#pragma mark - UITableViewDataSource & UITableViewDelegate
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 1;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 280;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *identifier = @"cell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+    }
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.backgroundColor = LYTableViewBackColor;
+    LYAboutUsInfoView *view = [[LYAboutUsInfoView alloc] initWithFrame:CGRectMake(10, 10, SCREEN_WIDTH - 20, 260)];
+    [cell addSubview:view];
+    
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    
+}
 
 @end

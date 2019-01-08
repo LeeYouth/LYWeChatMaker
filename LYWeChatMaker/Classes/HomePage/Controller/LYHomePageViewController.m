@@ -9,57 +9,65 @@
 #import "LYHomePageViewController.h"
 #import "LYTWatermarkViewController.h"
 #import "LYSettingViewController.h"
-#import "LYHomePageBackgroundView.h"
-#import "LYHomePageNavgationView.h"
 #import "LYEmoticonPackageListViewController.h"
 #import "LYAllEmoticonsViewController.h"
-#import "LYWatermarkGuideView.h"
+#import "LYHomePageTableViewCell.h"
+#import "LYHomePageTitleView.h"
 
 @interface LYHomePageViewController ()<TZImagePickerControllerDelegate>
 
-@property (nonatomic, strong) UIImageView *backImageView;
-@property (nonatomic, strong) LYHomePageNavgationView *navView;
-@property (nonatomic, strong) LYHomePageBackgroundView *btnsView;
+@property (nonatomic, strong) NSMutableArray *dataArray;
 
 @end
 
 @implementation LYHomePageViewController
 
-- (void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    self.navigationController.navigationBarHidden = YES;
-}
-
-- (void)viewWillDisappear:(BOOL)animated{
-    [super viewWillDisappear:animated];
-    self.navigationController.navigationBarHidden = NO;
-}
-
-
 
 - (void)viewDidLoad {
     [super viewDidLoad];
- 
-    [self.view addSubview:self.backImageView];
-    [self.view addSubview:self.navView];
-    [self.view addSubview:self.btnsView];
-
-    [self.backImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.bottom.top.equalTo(self.view);
-    }];
     
-    [self.navView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.height.mas_equalTo(@(NAVBAR_HEIGHT));
-        make.top.left.right.equalTo(self.view);
-    }];
-
-    [self.btnsView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.left.right.equalTo(self.view);
-        make.top.equalTo(self.navView.mas_bottom);
-    }];
-
-  
+    
+    [self setupSubViews];
    
+    [self loadNewData];
+
+}
+
+- (void)setupSubViews{
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.navBarView.leftBarItemImage = nil;
+    self.navBarView.rightBarItemImage = [UIImage imageNamed:@"homepage_rightBarItem"];
+    self.navBarView.navColor = LYHomePageColor;
+    
+    self.tableView.backgroundColor = LYHomePageColor;
+    LYHomePageTitleView *titleView = [[LYHomePageTitleView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 120)];
+    self.tableView.tableHeaderView = titleView;
+}
+
+- (void)loadNewData{
+    for (int i = 0; i < 2; i++) {
+        NSString *title = @"";
+        NSString *detail = @"";
+        NSString *image = @"";
+        NSString *type = [NSString stringWithFormat:@"%d",i];
+        if (i == 0) {
+            title = @"从相册";
+            detail = @"从相册里选一张吧";
+            image  = @"homePage_fromEmocation";
+        }else if (i == 1){
+            title = @"表情包";
+            detail = @"这里有最逗比的表情包";
+            image  = @"homePage_fromPhotoLibary";
+        }
+
+        NSDictionary *dict = @{@"title":title,
+                               @"detail":detail,
+                               @"image":image,
+                               @"type":type,
+                               };
+        [self.dataArray addObject:dict];
+    }
+    [self.tableView reloadData];
 }
 
 #pragma mark - 添加水印
@@ -73,9 +81,9 @@
     imagePickerVc.showSelectBtn = NO;
     imagePickerVc.allowCrop = NO;
     imagePickerVc.allowPreview = NO;
-    imagePickerVc.naviBgColor = LYColor(LYWhiteColorHex);
-    imagePickerVc.naviTitleColor = LYColor(LYBlackColorHex);
-    imagePickerVc.barItemTextColor = LYColor(LYBlackColorHex);
+    imagePickerVc.naviBgColor = LYNavBarBackColor;
+    imagePickerVc.naviTitleColor = LYColor(LYWhiteColorHex);
+    imagePickerVc.barItemTextColor = LYColor(LYWhiteColorHex);
     [self presentViewController:imagePickerVc animated:YES completion:nil];
 }
 
@@ -84,15 +92,14 @@
 {
     LYAllEmoticonsViewController *emoticonsVC = [[LYAllEmoticonsViewController alloc] init];
     [self.navigationController pushViewController:emoticonsVC animated:YES];
-
-
 }
 
 #pragma mark - 右侧更多
 - (void)rightBarItemClick
 {
     LYSettingViewController *settingVC = [[LYSettingViewController alloc] init];
-    [self.navigationController pushViewController:settingVC animated:YES];
+    LYBaseNavigationController *nav = [[LYBaseNavigationController alloc] initWithRootViewController:settingVC];
+    [self presentViewController:nav animated:YES completion:nil];
 }
 
 #pragma mark TZImagePickerControllerDelegate
@@ -108,42 +115,41 @@
 
 }
 
+#pragma mark - UITableViewDataSource & UITableViewDelegate
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.dataArray.count;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return [LYHomePageTableViewCell getCellHeight];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    LYHomePageTableViewCell *cell = [LYHomePageTableViewCell cellWithTableView:tableView];
+    cell.model = self.dataArray[indexPath.row];
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    
+    if (indexPath.row == 0) {
+        //从相册
+        [self addWaterMark];
+    }else if (indexPath.row == 1){
+        //从表情包
+        [self selectPhotoAddMark];
+    }
+}
+
 
 
 #pragma mark - lazy loading
-- (UIImageView *)backImageView{
-    return LY_LAZY(_backImageView, ({
-        UIImageView *imageV = [[UIImageView alloc] init];
-        imageV.userInteractionEnabled = YES;
-        imageV.contentMode = UIViewContentModeScaleAspectFill;
-        imageV.image = [UIImage imageWithContentsOfFile:LYBUNDLE_IMAGEPATH(@"homePageBackgroundImage_2")];
-        imageV;
-    }));
+- (NSMutableArray *)dataArray{
+    if (!_dataArray) {
+        _dataArray = [NSMutableArray array];
+    }
+    return _dataArray;
 }
-- (LYHomePageNavgationView *)navView{
-    return LY_LAZY(_navView, ({
-        WEAKSELF(weakSelf);
-        LYHomePageNavgationView *view = [[LYHomePageNavgationView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 10)];
-        view.btnBlock = ^(UIButton *sender) {
-            [weakSelf rightBarItemClick];
-        };
-        view;
-    }));
-}
-- (LYHomePageBackgroundView *)btnsView{
-    return LY_LAZY(_btnsView, ({
-        WEAKSELF(weakSelf);
-        LYHomePageBackgroundView *view = [[LYHomePageBackgroundView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 10)];
-        view.btnBlock = ^(UIButton *sender) {
-            if (sender.tag == 0) {
-                //从相册
-                [weakSelf addWaterMark];
-            }else if (sender.tag == 1){
-                //从表情包
-                [weakSelf selectPhotoAddMark];
-            }
-        };
-        view;
-    }));
-}
+
 @end

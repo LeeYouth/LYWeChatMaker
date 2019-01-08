@@ -12,14 +12,11 @@
 #import "LYTWatermarkImageView.h"
 #import "LYTWatermarkBottomToolBar.h"
 #import "LYWatermarkInputConfig.h"
-#import "LYTWatermarkTopToolBar.h"
-#import "LYEnsureOrCancelAlertView.h"
 #import "LYTWatermarkSaveSuccessController.h"
 
 @interface LYTWatermarkViewController ()
 
 @property (nonatomic, strong) LYTWatermarkImageView *backImageView;
-@property (nonatomic, strong) LYTWatermarkTopToolBar *topToolBar;
 @property (nonatomic, strong) LYTWatermarkBottomToolBar *bottomToolBar;
 @property (nonatomic, strong) LYWatermarkInputConfig *inputConfig;
 
@@ -29,29 +26,33 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    self.navigationController.navigationBar.hidden = YES;
+    
+    [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:YES];
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
-    self.navigationController.navigationBar.hidden = NO;
+    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:YES];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    self.view.backgroundColor = [UIColor whiteColor];
     
     [self setupSubViews];
+    
 }
 
 - (void)setupSubViews
 {
-    [self.view addSubview:self.topToolBar];
+    
+    
+    self.navBarView.leftBarItemImage = [UIImage imageNamed:@"bottomToolBar_close"];
+    self.navBarView.rightBarItemImage = [UIImage imageNamed:@"bottomToolBar_next"];
+    self.navBarView.navColor = LYColor(LYBlackColorHex);
+    
     [self.view addSubview:self.backImageView];
     [self.view addSubview:self.bottomToolBar];
     
-    CGFloat topToolBarH    = kLYTWatermarkTopToolBarH;
     CGFloat bottomToolBarH = kLYTWatermarkBottomToolBarH;
     
     [self.bottomToolBar mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -59,14 +60,10 @@
         make.left.right.bottom.equalTo(self.view);
     }];
     
-    [self.topToolBar mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.height.mas_equalTo(@(topToolBarH));
-        make.top.left.right.equalTo(self.view);
-    }];
     
     [self.backImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.equalTo(self.bottomToolBar.mas_top);
-        make.top.equalTo(self.topToolBar.mas_bottom);
+        make.top.equalTo(self.view.mas_top).offset(NAVBAR_HEIGHT);
         make.left.right.equalTo(self.view);
     }];
     
@@ -85,6 +82,7 @@
 
 }
 
+
 - (void)showAlertView
 {
     WEAKSELF(weakSelf);
@@ -100,40 +98,37 @@
 
 - (void)popRootViewController
 {
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
-#pragma mark - 底部按钮点击
-- (void)bottomButtonClick:(NSInteger)index
-{
+#pragma mark - 返回按钮
+- (void)backBarItemClick{
+    
     WEAKSELF(weakSelf);
-    if (index == 0) {
+    if ((self.inputConfig.inputText.length && ![self.inputConfig.inputText isEqualToString:LYWatermarkInputViewDefultText]) || ![self.inputConfig.colorHex isEqualToString:LYWhiteColorHex] || self.inputConfig.selectBack || self.inputConfig.selectBold  || self.inputConfig.selectStroke || ![self.inputConfig.fontName isEqualToString:@"defult"]) {
         
-        if ((self.inputConfig.inputText.length && ![self.inputConfig.inputText isEqualToString:LYWatermarkInputViewDefultText]) || ![self.inputConfig.colorHex isEqualToString:LYWhiteColorHex] || self.inputConfig.selectBack || self.inputConfig.selectBold  || self.inputConfig.selectStroke || ![self.inputConfig.fontName isEqualToString:@"defult"]) {
-            
-            LYEnsureOrCancelAlertView *alertView = [LYEnsureOrCancelAlertView sharedInstance];
-            [alertView showInViewWithTitle:@"确定丢弃吗？" leftTitle:@"取消" rightTitle:@"丢弃" animated:YES];
-            alertView.btnBlock = ^(UIButton *sender) {
-                if (sender.tag == 0)
-                {
-                   
-                }else if (sender.tag == 1)
-                {
-                    //返回
-                    [weakSelf popRootViewController];
-                }
-            };
-        }else{
-            //返回
-            [self popRootViewController];
-        }
-        
-        
-    }else if (index == 1){
-        //确定(保存图片到相册)
-        [self.backImageView saveWatermarkImage];
+        LYEnsureOrCancelAlertView *alertView = [LYEnsureOrCancelAlertView sharedInstance];
+        [alertView showInViewWithTitle:@"确定丢弃吗？" leftTitle:@"取消" rightTitle:@"丢弃" animated:YES];
+        alertView.btnBlock = ^(UIButton *sender) {
+            if (sender.tag == 0)
+            {
+                
+            }else if (sender.tag == 1)
+            {
+                //返回
+                [weakSelf popRootViewController];
+            }
+        };
+    }else{
+        //返回
+        [self popRootViewController];
     }
 }
+- (void)rightBarItemClick{
+    //确定(保存图片到相册)
+    [self.backImageView saveWatermarkImage];
+}
+
 #pragma mark - 底部样式按钮点击
 - (void)bottomStyleBtnClick:(UIButton *)sender
 {
@@ -169,7 +164,7 @@
 - (LYTWatermarkImageView *)backImageView{
     return LY_LAZY(_backImageView, ({
         WEAKSELF(weakSelf);
-        LYTWatermarkImageView *imageV = [[LYTWatermarkImageView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - kLYTWatermarkBottomToolBarH - kLYTWatermarkTopToolBarH)];
+        LYTWatermarkImageView *imageV = [[LYTWatermarkImageView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - kLYTWatermarkBottomToolBarH - NAVBAR_HEIGHT)];
         imageV.success = ^(UIImage *image) {
             [LYToastTool bottomShowWithText:@"保存成功" delay:1];
             LYTWatermarkSaveSuccessController *vc = [[LYTWatermarkSaveSuccessController alloc] init];
@@ -180,18 +175,6 @@
     }));
 }
 
-
-- (LYTWatermarkTopToolBar *)topToolBar{
-    return LY_LAZY(_topToolBar, ({
-        WEAKSELF(weakSelf);
-        CGFloat toolBarH = kLYTWatermarkTopToolBarH;
-        LYTWatermarkTopToolBar *toolView = [[LYTWatermarkTopToolBar alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, toolBarH)];
-        toolView.block = ^(NSInteger index) {
-            [weakSelf bottomButtonClick:index];
-        };
-        toolView;
-    }));
-}
 - (LYTWatermarkBottomToolBar *)bottomToolBar{
     return LY_LAZY(_bottomToolBar, ({
         

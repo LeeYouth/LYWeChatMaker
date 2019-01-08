@@ -8,25 +8,16 @@
 
 #import "LYTWatermarkSaveSuccessController.h"
 #import "LYTWatermarkSuccessView.h"
+#import <GoogleMobileAds/GoogleMobileAds.h>
 
-@interface LYTWatermarkSaveSuccessController ()
+@interface LYTWatermarkSaveSuccessController ()<GADBannerViewDelegate>
 
 @property (nonatomic, strong) LYTWatermarkSuccessView *backImageView;
+@property (nonatomic, strong) GADBannerView *bannerView;//底部广告
 
 @end
 
 @implementation LYTWatermarkSaveSuccessController
-
-//- (void)viewWillAppear:(BOOL)animated{
-//    [super viewWillAppear:animated];
-//    self.navigationController.navigationBar.hidden = YES;
-//}
-//
-//- (void)viewWillDisappear:(BOOL)animated{
-//    [super viewWillDisappear:animated];
-//    self.navigationController.navigationBar.hidden = NO;
-//}
-
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -35,11 +26,33 @@
     [self.view addSubview:self.backImageView];
 
     [self.backImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.top.bottom.right.equalTo(self.view);
+        make.left.bottom.right.equalTo(self.view);
+        make.top.mas_equalTo(@(NAVBAR_HEIGHT));
     }];
     
     self.backImageView.backImage = self.backImage;
+    
+    [self addGoogleAdmob];
+    
 }
+
+- (void)addGoogleAdmob{
+    CGFloat adHeight = kGADAdSizeBanner.size.height;
+    LYLog(@"Google Mobile Ads SDK version: %@", [GADRequest sdkVersion]);
+    self.bannerView = [[GADBannerView alloc] initWithFrame:CGRectMake(0, kScreenHeight - adHeight - kTabbarExtra, SCREEN_WIDTH, adHeight)];
+    self.bannerView.delegate = self;
+    [self.view addSubview:self.bannerView];
+    
+    self.bannerView.adUnitID = [LYServerConfig LYConfigEnv] == LYServerEnvProduct?GOOGLEAD_UNITID:GOOGLEAD_TEST_UNITID;
+    self.bannerView.rootViewController = self;
+    GADRequest *request = [GADRequest request];
+    if ([LYServerConfig LYConfigEnv] != LYServerEnvProduct) {
+        request.testDevices = @[ kGADSimulatorID ];
+    }
+    [self.bannerView loadRequest:request];
+    
+}
+
 
 #pragma mark - 懒加载
 - (LYTWatermarkSuccessView *)backImageView{

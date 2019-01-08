@@ -8,6 +8,6 @@
 
 #import "LYBaseViewController.h"
 
-@interface LYHomePageViewController : LYBaseViewController
+@interface LYHomePageViewController : LYBaseTableViewController
 
 @end

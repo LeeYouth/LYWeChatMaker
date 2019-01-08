@@ -14,27 +14,51 @@
 
 @implementation LYBaseViewController
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+
+    self.navBarView.navBarTitle = self.title;
+}
+
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navigationController.navigationBarHidden = YES;
+
+    [self.view addSubview:self.navBarView];
+    [self.view bringSubviewToFront:self.navBarView];
     
+
+    self.view.backgroundColor = LYTableViewBackColor;
+
+}
+
+
+- (void)backBarItemClick{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)rightBarItemClick{
     
-    self.view.backgroundColor = LYColor(LYWhiteColorHex);
-
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (LYCustomNavgationBarView *)navBarView{
+    return LY_LAZY(_navBarView, ({
+        WEAKSELF(weakSelf);
+        LYCustomNavgationBarView *view = [[LYCustomNavgationBarView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, NAVBAR_HEIGHT)];
+        view.btnBlock = ^(UIButton *sender) {
+            if (sender.tag == 0) {
+                [weakSelf backBarItemClick];
+            }else{
+                [weakSelf rightBarItemClick];
+            }
+        };
+        view;
+    }));
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

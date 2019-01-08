@@ -8,20 +8,19 @@
 
 #import "LYAllEmoticonsViewController.h"
 #import "LYAllEmoticonsTableCell.h"
-#import "LYEmoticonModel.h"
+#import "LYEmoticonListModel.h"
 #import "LYEmoticonPackageListViewController.h"
 #import "LYTWatermarkViewController.h"
 #import <GoogleMobileAds/GoogleMobileAds.h>
-#import "LYUnlockNewFeaturesAlertView.h"
+#import "LYEmoticonModel.h"
 
-@interface LYAllEmoticonsViewController ()<LYEmoticonPackageListViewControllerDelegate,GADBannerViewDelegate,GADInterstitialDelegate>
+@interface LYAllEmoticonsViewController ()<LYEmoticonPackageListViewControllerDelegate,GADBannerViewDelegate,GADRewardBasedVideoAdDelegate>
 {
     NSInteger _currentIndex;
 }
 
 @property (nonatomic, strong) NSMutableArray *dataArray;
 @property (nonatomic, strong) GADBannerView *bannerView;//底部广告
-@property (nonatomic, strong) GADInterstitial *interstitial;//倒计时广告
 
 @end
 
@@ -32,8 +31,7 @@
     
     self.title = @"表情包";
     
-    self.tableView.showsVerticalScrollIndicator = NO;
-    self.tableView.showsHorizontalScrollIndicator = NO;
+
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     [self loadEmoticonsData];
@@ -49,9 +47,10 @@
     }
     
     for (int i = 0; i < 2; i++) {
-        LYEmoticonModel *model = [[LYEmoticonModel alloc] init];
+        LYEmoticonListModel *model = [[LYEmoticonListModel alloc] init];
         model.emoticonType = [NSString stringWithFormat:@"%d",i];
         if (i == 0) {
+            model.emoticonIntro = @"斗图我从来不怂";
             model.emoticonName = @"熊猫人";
             model.canCopy      = NO;
             model.isLock       = ![[NSUserDefaults standardUserDefaults] boolForKey:kXMRUNLOCKSTATUS];
@@ -59,6 +58,7 @@
             model.emoticonUrl  = [[NSBundle bundleWithPath:bundlePath] pathForResource:@"10005" ofType:@"jpg"];
             
         }else if (i == 1){
+            model.emoticonIntro = @"您有我快吗";
             model.emoticonName = @"蘑菇头";
             model.canCopy      = YES;
             model.isLock       = ![[NSUserDefaults standardUserDefaults] boolForKey:kMGTUNLOCKSTATUS];;
@@ -66,6 +66,7 @@
             model.emoticonUrl  = [[NSBundle bundleWithPath:bundlePath] pathForResource:@"10001" ofType:@"jpg"];
             
         }else if (i == 2){
+            model.emoticonIntro = @"您收藏的都在这里";
             model.emoticonName = @"我的收藏";
             model.canCopy      = YES;
             model.isLock       = NO;
@@ -103,7 +104,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 60;
+    return [LYAllEmoticonsTableCell getCellHeight];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -114,7 +115,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    LYEmoticonModel *model = self.dataArray[indexPath.row];
+    LYEmoticonListModel *model = self.dataArray[indexPath.row];
 
     if (model.isLock) {
         _currentIndex = indexPath.row;
@@ -123,7 +124,7 @@
         alertView.btnBlock = ^(UIButton *sender) {
             [weakSelf showAdViewController];
         };
-        [alertView showInViewAnimated:YES];
+        [alertView showInViewWithTitle:@"" detailTitle:@"" buttonTitle:@"" animated:YES];
         return;
     }
     
@@ -135,8 +136,14 @@
         for (int i = 10001; i <= 10037; i++) {
             
             NSString *nameStr = [NSString stringWithFormat:@"%d",i];
-            UIImage *image = [UIImage imageWithContentsOfFile:[[NSBundle bundleWithPath:bundlePath] pathForResource:nameStr ofType:@"jpg"]];
-            [imageArray addObject:image];
+            NSString *fileName = [[NSBundle bundleWithPath:bundlePath] pathForResource:nameStr ofType:@"jpg"];
+            
+            LYEmoticonModel *model = [[LYEmoticonModel alloc] init];
+            model.unLock        = [[NSUserDefaults standardUserDefaults] boolForKey:fileName];
+            model.emoticonImage = [UIImage imageWithContentsOfFile:fileName];
+            model.emoticonName  = @"";
+            model.emoticonUrl   = fileName;
+            [imageArray addObject:model];
         }
         
         
@@ -150,8 +157,14 @@
         for (int i = 10001; i <= 10027; i++) {
             
             NSString *nameStr = [NSString stringWithFormat:@"%d",i];
-            UIImage *image = [UIImage imageWithContentsOfFile:[[NSBundle bundleWithPath:bundlePath] pathForResource:nameStr ofType:@"jpg"]];
-            [imageArray addObject:image];
+            NSString *fileName = [[NSBundle bundleWithPath:bundlePath] pathForResource:nameStr ofType:@"jpg"];
+            
+            LYEmoticonModel *model = [[LYEmoticonModel alloc] init];
+            model.unLock        = [[NSUserDefaults standardUserDefaults] boolForKey:fileName];
+            model.emoticonImage = [UIImage imageWithContentsOfFile:fileName];
+            model.emoticonName  = @"";
+            model.emoticonUrl   = fileName;
+            [imageArray addObject:model];
         }
         
         
@@ -164,8 +177,14 @@
         for (int i = 10001; i <= 10001; i++) {
             
             NSString *nameStr = [NSString stringWithFormat:@"%d",i];
-            UIImage *image = [UIImage imageWithContentsOfFile:[[NSBundle bundleWithPath:bundlePath] pathForResource:nameStr ofType:@"jpg"]];
-            [imageArray addObject:image];
+            NSString *fileName = [[NSBundle bundleWithPath:bundlePath] pathForResource:nameStr ofType:@"jpg"];
+            
+            LYEmoticonModel *model = [[LYEmoticonModel alloc] init];
+            model.unLock        = [[NSUserDefaults standardUserDefaults] boolForKey:fileName];
+            model.emoticonImage = [UIImage imageWithContentsOfFile:fileName];
+            model.emoticonName  = @"";
+            model.emoticonUrl   = fileName;
+            [imageArray addObject:model];
         }
         
         
@@ -189,31 +208,68 @@
 #pragma mark - 展示倒计时广告
 - (void)showAdViewController{
     [LYToastTool showLoadingWithStatus:@""];
-    NSString *interstitialID = [LYServerConfig LYConfigEnv] == LYServerEnvProduct?GOOGLEFULLAD_UNITID:GOOGLEFULLAD_TEST_UNITID;
-    self.interstitial = [[GADInterstitial alloc]
-                         initWithAdUnitID:interstitialID];
-    GADRequest *request11 = [GADRequest request];
-    self.interstitial.delegate = self;
-    [self.interstitial loadRequest:request11];
+    NSString *unitID = [LYServerConfig LYConfigEnv] == LYServerEnvProduct?GOOGLEVIDEOAD_UNITID:GOOGLEVIDEOAD_TEST_UNITID;
+    [GADRewardBasedVideoAd sharedInstance].delegate = self;
+    [[GADRewardBasedVideoAd sharedInstance] loadRequest:[GADRequest request]
+                                           withAdUnitID:unitID];
+    
 }
 
-#pragma mark - GADInterstitialDelegate
-/// Tells the delegate an ad request succeeded.
-- (void)interstitialDidReceiveAd:(GADInterstitial *)ad {
-    NSLog(@"interstitialDidReceiveAd");
-    if (self.interstitial.isReady) {
+#pragma mark - GADRewardBasedVideoAdDelegate
+- (void)rewardBasedVideoAd:(GADRewardBasedVideoAd *)rewardBasedVideoAd
+   didRewardUserWithReward:(GADAdReward *)reward {
+    NSString *rewardMessage =
+    [NSString stringWithFormat:@"Reward received with currency %@ , amount %lf",
+     reward.type,
+     [reward.amount doubleValue]];
+
+    LYLog(@"%@",rewardMessage);
+}
+
+- (void)rewardBasedVideoAdDidReceiveAd:(GADRewardBasedVideoAd *)rewardBasedVideoAd {
+    LYLog(@"Reward based video ad is received.");
+    
+    if ([[GADRewardBasedVideoAd sharedInstance] isReady]) {
         [LYToastTool dismiss];
-        [self.interstitial presentFromRootViewController:self];
-    } else {
-        LYLog(@"Ad wasn't ready");
+        [[GADRewardBasedVideoAd sharedInstance] presentFromRootViewController:self];
     }
-
 }
 
-/// Tells the delegate an ad request failed.
-- (void)interstitial:(GADInterstitial *)ad
-didFailToReceiveAdWithError:(GADRequestError *)error {
-    LYLog(@"interstitial:didFailToReceiveAdWithError: %@", [error localizedDescription]);
+- (void)rewardBasedVideoAdDidOpen:(GADRewardBasedVideoAd *)rewardBasedVideoAd {
+    LYLog(@"Opened reward based video ad.");
+}
+
+- (void)rewardBasedVideoAdDidStartPlaying:(GADRewardBasedVideoAd *)rewardBasedVideoAd {
+    LYLog(@"Reward based video ad started playing.");
+}
+
+- (void)rewardBasedVideoAdDidCompletePlaying:(GADRewardBasedVideoAd *)rewardBasedVideoAd {
+    LYLog(@"Reward based video ad has completed.");
+}
+
+- (void)rewardBasedVideoAdDidClose:(GADRewardBasedVideoAd *)rewardBasedVideoAd {
+    NSLog(@"Reward based video ad is closed.");
+    if (_currentIndex == 0) {
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kXMRUNLOCKSTATUS];
+    }else if (_currentIndex == 1){
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kMGTUNLOCKSTATUS];
+    }
+    [self loadEmoticonsData];
+}
+
+- (void)rewardBasedVideoAdWillLeaveApplication:(GADRewardBasedVideoAd *)rewardBasedVideoAd {
+    LYLog(@"Reward based video ad will leave application.");
+    if (_currentIndex == 0) {
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kXMRUNLOCKSTATUS];
+    }else if (_currentIndex == 1){
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kMGTUNLOCKSTATUS];
+    }
+    [self loadEmoticonsData];
+}
+
+- (void)rewardBasedVideoAd:(GADRewardBasedVideoAd *)rewardBasedVideoAd
+    didFailToLoadWithError:(NSError *)error {
+    LYLog(@"Reward based video ad failed to load.--%@",[error localizedDescription]);
     [LYToastTool dismiss];
     if (_currentIndex == 0) {
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kXMRUNLOCKSTATUS];
@@ -223,38 +279,9 @@ didFailToReceiveAdWithError:(GADRequestError *)error {
     [self loadEmoticonsData];
 }
 
-/// Tells the delegate that an interstitial will be presented.
-- (void)interstitialWillPresentScreen:(GADInterstitial *)ad {
-    LYLog(@"interstitialWillPresentScreen");
-}
-
-/// Tells the delegate the interstitial is to be animated off the screen.
-- (void)interstitialWillDismissScreen:(GADInterstitial *)ad {
-    LYLog(@"interstitialWillDismissScreen");
-}
-
-/// Tells the delegate the interstitial had been animated off the screen.
-- (void)interstitialDidDismissScreen:(GADInterstitial *)ad {
-    LYLog(@"interstitialDidDismissScreen");
-    if (_currentIndex == 0) {
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kXMRUNLOCKSTATUS];
-    }else if (_currentIndex == 1){
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kMGTUNLOCKSTATUS];
-    }
-    [self loadEmoticonsData];
-}
-
-/// Tells the delegate that a user click will open another app
-/// (such as the App Store), backgrounding the current app.
-- (void)interstitialWillLeaveApplication:(GADInterstitial *)ad {
-    LYLog(@"interstitialWillLeaveApplication");
-    
-    if (_currentIndex == 0) {
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kXMRUNLOCKSTATUS];
-    }else if (_currentIndex == 1){
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kMGTUNLOCKSTATUS];
-    }
-    [self loadEmoticonsData];
+#pragma mark - GADBannerViewDelegate
+- (void)adView:(GADBannerView *)bannerView didFailToReceiveAdWithError:(GADRequestError *)error{
+    LYLog(@"GADBannerView:didFailToReceiveAdWithError: %@", [error localizedDescription]);
 }
 
 #pragma mark - lazyloading

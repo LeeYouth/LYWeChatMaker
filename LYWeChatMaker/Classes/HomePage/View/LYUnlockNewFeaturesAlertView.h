@@ -14,7 +14,10 @@
 + (instancetype)sharedInstance;
 
 /** 显示弹框 */
-- (void)showInViewAnimated:(BOOL)animated;
+- (void)showInViewWithTitle:(NSString *)title
+                detailTitle:(NSString *)detailTitle
+                buttonTitle:(NSString *)buttonTitle
+                   animated:(BOOL)animated;
 
 /** 关闭当前pickView */
 - (void)close;

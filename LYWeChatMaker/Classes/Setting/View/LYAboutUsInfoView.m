@@ -26,6 +26,11 @@
     self = [super initWithFrame:frame];
     if (self) {
         
+        self.backgroundColor = LYColor(LYWhiteColorHex);
+        self.layer.cornerRadius = kLYViewCornerRadius;
+        self.layer.borderColor  = kLYViewBorderColor.CGColor;
+        self.layer.borderWidth  = kLYViewBorderWidth;
+        
         CGFloat iconW = 80;
         CGFloat infoLeft = 30;
 
@@ -59,7 +64,9 @@
             make.left.right.top.bottom.equalTo(self.contectUsLabel);
         }];
         
-        NSString *contentStr = @"《简单水印》是一款快速添加文字水印的APP。多种颜色字体供您使用，多种功能供您选择。感谢您的支持与使用！";
+        NSString *disName = [NSString stringWithFormat:@"《%@》",[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleDisplayName"]];
+        
+        NSString *contentStr = [disName stringByAppendingString:@"是一款快速添加文字水印的APP。多种颜色字体供您使用，多种功能供您选择。感谢您的支持与使用！"];
         NSMutableAttributedString *attString = [[NSMutableAttributedString alloc] initWithString:contentStr];
         NSMutableParagraphStyle *paraStyle = [[NSMutableParagraphStyle alloc] init];
         paraStyle.lineSpacing = 4;
@@ -75,7 +82,7 @@
 
         self.contectUsLabel.attributedText = attString11;
         
-        self.titleLabel.text = @"简单水印";
+        self.titleLabel.text = [NSString stringWithFormat:@"%@",[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleDisplayName"]];
         
         
         

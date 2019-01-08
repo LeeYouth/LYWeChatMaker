@@ -8,7 +8,6 @@
 
 #import "LYTabBarControllerConfig.h"
 #import "LYTWatermarkViewController.h"
-#import "LYBaseNavigationController.h"
 
 @interface LYTabBarControllerConfig ()
 

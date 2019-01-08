@@ -10,6 +10,10 @@
 
 @interface LYWatermarkGuideView : UIView
 
-- (void)showInView:(UIView *)view maskBtn:(UIButton *)btn;
+
+/**
+ 目标显示视图
+ */
+- (void)showInViewWithTargetView:(UIView *)targetView;
 
 @end

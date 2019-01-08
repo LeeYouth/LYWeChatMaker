@@ -24,7 +24,7 @@
 - (instancetype)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = LYColor(LYWhiteColorHex);
+        self.backgroundColor = [UIColor clearColor];
         
         [self _setupSubViews];
         
@@ -35,9 +35,9 @@
 - (void)_setupSubViews
 {
     [self.backImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.size.mas_equalTo(CGSizeMake(SCREEN_WIDTH - 100, SCREEN_WIDTH - 40));
+        make.size.mas_equalTo(CGSizeMake(SCREEN_WIDTH - 160, SCREEN_WIDTH - 160 + 40));
         make.centerX.equalTo(self.mas_centerX);
-        make.top.mas_equalTo(@(30+NAVBAR_HEIGHT));
+        make.top.mas_equalTo(@(40));
     }];
     
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -74,6 +74,7 @@
         UIImageView *imageV = [UIImageView new];
         imageV.userInteractionEnabled = YES;
         imageV.contentMode = UIViewContentModeScaleAspectFit;
+        imageV.layer.cornerRadius = 6;
         [self addSubview:imageV];
         imageV;
     }));
@@ -81,9 +82,9 @@
 - (UILabel *)titleLabel{
     return LY_LAZY(_titleLabel, ({
         UILabel *view = [UILabel new];
-        view.textColor = LYColor(LYBlackColorHex);
+        view.textColor = LYColor(@"#999999");
         view.textAlignment = NSTextAlignmentCenter;
-        view.text = @"图片已保存到相册";
+        view.text = @"图片已保存到相册啦";
         view.font = LYSystemFont(14.f);
         [self addSubview:view];
         view;
@@ -97,7 +98,7 @@
         button.showsTouchWhenHighlighted = YES;
         button.titleLabel.font = LYSystemFont(14.f);
         [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [button setTitle:@"返回" forState:UIControlStateNormal];
+        [button setTitle:@"返回到首页" forState:UIControlStateNormal];
         [button setBackgroundColor:LYButtonThemeColor];
         [button addTarget:self action:@selector(ensureButtonClick:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:button];

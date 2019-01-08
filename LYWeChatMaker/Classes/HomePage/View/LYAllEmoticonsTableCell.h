@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-@class LYEmoticonModel;
+@class LYEmoticonListModel;
 
 @interface LYAllEmoticonsTableCell : UITableViewCell
 
 + (instancetype)cellWithTableView:(UITableView *)tableView;
-@property (nonatomic, strong) LYEmoticonModel *model;
+@property (nonatomic, strong) LYEmoticonListModel *model;
 
++ (CGFloat)getCellHeight;
 @end

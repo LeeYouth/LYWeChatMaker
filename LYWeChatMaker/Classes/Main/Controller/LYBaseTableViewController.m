@@ -20,11 +20,8 @@
     
     [self.view addSubview:self.tableView];
     
-//    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.edges.equalTo(self.view);
-//    }];
-    
-    CGFloat topMargin = iOS11?(NAVBAR_HEIGHT - (kiPhoneXLater?0:STATUSBAR_HEIGHT)):0;
+
+    CGFloat topMargin = iOS11?NAVBAR_HEIGHT:0;
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.view.mas_top).offset(topMargin);
         make.left.right.bottom.equalTo(self.view);
@@ -46,10 +43,10 @@
         _tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
         _tableView.dataSource = self;
         _tableView.delegate = self;
+        _tableView.backgroundColor = LYTableViewBackColor;
 
-//        _tableView.contentInset = UIEdgeInsetsMake(kiPhoneXLater?NAVBAR_HEIGHT:0, 0, kTabbarExtra, 0);
+//        _tableView.contentInset = UIEdgeInsetsMake(iOS11?NAVBAR_HEIGHT:0, 0, kTabbarExtra, 0);
 //        _tableView.scrollIndicatorInsets = _tableView.contentInset;
-//
     }
     return _tableView;
 }

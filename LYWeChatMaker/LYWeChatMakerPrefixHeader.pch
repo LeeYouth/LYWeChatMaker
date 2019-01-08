@@ -27,6 +27,9 @@
 #import "MBProgressHUD.h"
 #import "MBProgressHUD+LYHUD.h"
 #import "UIViewController+BackButtonHandler.h"
+#import "LYEnsureOrCancelAlertView.h"
+#import "LYUnlockNewFeaturesAlertView.h"
+#import "LYBaseNavigationController.h"
 
 #import <SDWebImage/UIButton+WebCache.h>
 #import "UIImageView+WebCache.h"

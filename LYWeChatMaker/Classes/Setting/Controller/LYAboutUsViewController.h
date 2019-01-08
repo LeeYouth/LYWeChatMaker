@@ -6,8 +6,8 @@
 //  Copyright © 2018年 LYoung_iOS. All rights reserved.
 //  关于我们
 
-#import "LYBaseViewController.h"
+#import "LYBaseTableViewController.h"
 
-@interface LYAboutUsViewController : LYBaseViewController
+@interface LYAboutUsViewController : LYBaseTableViewController
 
 @end

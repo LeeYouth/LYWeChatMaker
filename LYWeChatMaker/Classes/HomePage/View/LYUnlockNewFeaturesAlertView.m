@@ -90,14 +90,20 @@
     
     self.iconImageView.image = [UIImage imageWithContentsOfFile:LYBUNDLE_IMAGEPATH(@"unlockNewFeaturesAlerticon")];
     
-    self.titleLabel.text  = @"这是未解锁的道具!";
-    self.detailLabel.text = @"观看广告后可立即解锁。\n点击下面的按钮很快就能使用这个表情包哦！";
-    
+    self.titleLabel.text  = @"这是未解锁的表情包!";
+    self.detailLabel.text = @"观看广告后可立即解锁。\n点击下面的按钮很快就能使用这个系列的表情包哦！";
     
 }
 
 #pragma mark - 显示选择指示器
-- (void)showInViewAnimated:(BOOL)animated{
+- (void)showInViewWithTitle:(NSString *)title
+                detailTitle:(NSString *)detailTitle
+                buttonTitle:(NSString *)buttonTitle
+                   animated:(BOOL)animated{
+    self.titleLabel.text  = title.length?title:@"这是未解锁的表情包!";
+    self.detailLabel.text = detailTitle.length?detailTitle:@"观看广告后可立即解锁。\n点击下面的按钮很快就能使用这个系列的表情包哦！";
+    [self.watchButton setTitle:[NSString stringWithFormat:@"   %@",buttonTitle.length?buttonTitle:@"观看广告解锁"] forState:UIControlStateNormal];
+
     //我加在了keyWindow上
     [[UIApplication sharedApplication].keyWindow addSubview:self];
     

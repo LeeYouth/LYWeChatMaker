@@ -61,7 +61,8 @@ tmp;\
 
 //按钮颜色
 #define LYButtonThemeColor       LYColor(@"#428BCA")
-
+//首页的背景颜色
+#define LYHomePageColor       LYColor(@"#F0F1EB")
 //主题颜色
 #define LYThemeColor       LYColor(@"#FE4365")
 //线的颜色
@@ -69,6 +70,11 @@ tmp;\
 //线的高度
 #define LYCellLineHeight       0.7f
 
+//tableview背景色
+#define LYTableViewBackColor       LYColor(@"#EEEDEE")
+
+//导航栏默认颜色
+#define LYNavBarBackColor       LYColor(@"#4687F0")
 //图片背景颜色
 #define LYImageBackColor       LYColor(LYBlackColorHex)
 //白色
@@ -79,6 +85,13 @@ tmp;\
 //样式高度
 #define LYWatermarkStyleViewH  (70 + kTabbarExtra)
 
+//样式的圆角
+#define kLYViewCornerRadius   2.f
+//样式的圆角边框颜色
+#define kLYViewBorderColor    LYColor(@"#EAEAEA")
+//样式的圆角边框宽度
+#define kLYViewBorderWidth   0.3
+
 
 #define LYWatermarkInputViewDefultText @"点击输入文字"
 
@@ -86,11 +99,9 @@ tmp;\
 #define kLYWatermarkColorsListViewH  70
 #define kLYWatermarkBottomBtnsViewH 44.f
 
-#define kLYTWatermarkTopToolBarH (kiPhoneXLater?(kNavBarExtra + 44.f):(60.f))
-
 #define kLYTWatermarkBottomToolBarH (kLYWatermarkColorsListViewH + kLYWatermarkBottomBtnsViewH + kTabbarExtra)
 
-#define kLYTWatermarkImageMaxSize CGSizeMake(kScreenWidth, kScreenHeight - kLYTWatermarkTopToolBarH - kLYTWatermarkBottomToolBarH)
+#define kLYTWatermarkImageMaxSize CGSizeMake(kScreenWidth, kScreenHeight - NAVBAR_HEIGHT - kLYTWatermarkBottomToolBarH)
 
 
 //按钮点击block

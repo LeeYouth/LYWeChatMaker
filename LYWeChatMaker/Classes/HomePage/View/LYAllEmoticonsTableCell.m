@@ -7,16 +7,19 @@
 //
 
 #import "LYAllEmoticonsTableCell.h"
-#import "LYEmoticonModel.h"
+#import "LYEmoticonListModel.h"
 
 @interface LYAllEmoticonsTableCell()
+
+
 
 @property (nonatomic, strong) UIImageView *iconImageView;
 
 @property (nonatomic, strong) UIView *lockBackView;
 @property (nonatomic, strong) UIImageView *lockImageView;
-@property (nonatomic, strong) UILabel *titleLab;
-@property (nonatomic, strong) UIView *bottomLine;
+
+@property (nonatomic, strong) UILabel *titleLabel;
+@property (nonatomic, strong) UILabel *intrtoLabel;
 
 @end
 
@@ -35,56 +38,79 @@
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-
+        self.backgroundColor =LYColor(LYWhiteColorHex);
         [self setUpSubViews];
     }
     return self;
 }
+
++ (CGFloat)getCellHeight{
+    return 92;
+}
 -(void)setUpSubViews{
+    
+    
     [self addSubview:self.iconImageView];
     [self addSubview:self.lockBackView];
     [self addSubview:self.lockImageView];
-    [self addSubview:self.titleLab];
-    [self addSubview:self.bottomLine];
+    [self addSubview:self.titleLabel];
+    [self addSubview:self.intrtoLabel];
+    
+    CGFloat cellH = [LYAllEmoticonsTableCell getCellHeight];
+    CGFloat iconW = cellH - 10 - 12;
 
     [self.iconImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.size.mas_equalTo(CGSizeMake(50, 50));
+        make.size.mas_equalTo(CGSizeMake(iconW, iconW));
         make.left.equalTo(self.mas_left).offset(15);
         make.top.equalTo(self.mas_top).offset(5);
     }];
     
     [self.lockBackView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.size.mas_equalTo(CGSizeMake(50, 50));
+        make.size.mas_equalTo(CGSizeMake(iconW, iconW));
         make.left.equalTo(self.mas_left).offset(15);
         make.top.equalTo(self.mas_top).offset(5);
     }];
     [self.lockImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.size.mas_equalTo(CGSizeMake(35, 35));
+        make.size.mas_equalTo(CGSizeMake(40, 40));
         make.centerX.centerY.equalTo(self.lockBackView);
     }];
     
-    [self.titleLab mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.height.mas_equalTo(@30);
-        make.left.equalTo(self.iconImageView.mas_right).offset(15);
-        make.right.equalTo(self.mas_right).offset(-15);
-        make.centerY.equalTo(self.mas_centerY);
+    CGFloat leftMargin = 14.f;
+    [self.intrtoLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.iconImageView.mas_right).offset(leftMargin);
+        make.right.equalTo(self.mas_right).offset(-leftMargin);
+        make.top.mas_equalTo(@10);
+        make.height.mas_equalTo(@16);
     }];
     
-    [self.bottomLine mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.mas_right).offset(15);
-        make.bottom.right.equalTo(self);
-        make.height.mas_equalTo(@(LYCellLineHeight));
+    [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.iconImageView.mas_right).offset(leftMargin);
+        make.right.equalTo(self.mas_right).offset(-leftMargin);
+        make.top.equalTo(self.intrtoLabel.mas_bottom).offset(3);
+        make.bottom.equalTo(self.mas_bottom).offset(-10);
     }];
-
+    
 }
 
-- (void)setModel:(LYEmoticonModel *)model{
+- (void)setModel:(LYEmoticonListModel *)model{
     _model = model;
     
-    self.titleLab.text = model.emoticonName;
+    self.intrtoLabel.text     = model.emoticonIntro;
+    self.titleLabel.text      = model.emoticonName;
     self.lockBackView.hidden  = !model.isLock;
     self.lockImageView.hidden = !model.isLock;
-    self.iconImageView.image = [UIImage imageWithContentsOfFile:model.emoticonUrl];
+    self.iconImageView.image  = [UIImage imageWithContentsOfFile:model.emoticonUrl];
+}
+
+-(void)setFrame:(CGRect)frame
+{
+    frame.origin.x = 0;
+    frame.size.width = frame.size.width;
+    
+    frame.origin.y = frame.origin.y + 12;
+    frame.size.height = frame.size.height - 12;
+    
+    [super setFrame:frame];
 }
 
 #pragma mark - lazy loading
@@ -112,19 +138,22 @@
         view;
     }));
 }
-- (UILabel *)titleLab{
-    return LY_LAZY(_titleLab, ({
+
+- (UILabel *)intrtoLabel{
+    return LY_LAZY(_intrtoLabel, ({
+        UILabel *view = [UILabel new];
+        view.textColor = LYColor(@"#999999");
+        view.font = LYSystemFont(12.f);
+        view;
+    }));
+}
+- (UILabel *)titleLabel{
+    return LY_LAZY(_titleLabel, ({
         UILabel *view = [UILabel new];
         view.textColor = LYColor(LYBlackColorHex);
-        view.font = LYSystemFont(14.f);
+        view.font = LYSystemFont(28.f);
         view;
     }));
 }
-- (UIView *)bottomLine{
-    return LY_LAZY(_bottomLine, ({
-        UIView *view = [[UIView alloc] init];
-        view.backgroundColor = LYCellLineColor;
-        view;
-    }));
-}
+
 @end

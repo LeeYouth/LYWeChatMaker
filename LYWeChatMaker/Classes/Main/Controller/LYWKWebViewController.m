@@ -52,7 +52,8 @@ static NSString *const canGoBack = @"canGoBack";
     [self LoadRequest];
     [self addObserver];
     [self _setBarButtonItem];
-    }
+    
+}
 
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
@@ -60,6 +61,21 @@ static NSString *const canGoBack = @"canGoBack";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    
+    [self.view addSubview:self.webView];
+    [self.view addSubview:self.progressView];
+
+    [self.webView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.navBarView.mas_bottom);
+        make.left.right.bottom.equalTo(self.view);
+    }];
+    
+    [self.progressView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.navBarView.mas_bottom);
+        make.left.right.equalTo(self.view);
+        make.height.mas_equalTo(@4);
+    }];
     
     if (self.titleStr.length) {
         self.title = self.titleStr;
@@ -338,10 +354,6 @@ static NSString *const canGoBack = @"canGoBack";
         _webView.navigationDelegate = self;
         // 与webview UI交互代理
         _webView.UIDelegate = self;
-        [self.view addSubview:_webView];
-        [_webView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.right.top.bottom.equalTo(self.view);
-        }];
     }
     return _webView;
 }
@@ -351,7 +363,6 @@ static NSString *const canGoBack = @"canGoBack";
         _progressView.trackTintColor = [UIColor clearColor];
         _progressView.progressTintColor = LYRGBACOLOR(51, 133, 255, 1);
         _progressView.clipsToBounds = YES;
-        [self.view addSubview:_progressView];
     }
     return _progressView;
 }

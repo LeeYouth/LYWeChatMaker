@@ -18,6 +18,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.navigationBar.layer.shadowColor = LYColor(@"#AAAAAA").CGColor;
+    self.navigationBar.layer.shadowOffset = CGSizeMake(2.0, 2.0);
+    self.navigationBar.layer.shadowRadius = 4.0;
+    self.navigationBar.layer.shadowOpacity = 1.0;
 }
 
 #pragma mark - Public Method
@@ -58,10 +62,9 @@
     [self popViewControllerAnimated:YES];
 }
 #pragma mark - UIStatusBar
-- (UIStatusBarStyle)preferredStatusBarStyle
-{
-    return UIStatusBarStyleDefault;
-    //    return UIStatusBarStyleLightContent;
-}
+//- (UIStatusBarStyle)preferredStatusBarStyle
+//{
+//        return UIStatusBarStyleLightContent;
+//}
 @end
 

@@ -326,7 +326,7 @@ CG_INLINE CGFloat CGPointGetDistance(CGPoint point1, CGPoint point2) {
     return LY_LAZY(_rotationView, ({
         UIImageView *view = [[UIImageView alloc] init];
         view.userInteractionEnabled = YES;
-        view.backgroundColor = [UIColor redColor];
+        view.image = [UIImage imageWithContentsOfFile:LYBUNDLE_IMAGEPATH(@"waterMark_scale")];
         [self addSubview:view];
         view;
     }));

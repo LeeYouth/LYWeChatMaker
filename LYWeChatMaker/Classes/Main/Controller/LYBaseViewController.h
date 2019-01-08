@@ -7,7 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LYCustomNavgationBarView.h"
 
 @interface LYBaseViewController : UIViewController
+
+@property (nonatomic, strong) LYCustomNavgationBarView *navBarView;
+
+/** 返回按钮操作(若未重写，则pop上一级) */
+- (void)backBarItemClick;
+/** 返回按钮操作(若未重写，则pop上一级) */
+- (void)rightBarItemClick;
 
 @end

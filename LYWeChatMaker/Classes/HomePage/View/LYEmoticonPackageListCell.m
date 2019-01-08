@@ -7,6 +7,7 @@
 //
 
 #import "LYEmoticonPackageListCell.h"
+#import "LYEmoticonModel.h"
 
 @interface LYEmoticonPackageListCell()
 
@@ -44,10 +45,58 @@
     
 }
 
-- (void)setImage:(UIImage *)image{
-    _image = image;
+- (void)setModel:(LYEmoticonModel *)model{
+    _model = model;
     
-    self.imageView.image = image;
+    self.imageView.image = [UIImage imageWithContentsOfFile:model.emoticonUrl];
+}
+
+- (void)longPressClick:(UILongPressGestureRecognizer *)gesture
+{
+    if (gesture.state != UIGestureRecognizerStateBegan) return;
+    
+    if (self.model.unLock) {
+        
+        WEAKSELF(weakSelf);
+        //已解锁,弹出保存框
+        LYEnsureOrCancelAlertView *alertView = [LYEnsureOrCancelAlertView sharedInstance];
+        [alertView showInViewWithTitle:@"保存到相册" leftTitle:@"取消" rightTitle:@"保存" animated:YES];
+        alertView.btnBlock = ^(UIButton *sender) {
+            if (sender.tag == 0)
+            {
+                
+            }else if (sender.tag == 1)
+            {
+                //保存
+                [weakSelf saveImageClick];
+            }
+        };
+
+    }else{
+        if (self.block) {
+            self.block(nil);
+        }
+    }
+}
+
+- (void)saveImageClick
+{
+    UIImage *savedImage = [UIImage imageWithContentsOfFile:self.model.emoticonUrl];
+    UIImageWriteToSavedPhotosAlbum(savedImage, self, @selector(image:didFinishSavingWithError:contextInfo:), NULL);
+}
+
+
+// 指定回调方法
+- (void)image: (UIImage *) image didFinishSavingWithError: (NSError *) error contextInfo: (void *) contextInfo
+{
+    NSString *msg = nil ;
+    if(error != NULL){
+        msg = @"保存图片失败" ;
+        
+    }else{
+        msg = @"保存图片成功" ;
+    }
+    [LYToastTool bottomShowWithText:msg delay:1.f];
 }
 
 - (void)layoutSubviews
@@ -60,7 +109,10 @@
 - (UIImageView *)imageView{
     return LY_LAZY(_imageView, ({
         UIImageView *view = [UIImageView new];
+        view.userInteractionEnabled = YES;
         view.contentMode = UIViewContentModeScaleAspectFit;
+        UILongPressGestureRecognizer *gesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressClick:)];
+        [view addGestureRecognizer:gesture];
         view;
     }));
 }

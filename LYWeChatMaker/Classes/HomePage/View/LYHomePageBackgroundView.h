@@ -7,12 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#define LYHomePageAddMarkButtonH 70
-#define LYHomePageAddMarkButtonW 180
 
 @interface LYHomePageBackgroundView : UIView
 
 @property(nonatomic, copy) LYButtonClickBlock btnBlock;
-@property (nonatomic, strong) UIButton *selectPhotoButton;
 
 @end

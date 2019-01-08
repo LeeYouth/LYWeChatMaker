@@ -7,12 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+@class LYEmoticonModel;
 
 @interface LYEmoticonPackageListCell : UICollectionViewCell
 
 /** 财视学院模型 */
-@property (nonatomic,strong) UIImage *image;
+@property (nonatomic,strong) LYEmoticonModel *model;
 
 + (instancetype)cellWithCollectionView:(UICollectionView *)collectionView forItemAtIndexPath:(NSIndexPath *)indexPath;
+
+@property(nonatomic, copy) LYButtonClickBlock block;
 
 @end

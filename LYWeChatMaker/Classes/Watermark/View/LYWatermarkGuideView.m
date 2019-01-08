@@ -7,17 +7,17 @@
 //
 
 #import "LYWatermarkGuideView.h"
+#import "LYWatermarkInputView.h"
 
 @interface LYWatermarkGuideView ()
 
-@property (nonatomic, weak) UIView *parentView;
 @property (nonatomic, strong) UIView *maskBg;
 @property (nonatomic, strong) UIButton *okBtn;
 @property (nonatomic, strong) UIImageView *btnMaskView;
 @property (nonatomic, strong) UIImageView *arrwoView;
 @property (nonatomic, strong) UILabel *tipsLabel;
 
-@property (nonatomic, weak) UIButton *maskBtn;
+@property (nonatomic, weak) UIView *targetView;
 
 @property (nonatomic, strong) UIView *topMaskView;
 @property (nonatomic, strong) UIView *bottomMaskView;
@@ -45,15 +45,13 @@
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    self.frame = _parentView.bounds;
+    self.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
     _maskBg.frame = self.bounds;
-    _btnMaskView.center = [_maskBtn.superview convertPoint:_maskBtn.center toView:_maskBtn.superview];
     
-    CGRect btnMaskRect = _btnMaskView.frame;
-    btnMaskRect.size = CGSizeMake(floor(btnMaskRect.size.width), floor(btnMaskRect.size.height));
-    btnMaskRect.origin = CGPointMake(floor(btnMaskRect.origin.x), floor(btnMaskRect.origin.y));
+    CGSize size = CGSizeMake(LYWatermarkInputViewTextMinW + 2*LYWatermarkInputViewTextMinWMargin + 15, LYWatermarkInputViewTextMinH + 2*LYWatermarkInputViewTextMinHMargin + 15);
+    CGRect btnMaskRect = CGRectMake((SCREEN_WIDTH - size.width)/2, (SCREEN_HEIGHT - size.height - NAVBAR_HEIGHT + STATUSBAR_HEIGHT)/2, size.width, size.height);
     _btnMaskView.frame = btnMaskRect;
-    
+
     _topMaskView.left = 0;
     _topMaskView.top = 0;
     _topMaskView.height = _btnMaskView.top;
@@ -74,31 +72,32 @@
     _rightMaskView.width = self.width - _rightMaskView.left;
     _rightMaskView.height = _btnMaskView.height;
     
-    _arrwoView.right = _btnMaskView.left + 24;
-    _arrwoView.bottom = _btnMaskView.top - 8;
-    _tipsLabel.right = _arrwoView.left - 6;
-    _tipsLabel.bottom = _arrwoView.top + 10;
+    _arrwoView.right = _btnMaskView.right - 24;
+    _arrwoView.top   = _btnMaskView.bottom + 8;
+    _tipsLabel.right = _arrwoView.left + 30;
+    _tipsLabel.top   = _arrwoView.bottom - 10;
     
     _okBtn.centerX = self.width/2;
-    _okBtn.bottom = _btnMaskView.bottom + 40;
+    _okBtn.bottom = _tipsLabel.bottom + 120;
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     [self dismiss];
 }
 
-- (void)showInView:(UIView *)view maskBtn:(UIButton *)btn {
-    self.parentView = view;
-    self.maskBtn = btn;
+- (void)showInViewWithTargetView:(UIView *)targetView{
+    self.targetView = targetView;
     
     self.alpha = 0;
-    [view addSubview:self];
+    [[UIApplication sharedApplication].keyWindow addSubview:self];
     [UIView animateWithDuration:0.2 animations:^{
         self.alpha = 1;
     } completion:nil];
 }
 
 - (void)dismiss {
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"LYWatermarkGuideView"];
+    
     [UIView animateWithDuration:0.2 animations:^{
         self.alpha = 0;
     } completion:^(BOOL finished) {
@@ -132,7 +131,7 @@
         UIImage *image = [UIImage imageNamed:@"whiteMask"];
         image = [self targetImage:image maskImage:[[UIColor blackColor] colorWithAlphaComponent:0.71]];
         UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
-        imageView.backgroundColor = [UIColor redColor];
+        imageView.backgroundColor = [UIColor clearColor];
         _btnMaskView = imageView;
         
     }
@@ -141,7 +140,7 @@
 
 - (UIImageView *)arrwoView {
     if (!_arrwoView) {
-        UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"fx_guide_arrow_down"]];
+        UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"fx_my_attention_guide_arrow"]];
         _arrwoView = imageView;
     }
     return _arrwoView;
@@ -150,7 +149,7 @@
 - (UILabel *)tipsLabel {
     if (!_tipsLabel) {
         UILabel *tipsLabel = [[UILabel alloc] init];
-        tipsLabel.text = @"点击这里\n选择图片添加文字";
+        tipsLabel.text = @"在这里\n点击修改文字\n双指进行缩放、旋转\n单个手指拖动,移动文字位置";
         tipsLabel.numberOfLines = 0;
         tipsLabel.textColor = [UIColor whiteColor];
         tipsLabel.font = [UIFont systemFontOfSize:14];

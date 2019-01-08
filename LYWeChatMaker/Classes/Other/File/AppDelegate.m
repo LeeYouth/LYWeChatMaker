@@ -46,7 +46,8 @@
     //配置服务器类型
     [LYServerConfig setLYConfigEnv:LYServerEnvDevelop];
     
-    [[UIApplication sharedApplication] setStatusBarHidden:YES];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
+//    [[UIApplication sharedApplication] setStatusBarHidden:YES];
     self.window = [[UIWindow alloc] init];
     LYBaseNavigationController *nav = [[LYBaseNavigationController alloc] initWithRootViewController:[[LYHomePageViewController alloc] init]];
     

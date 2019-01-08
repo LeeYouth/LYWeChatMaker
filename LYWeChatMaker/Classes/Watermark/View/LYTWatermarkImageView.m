@@ -18,7 +18,6 @@
 /** 背景图 */
 @property (nonatomic, strong) UIImageView *backImageView;
 
-@property (nonatomic, strong) LYWatermarkInputView *inputView;
 
 @end
 
@@ -68,6 +67,14 @@
     //旋转
     UIRotationGestureRecognizer *rotationGesture = [[UIRotationGestureRecognizer alloc] initWithTarget:self action:@selector(rotateView:)];
     [self addGestureRecognizer:rotationGesture];
+    
+    LYLog(@"-----rect%@",NSStringFromCGRect(self.inputView.frame));
+
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:@"LYWatermarkGuideView"]) {
+        LYWatermarkGuideView *guidView = [[LYWatermarkGuideView alloc] init];
+        [guidView showInViewWithTargetView:self.inputView];
+    }
+   
 }
 #pragma mark - 双手缩放
 - (void)pinchView:(UIPinchGestureRecognizer *)pinchGestureRecognizer
@@ -228,7 +235,7 @@
 - (LYWatermarkInputView *)inputView{
     return LY_LAZY(_inputView, ({
         LYWatermarkInputView *putView = [[LYWatermarkInputView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 10)];
-        putView.showRotation = NO;
+        putView.showRotation = YES;
         putView.showBorder = YES;
         [self.backImageView addSubview:putView];
         putView;
