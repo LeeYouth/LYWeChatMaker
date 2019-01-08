@@ -46,10 +46,7 @@
     
     _currentIndex = -1;
     
-    if (![[NSUserDefaults standardUserDefaults] boolForKey:@"LYEmoticonsGuideView"]) {
-        LYEmoticonsGuideView *guidView = [[LYEmoticonsGuideView alloc] init];
-        [guidView showInViewWithTargetView:self.view];
-    }
+   
 
 }
 
@@ -72,7 +69,7 @@
     collectionView.delegate = self;
     [self.view addSubview:collectionView];
     
-    CGFloat topMargin = iOS11?NAVBAR_HEIGHT:0;
+    CGFloat topMargin = NAVBAR_HEIGHT;
     [collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.view.mas_top).offset(topMargin);
         make.left.right.bottom.equalTo(self.view);
@@ -83,6 +80,11 @@
     _dataListArray = dataListArray;
     
     [self.collectionView reloadData];
+    
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:@"LYEmoticonsGuideView"]) {
+        LYEmoticonsGuideView *guidView = [[LYEmoticonsGuideView alloc] init];
+        [guidView showInViewWithTargetView:self.view];
+    }
 }
 
 #pragma mark <UICollectionViewDataSource>

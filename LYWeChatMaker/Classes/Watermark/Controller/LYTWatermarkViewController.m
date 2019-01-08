@@ -49,7 +49,8 @@
     self.navBarView.leftBarItemImage = [UIImage imageNamed:@"bottomToolBar_close"];
     self.navBarView.rightBarItemImage = [UIImage imageNamed:@"bottomToolBar_next"];
     self.navBarView.navColor = LYColor(LYBlackColorHex);
-    
+    self.navBarView.hiddenShadow = YES;
+
     [self.view addSubview:self.backImageView];
     [self.view addSubview:self.bottomToolBar];
     
@@ -70,7 +71,7 @@
     
     self.inputConfig = [[LYWatermarkInputConfig alloc] init];
     self.inputConfig.inputText    = @"";
-    self.inputConfig.colorHex     = LYWhiteColorHex;
+    self.inputConfig.colorHex     = self.defultColorHex?self.defultColorHex:LYWhiteColorHex;
     self.inputConfig.fontName     = @"defult";
     self.inputConfig.selectBack   = NO;
     self.inputConfig.selectBold   = NO;

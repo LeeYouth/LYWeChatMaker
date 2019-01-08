@@ -13,4 +13,7 @@
 /** 目标image */
 @property (nonatomic, strong)  UIImage *targetImage;
 
+/** 默认字体颜色 */
+@property (nonatomic, copy)  NSString *defultColorHex;
+
 @end

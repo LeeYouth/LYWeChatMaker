@@ -38,6 +38,7 @@
     self.navBarView.leftBarItemImage = nil;
     self.navBarView.rightBarItemImage = [UIImage imageNamed:@"homepage_rightBarItem"];
     self.navBarView.navColor = LYHomePageColor;
+    self.navBarView.hiddenShadow = YES;
     
     self.tableView.backgroundColor = LYHomePageColor;
     LYHomePageTitleView *titleView = [[LYHomePageTitleView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 120)];

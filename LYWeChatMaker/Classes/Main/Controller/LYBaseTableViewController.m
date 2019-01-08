@@ -21,7 +21,7 @@
     [self.view addSubview:self.tableView];
     
 
-    CGFloat topMargin = iOS11?NAVBAR_HEIGHT:0;
+    CGFloat topMargin = NAVBAR_HEIGHT;
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.view.mas_top).offset(topMargin);
         make.left.right.bottom.equalTo(self.view);

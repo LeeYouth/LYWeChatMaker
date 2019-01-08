@@ -24,6 +24,9 @@ typedef void(^LYCustomNavgationBarViewBlcok)(UIButton *sender);
 @property (nonatomic, strong) UIImage *rightBarItemImage;
 /** 导航栏title */
 @property (nonatomic, copy) NSString *navBarTitle;
+/** 是否隐藏阴影(默认为NO) */
+@property (nonatomic, assign) BOOL hiddenShadow;
+
 
 @property(nonatomic, copy) LYCustomNavgationBarViewBlcok btnBlock;
 

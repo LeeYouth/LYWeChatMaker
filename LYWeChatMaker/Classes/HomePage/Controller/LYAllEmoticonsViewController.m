@@ -199,7 +199,8 @@
     UIImage *cropImage = photos[0];
     if (cropImage != nil) {
         LYTWatermarkViewController *waterMarkVC = [[LYTWatermarkViewController alloc] init];
-        waterMarkVC.targetImage = cropImage;
+        waterMarkVC.targetImage    = cropImage; 
+        waterMarkVC.defultColorHex = LYBlackColorHex;
         [self.navigationController pushViewController:waterMarkVC animated:YES];
     }
 }

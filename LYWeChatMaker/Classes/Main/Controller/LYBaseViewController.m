@@ -18,11 +18,11 @@
     [super viewWillAppear:animated];
 
     self.navBarView.navBarTitle = self.title;
+    [self.view bringSubviewToFront:self.navBarView];
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
-
 }
 
 - (void)viewDidLoad {
@@ -30,7 +30,6 @@
     self.navigationController.navigationBarHidden = YES;
 
     [self.view addSubview:self.navBarView];
-    [self.view bringSubviewToFront:self.navBarView];
     
 
     self.view.backgroundColor = LYTableViewBackColor;
