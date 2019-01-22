@@ -84,6 +84,7 @@
         LYEmoticonsGuideView *guidView = [[LYEmoticonsGuideView alloc] init];
         [guidView showInViewWithTargetView:self.view];
     }
+
 }
 
 #pragma mark <UICollectionViewDataSource>

@@ -43,7 +43,7 @@
 //
 
     //配置服务器类型
-    [LYServerConfig setLYConfigEnv:LYServerEnvDevelop];
+    [LYServerConfig setLYConfigEnv:LYServerEnvProduct];
     
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
 //    [[UIApplication sharedApplication] setStatusBarHidden:YES];

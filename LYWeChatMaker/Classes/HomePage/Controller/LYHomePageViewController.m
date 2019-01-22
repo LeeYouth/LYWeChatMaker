@@ -34,45 +34,7 @@
    
     [self loadNewData];
     
-//    [self downloadImages];
-
 }
-
-- (void)downloadImages{
-    
-    
-    
-    
-    
-    [LYNetworkHelper GET:@"https://service.emoji.adesk.com/v1/diy/outline?limit=48&order=new&platform=iOS_12.1.2&skip=0" parameters:[NSDictionary dictionary] showHUD:YES success:^(id  _Nonnull responseObject) {
-        
-        NSMutableArray *urlsArray = [NSMutableArray array];
-        
-        NSArray *array = responseObject[@"res"][@"data"];
-        
-        for (NSDictionary *dict in array) {
-            [urlsArray addObject:dict[@"url"]];
-        }
-        LYLog(@"-----%@",urlsArray);
-//        [LYImagesDownloadManager downloadImages:urlsArray completion:^(NSArray * _Nonnull resultArray) {
-//
-//        }];
-//
-//        //获取文件的完整路径
-//        NSString *filePatch = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"LYPopularSentenceResources.plist"];
-//
-//        NSMutableArray *temp = [[NSMutableArray alloc] initWithContentsOfFile:filePatch];
-//        [temp addObjectsFromArray:array];
-//        //写入数据到plist文件
-//        [temp writeToFile:filePatch atomically:YES];
-//        LYLog(@"path ==== %@",filePatch);
-
-        
-    } failure:^(NSError * _Nonnull error) {
-        
-    }];
-}
-
 - (void)setupSubViews{
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.navBarView.leftBarItemImage = nil;

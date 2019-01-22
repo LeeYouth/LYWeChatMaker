@@ -48,7 +48,7 @@
     self.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
     _maskBg.frame = self.bounds;
     
-    CGFloat cellW = (kScreenWidth - 30)/2;
+    CGFloat cellW = (kScreenWidth - 40)/3;
 
     CGRect btnMaskRect = CGRectMake(10, NAVBAR_HEIGHT + 10, cellW, cellW);
     _btnMaskView.frame = btnMaskRect;
@@ -75,7 +75,7 @@
     
     _arrwoView.right = _btnMaskView.right - 24;
     _arrwoView.top   = _btnMaskView.bottom + 8;
-    _tipsLabel.right = _arrwoView.left + 30;
+    _tipsLabel.left = _arrwoView.left + 30;
     _tipsLabel.top   = _arrwoView.bottom - 10;
     
     _okBtn.centerX = self.width/2;
