@@ -50,18 +50,17 @@
     [self addSubview:self.intrtoLabel];
     [self addSubview:self.indicatorView];
 
-    CGFloat cellH = [LYHomePageTableViewCell getCellHeight];
-    CGFloat iconW = cellH - 10 - 12;
+    CGFloat iconW = 52;
     
     [self.iconImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.size.mas_equalTo(CGSizeMake(iconW, iconW));
-        make.left.equalTo(self.mas_left).offset(15);
-        make.top.equalTo(self.mas_top).offset(5);
+        make.left.equalTo(self.mas_left).offset(10);
+        make.centerY.equalTo(self.mas_centerY);
     }];
     
     CGFloat leftMargin = 14.f;
     [self.intrtoLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.iconImageView.mas_right).offset(-8);
+        make.left.equalTo(self.iconImageView.mas_right).offset(6);
         make.right.equalTo(self.mas_right).offset(-leftMargin);
         make.top.mas_equalTo(@16);
         make.height.mas_equalTo(@16);

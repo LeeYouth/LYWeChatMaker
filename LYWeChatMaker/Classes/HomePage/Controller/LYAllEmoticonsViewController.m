@@ -10,17 +10,22 @@
 #import "LYAllEmoticonsTableCell.h"
 #import "LYEmoticonListModel.h"
 #import "LYEmoticonPackageListViewController.h"
-#import "LYTWatermarkViewController.h"
-#import <GoogleMobileAds/GoogleMobileAds.h>
+#import "LYMakeEmoticonViewController.h"
 #import "LYEmoticonModel.h"
+
 
 @interface LYAllEmoticonsViewController ()<LYEmoticonPackageListViewControllerDelegate,GADBannerViewDelegate,GADRewardBasedVideoAdDelegate>
 {
     NSInteger _currentIndex;
+    NSInteger _selectIndex;
+
 }
 
 @property (nonatomic, strong) NSMutableArray *dataArray;
 @property (nonatomic, strong) GADBannerView *bannerView;//底部广告
+
+@property (nonatomic, strong) NSMutableArray *xmrDataArray;//熊猫人
+@property (nonatomic, strong) NSMutableArray *mgtDataArray;//，沟通
 
 @end
 
@@ -54,25 +59,14 @@
             model.emoticonName = @"熊猫人";
             model.canCopy      = NO;
             model.isLock       = ![[NSUserDefaults standardUserDefaults] boolForKey:kXMRUNLOCKSTATUS];
-            NSString *bundlePath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent: @"LYXMRImageResources.bundle"];
-            model.emoticonUrl  = [[NSBundle bundleWithPath:bundlePath] pathForResource:@"10005" ofType:@"jpg"];
+            model.emoticonUrl  = LYLOADBUDLEIMAGE(@"LYXMRImageResources.bundle", @"10001");
             
         }else if (i == 1){
             model.emoticonIntro = @"您有我快吗";
             model.emoticonName = @"蘑菇头";
             model.canCopy      = YES;
             model.isLock       = ![[NSUserDefaults standardUserDefaults] boolForKey:kMGTUNLOCKSTATUS];;
-            NSString *bundlePath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent: @"LYMGTImageResources.bundle"];
-            model.emoticonUrl  = [[NSBundle bundleWithPath:bundlePath] pathForResource:@"10001" ofType:@"jpg"];
-            
-        }else if (i == 2){
-            model.emoticonIntro = @"您收藏的都在这里";
-            model.emoticonName = @"我的收藏";
-            model.canCopy      = YES;
-            model.isLock       = NO;
-            NSString *bundlePath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent: @"LYMyCollectionResources.bundle"];
-            model.emoticonUrl  = [[NSBundle bundleWithPath:bundlePath] pathForResource:@"10001" ofType:@"jpg"];
-            
+            model.emoticonUrl  = LYLOADBUDLEIMAGE(@"LYMGTImageResources.bundle", @"10001");
         }
         [self.dataArray addObject:model];
     }
@@ -115,6 +109,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    
+    _selectIndex = indexPath.row;
+    
     LYEmoticonListModel *model = self.dataArray[indexPath.row];
 
     if (model.isLock) {
@@ -131,64 +128,12 @@
     
     if (indexPath.row == 0) {
         //熊猫人
-        NSString *bundlePath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent: @"LYXMRImageResources.bundle"];
-        NSMutableArray *imageArray = [NSMutableArray array];
-        for (int i = 10001; i <= 10037; i++) {
-            
-            NSString *nameStr = [NSString stringWithFormat:@"%d",i];
-            NSString *fileName = [[NSBundle bundleWithPath:bundlePath] pathForResource:nameStr ofType:@"jpg"];
-            
-            LYEmoticonModel *model = [[LYEmoticonModel alloc] init];
-            model.unLock        = [[NSUserDefaults standardUserDefaults] boolForKey:fileName];
-            model.emoticonImage = [UIImage imageWithContentsOfFile:fileName];
-            model.emoticonName  = @"";
-            model.emoticonUrl   = fileName;
-            [imageArray addObject:model];
-        }
-        
-        
-        LYEmoticonPackageListViewController *imagePickerVc = [[LYEmoticonPackageListViewController alloc] initWithIamgeArray:imageArray title:model.emoticonName showAdd:NO delegate:self];
+        LYEmoticonPackageListViewController *imagePickerVc = [[LYEmoticonPackageListViewController alloc] initWithIamgeArray:self.xmrDataArray title:model.emoticonName showAdd:NO delegate:self];
         [self.navigationController pushViewController:imagePickerVc animated:YES];
 
     }else if (indexPath.row == 1){
         //蘑菇头
-        NSString *bundlePath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent: @"LYMGTImageResources.bundle"];
-        NSMutableArray *imageArray = [NSMutableArray array];
-        for (int i = 10001; i <= 10027; i++) {
-            
-            NSString *nameStr = [NSString stringWithFormat:@"%d",i];
-            NSString *fileName = [[NSBundle bundleWithPath:bundlePath] pathForResource:nameStr ofType:@"jpg"];
-            
-            LYEmoticonModel *model = [[LYEmoticonModel alloc] init];
-            model.unLock        = [[NSUserDefaults standardUserDefaults] boolForKey:fileName];
-            model.emoticonImage = [UIImage imageWithContentsOfFile:fileName];
-            model.emoticonName  = @"";
-            model.emoticonUrl   = fileName;
-            [imageArray addObject:model];
-        }
-        
-        
-        LYEmoticonPackageListViewController *imagePickerVc = [[LYEmoticonPackageListViewController alloc] initWithIamgeArray:imageArray title:model.emoticonName showAdd:NO delegate:self];
-        [self.navigationController pushViewController:imagePickerVc animated:YES];
-    }else if(indexPath.row == 2){
-        //我的收藏
-        NSString *bundlePath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent: @"LYMyCollectionResources.bundle"];
-        NSMutableArray *imageArray = [NSMutableArray array];
-        for (int i = 10001; i <= 10001; i++) {
-            
-            NSString *nameStr = [NSString stringWithFormat:@"%d",i];
-            NSString *fileName = [[NSBundle bundleWithPath:bundlePath] pathForResource:nameStr ofType:@"jpg"];
-            
-            LYEmoticonModel *model = [[LYEmoticonModel alloc] init];
-            model.unLock        = [[NSUserDefaults standardUserDefaults] boolForKey:fileName];
-            model.emoticonImage = [UIImage imageWithContentsOfFile:fileName];
-            model.emoticonName  = @"";
-            model.emoticonUrl   = fileName;
-            [imageArray addObject:model];
-        }
-        
-        
-        LYEmoticonPackageListViewController *imagePickerVc = [[LYEmoticonPackageListViewController alloc] initWithIamgeArray:imageArray title:model.emoticonName showAdd:YES delegate:self];
+        LYEmoticonPackageListViewController *imagePickerVc = [[LYEmoticonPackageListViewController alloc] initWithIamgeArray:self.mgtDataArray title:model.emoticonName showAdd:NO delegate:self];
         [self.navigationController pushViewController:imagePickerVc animated:YES];
     }
 }
@@ -198,10 +143,16 @@
 - (void)emoticonPackageListViewController:(LYEmoticonPackageListViewController *)lister didFinishPickingPhotos:(NSArray<UIImage *> *)photos{
     UIImage *cropImage = photos[0];
     if (cropImage != nil) {
-        LYTWatermarkViewController *waterMarkVC = [[LYTWatermarkViewController alloc] init];
-        waterMarkVC.targetImage    = cropImage; 
-        waterMarkVC.defultColorHex = LYBlackColorHex;
-        [self.navigationController pushViewController:waterMarkVC animated:YES];
+        
+        LYMakeEmoticonViewController *makeVC = [[LYMakeEmoticonViewController alloc] init];
+        makeVC.emoticonCtl = YES;
+        makeVC.faceCtl     = NO;
+        makeVC.sentenceCtl = YES;
+        makeVC.emoticonCtlTitle = _selectIndex == 0?@"熊猫人":@"蘑菇头";
+        makeVC.defultEmojiImage  = cropImage;
+        LYBaseNavigationController *nav = [[LYBaseNavigationController alloc] initWithRootViewController:makeVC];
+        [self presentViewController:nav animated:YES completion:nil];
+
     }
 }
 
@@ -291,6 +242,48 @@
         _dataArray = [NSMutableArray array];
     }
     return _dataArray;
+}
+- (NSMutableArray *)xmrDataArray{
+    if (!_xmrDataArray) {
+        _xmrDataArray = [NSMutableArray array];
+        //熊猫人
+        NSMutableArray *imageArray = [NSMutableArray array];
+        for (int i = 10001; i <= [kXMRRESOURCELASTNAME intValue]; i++) {
+            
+            NSString *nameStr = [NSString stringWithFormat:@"%d",i];
+            NSString *fileName = LYLOADBUDLEIMAGE(@"LYXMRImageResources.bundle", nameStr);
+            
+            LYEmoticonModel *model = [[LYEmoticonModel alloc] init];
+            model.unLock        = [[NSUserDefaults standardUserDefaults] boolForKey:fileName];
+            model.emoticonImage = [UIImage imageWithContentsOfFile:fileName];
+            model.emoticonName  = @"";
+            model.emoticonUrl   = fileName;
+            [imageArray addObject:model];
+        }
+        _xmrDataArray = imageArray;
+    }
+    return _xmrDataArray;
+}
+- (NSMutableArray *)mgtDataArray{
+    if (!_mgtDataArray) {
+        _mgtDataArray = [NSMutableArray array];
+        //蘑菇头
+        NSMutableArray *imageArray = [NSMutableArray array];
+        for (int i = 10001; i <= [kMGTRESOURCELASTNAME intValue]; i++) {
+            
+            NSString *nameStr = [NSString stringWithFormat:@"%d",i];
+            NSString *fileName = LYLOADBUDLEIMAGE(@"LYMGTImageResources.bundle", nameStr);
+
+            LYEmoticonModel *model = [[LYEmoticonModel alloc] init];
+            model.unLock        = [[NSUserDefaults standardUserDefaults] boolForKey:fileName];
+            model.emoticonImage = [UIImage imageWithContentsOfFile:fileName];
+            model.emoticonName  = @"";
+            model.emoticonUrl   = fileName;
+            [imageArray addObject:model];
+        }
+        _mgtDataArray = imageArray;
+    }
+    return _mgtDataArray;
 }
 
 @end

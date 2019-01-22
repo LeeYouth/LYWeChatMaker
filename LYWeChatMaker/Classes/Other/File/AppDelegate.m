@@ -10,7 +10,6 @@
 #import "AppDelegate+UMSocial.h"
 #import "LYHomePageViewController.h"
 #import "LYBaseNavigationController.h"
-#import <GoogleMobileAds/GoogleMobileAds.h>
 
 @interface AppDelegate ()
 

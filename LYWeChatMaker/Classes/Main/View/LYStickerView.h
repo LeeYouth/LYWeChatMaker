@@ -8,85 +8,85 @@
 
 #import <UIKit/UIKit.h>
 
-typedef NS_ENUM (NSInteger, LYStickerViewHandler) {
-    LYStickerViewHandlerClose,
-    LYStickerViewHandlerRotate,
-    LYStickerViewHandlerFlip
+typedef NS_ENUM(NSInteger, LYStickerViewScaleMode) {
+    LYStickerViewScaleModeBounds,    //通过改变self.bounds达到缩放效果
+    LYStickerViewScaleModeTransform  //通过改变self.transform达到缩放效果
 };
 
-typedef NS_ENUM (NSInteger, LYStickerViewPosition) {
-    LYStickerViewPositionTopLeft,
-    LYStickerViewPositionTopRight,
-    LYStickerViewPositionBottomLeft,
-    LYStickerViewPositionBottomRight
+typedef NS_ENUM(NSInteger, LYStickerViewCtrlType) {
+    LYStickerViewCtrlTypeGesture,    //手势,无控制图，双指控制旋转和缩放
+    LYStickerViewCtrlTypeOne,        //一个控制图，同时控制旋转和缩放,
+    LYStickerViewCtrlTypeTwo         //两个控制图，一个控制旋转，一个控制缩放
 };
 
-@class LYStickerView;
 
-@protocol LYStickerViewDelegate <NSObject>
-@optional
-- (void)stickerViewDidBeginMoving:(LYStickerView *)stickerView;
-- (void)stickerViewDidChangeMoving:(LYStickerView *)stickerView;
-- (void)stickerViewDidEndMoving:(LYStickerView *)stickerView;
-- (void)stickerViewDidBeginRotating:(LYStickerView *)stickerView;
-- (void)stickerViewDidChangeRotating:(LYStickerView *)stickerView;
-- (void)stickerViewDidEndRotating:(LYStickerView *)stickerView;
-- (void)stickerViewDidClose:(LYStickerView *)stickerView;
-- (void)stickerViewDidTap:(LYStickerView *)stickerView;
-@end
 
 @interface LYStickerView : UIView
-@property (nonatomic, weak) id <LYStickerViewDelegate> delegate;
-/// The contentView inside the sticker view.
-@property (nonatomic, strong, readonly) UIView *contentView;
-/// Enable the close handler or not. Default value is YES.
-@property (nonatomic, assign) BOOL enableClose;
-/// Enable the rotate/resize handler or not. Default value is YES.
-@property (nonatomic, assign) BOOL enableRotate;
-/// Enable the flip handler or not. Default value is YES.
-@property (nonatomic, assign) BOOL enableFlip;
-/// Show close and rotate/resize handlers or not. Default value is YES.
-@property (nonatomic, assign) BOOL showEditingHandlers;
-/// Minimum value for the shorter side while resizing. Default value will be used if not set.
-@property (nonatomic, assign) NSInteger minimumSize;
-/// Color of the outline border. Default: brown color.
-@property (nonatomic, strong) UIColor *outlineBorderColor;
-/// A convenient property for you to store extra information.
-@property (nonatomic, strong) NSDictionary *userInfo;
 
 /**
- *  Initialize a sticker view. This is the designated initializer.
- *
- *  @param contentView The contentView inside the sticker view.
- *                     You can access it via the `contentView` property.
- *
- *  @return The sticker view.
+ 需要添加到StickerView的内容，如:UIView, UITextView, UIImageView等
  */
-- (id)initWithContentView:(UIView *)contentView;
+@property (strong, nonatomic) UIView *contentView;
+
+
 
 /**
- *  Use image to customize each editing handler.
- *  It is your responsibility to set image for every editing handler.
- *
- *  @param image   The image to be used.
- *  @param handler The editing handler.
+ 参考点(比例)，不设置默认为中心点 CGPoint(0.5, 0.5)
+ 范围：x: 0 --- 1
+ y: 0 --- 1
+ 
+ 提示：可以超出范围，设置参考点在self外面
  */
-- (void)setImage:(UIImage *)image forHandler:(LYStickerViewHandler)handler;
+@property (nonatomic) CGPoint originalPoint;
+
 
 /**
- *  Customize each editing handler's position.
- *  If not set, default position will be used.
- *  @note  It is your responsibility not to set duplicated position.
- *
- *  @param position The position for the handler.
- *  @param handler  The editing handler.
+ 等比缩放 : YES
+ 自由缩放 : NO
+ 
+ 注意：1、仅适用于CtrlTypeTwo的缩放，默认YES.  其他CtrlType也属于等比缩放
+ 2、与ScaleModeTransform不兼容，待完善
  */
-- (void)setPosition:(LYStickerViewPosition)position forHandler:(LYStickerViewHandler)handler;
+@property (nonatomic, getter=isScaleFit) BOOL scaleFit;
+
+
+@property (nonatomic) LYStickerViewScaleMode scaleMode;
+@property (nonatomic) LYStickerViewCtrlType ctrlType;
+
 
 /**
- *  Customize handler's size
- *
- *  @param size Handler's size
+ 初始化StickerView
  */
-- (void)setHandlerSize:(NSInteger)size;
+- (instancetype)initWithContentView:(UIView *)contentView;
+
+/**
+ 显示参考点，默认不显示
+ 
+ 注意：CtrlTypeGesture 仅支持中心点，该方法无效
+ */
+- (void)showOriginalPoint:(BOOL)b;
+
+/**
+ 显示左上角移除按钮，默认显示
+ */
+- (void)showRemoveCtrl:(BOOL)b;
+/**
+ 显示右下角按钮，默认为显示
+ */
+- (void)showScaleCtrl:(BOOL)b;
+
+/**
+ 显示边框，默认为显示
+ */
+- (void)showContentViewBorder:(BOOL)b;
+
+
+
+/**
+ 设置控制图片
+ */
+- (void)setTransformCtrlImage:(UIImage *)image;// CtrlTypeOne
+- (void)setResizeCtrlImage:(UIImage *)resizeImage rotateCtrlImage:(UIImage *)rotateImage;//CtrlTypeTwo
+- (void)setRemoveCtrlImage:(UIImage *)image;
+
 @end

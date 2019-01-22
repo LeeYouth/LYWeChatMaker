@@ -13,6 +13,9 @@
 #import "LYAllEmoticonsViewController.h"
 #import "LYHomePageTableViewCell.h"
 #import "LYHomePageTitleView.h"
+#import "LYMakeEmoticonViewController.h"
+
+#import "LYImagesDownloadManager.h"
 
 @interface LYHomePageViewController ()<TZImagePickerControllerDelegate>
 
@@ -30,7 +33,44 @@
     [self setupSubViews];
    
     [self loadNewData];
+    
+//    [self downloadImages];
 
+}
+
+- (void)downloadImages{
+    
+    
+    
+    
+    
+    [LYNetworkHelper GET:@"https://service.emoji.adesk.com/v1/diy/outline?limit=48&order=new&platform=iOS_12.1.2&skip=0" parameters:[NSDictionary dictionary] showHUD:YES success:^(id  _Nonnull responseObject) {
+        
+        NSMutableArray *urlsArray = [NSMutableArray array];
+        
+        NSArray *array = responseObject[@"res"][@"data"];
+        
+        for (NSDictionary *dict in array) {
+            [urlsArray addObject:dict[@"url"]];
+        }
+        LYLog(@"-----%@",urlsArray);
+//        [LYImagesDownloadManager downloadImages:urlsArray completion:^(NSArray * _Nonnull resultArray) {
+//
+//        }];
+//
+//        //获取文件的完整路径
+//        NSString *filePatch = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"LYPopularSentenceResources.plist"];
+//
+//        NSMutableArray *temp = [[NSMutableArray alloc] initWithContentsOfFile:filePatch];
+//        [temp addObjectsFromArray:array];
+//        //写入数据到plist文件
+//        [temp writeToFile:filePatch atomically:YES];
+//        LYLog(@"path ==== %@",filePatch);
+
+        
+    } failure:^(NSError * _Nonnull error) {
+        
+    }];
 }
 
 - (void)setupSubViews{
@@ -46,19 +86,28 @@
 }
 
 - (void)loadNewData{
-    for (int i = 0; i < 2; i++) {
+    int maxCount = 3;
+    for (int i = 0; i < maxCount; i++) {
         NSString *title = @"";
         NSString *detail = @"";
         NSString *image = @"";
         NSString *type = [NSString stringWithFormat:@"%d",i];
         if (i == 0) {
             title = @"从相册";
-            detail = @"从相册里选一张吧";
+            detail = @"为图片添加文字水印";
             image  = @"homePage_fromEmocation";
         }else if (i == 1){
             title = @"表情包";
             detail = @"这里有最逗比的表情包";
             image  = @"homePage_fromPhotoLibary";
+        }else if (i == 2){
+            title = @"做表情";
+            detail = @"自己做一个表情";
+            image  = @"homePage_makeEmocation";
+        }else if (i == 3){
+            title = @"收藏";
+            detail = @"我的收藏全在这里哦";
+            image  = @"homePage_myCollctions";
         }
 
         NSDictionary *dict = @{@"title":title,
@@ -74,7 +123,7 @@
 #pragma mark - 添加水印
 - (void)addWaterMark
 {
-    TZImagePickerController *imagePickerVc = [[TZImagePickerController alloc] initWithMaxImagesCount:1 columnNumber:1 delegate:self pushPhotoPickerVc:YES];
+    TZImagePickerController *imagePickerVc = [[TZImagePickerController alloc] initWithMaxImagesCount:1 columnNumber:3 delegate:self pushPhotoPickerVc:YES];
     // 不让选择视频和原图
     imagePickerVc.allowPickingVideo = NO;
     imagePickerVc.allowPickingOriginalPhoto = YES;
@@ -85,6 +134,7 @@
     imagePickerVc.naviBgColor = LYNavBarBackColor;
     imagePickerVc.naviTitleColor = LYColor(LYWhiteColorHex);
     imagePickerVc.barItemTextColor = LYColor(LYWhiteColorHex);
+    imagePickerVc.preferredLanguage = @"zh-Hans";
     [self presentViewController:imagePickerVc animated:YES completion:nil];
 }
 
@@ -140,6 +190,20 @@
     }else if (indexPath.row == 1){
         //从表情包
         [self selectPhotoAddMark];
+
+    }else if (indexPath.row == 2){
+        //做表情
+        NSString *imagePath =LYLOADBUDLEIMAGE(@"LYMakeEmoticonEmojisImageResources.bundle", @"10009");
+        
+        LYMakeEmoticonViewController *makeVC = [[LYMakeEmoticonViewController alloc] init];
+        makeVC.emoticonCtl = YES;
+        makeVC.faceCtl     = YES;
+        makeVC.sentenceCtl = YES;
+        makeVC.defultEmojiImage = [UIImage imageWithContentsOfFile:imagePath];
+        LYBaseNavigationController *nav = [[LYBaseNavigationController alloc] initWithRootViewController:makeVC];
+        [self presentViewController:nav animated:YES completion:nil];
+    }else if (indexPath.row == 3){
+        //收藏
     }
 }
 

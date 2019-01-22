@@ -11,6 +11,7 @@
 
 @interface LYEmoticonPackageListCell()
 
+@property (nonatomic, strong) UIView *backView;
 @property (nonatomic, strong) UIImageView *imageView;
 
 @end
@@ -38,7 +39,11 @@
 }
 
 - (void)setup{
+    [self addSubview:self.backView];
     [self addSubview:self.imageView];
+    [self.backView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.bottom.top.equalTo(self);
+    }];
     [self.imageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.bottom.top.equalTo(self);
     }];
@@ -116,5 +121,16 @@
         view;
     }));
 }
-
+- (UIView *)backView{
+    return LY_LAZY(_backView, ({
+        UIView *view = [UIView new];
+        view.backgroundColor = LYColor(LYWhiteColorHex);
+        view.userInteractionEnabled = YES;
+        view.layer.cornerRadius = 2;
+        view.layer.masksToBounds = YES;
+        view.layer.borderWidth = LYCellLineHeight;
+        view.layer.borderColor = LYCellLineColor.CGColor;
+        view;
+    }));
+}
 @end

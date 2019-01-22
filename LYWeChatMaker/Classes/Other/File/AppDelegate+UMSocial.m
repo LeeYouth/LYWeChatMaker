@@ -9,6 +9,7 @@
 #import "AppDelegate+UMSocial.h"
 #import <UMCommon/UMCommon.h>
 #import <UMPush/UMessage.h>
+#import <UMShare/UMShare.h>
 
 @implementation AppDelegate (UMSocial)
 
@@ -17,6 +18,15 @@
     [UMConfigure setLogEnabled:YES];//设置打开日志
     [UMConfigure initWithAppkey:UM_APPKEY channel:@"App Store"];
     
+    //友盟推送
+    [self configUPushSettings:launchOptions];
+    
+    //友盟分享
+    [self configUSharePlatforms];
+    [self confitUShareSettings];
+}
+
+- (void)configUPushSettings:(NSDictionary *)launchOptions{
     // Push组件基本功能配置
     UMessageRegisterEntity * entity = [[UMessageRegisterEntity alloc] init];
     //type是对推送的几个参数的选择，可以选择一个或者多个。默认是三个全部打开，即：声音，弹窗，角标
@@ -32,6 +42,38 @@
         }
     }];
 }
+
+- (void)configUSharePlatforms{
+    /*
+     * 打开图片水印
+     */
+    //[UMSocialGlobal shareInstance].isUsingWaterMark = YES;
+    /*
+     * 关闭强制验证https，可允许http图片分享，但需要在info.plist设置安全域名
+     <key>NSAppTransportSecurity</key>
+     <dict>
+     <key>NSAllowsArbitraryLoads</key>
+     <true/>
+     </dict>
+     */
+    //[UMSocialGlobal shareInstance].isUsingHttpsWhenShareContent = NO;
+}
+- (void)confitUShareSettings{
+    /* 设置微信的appKey和appSecret */
+    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_WechatSession appKey:WECHAT_APPKEY appSecret:WECHAT_APPSECRET redirectURL:@"http://mobile.umeng.com/social"];
+}
+
+// 支持所有iOS系统
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+    //6.3的新的API调用，是为了兼容国外平台(例如:新版facebookSDK,VK等)的调用[如果用6.2的api调用会没有回调],对国内平台没有影响
+    BOOL result = [[UMSocialManager defaultManager] handleOpenURL:url sourceApplication:sourceApplication annotation:annotation];
+    if (!result) {
+        // 其他如支付等SDK的回调
+    }
+    return result;
+}
+
 
 
 //注册用户通知设置

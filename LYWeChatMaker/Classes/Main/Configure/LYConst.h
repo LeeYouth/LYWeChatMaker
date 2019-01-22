@@ -11,6 +11,11 @@
 // 友盟AppKey
 UIKIT_EXTERN NSString *const UM_APPKEY;
 
+//微信分享
+UIKIT_EXTERN NSString *const WECHAT_APPKEY;
+UIKIT_EXTERN NSString *const WECHAT_APPSECRET;
+
+
 //谷歌广告ID
 UIKIT_EXTERN NSString *const GOOGLEADS_APPID;
 

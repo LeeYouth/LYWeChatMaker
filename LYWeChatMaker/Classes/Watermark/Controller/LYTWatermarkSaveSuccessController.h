@@ -6,11 +6,13 @@
 //  Copyright © 2019年 LYoung_iOS. All rights reserved.
 //
 
-#import "LYBaseViewController.h"
+#import "LYBaseTableViewController.h"
 
-@interface LYTWatermarkSaveSuccessController : LYBaseViewController
+@interface LYTWatermarkSaveSuccessController : LYBaseTableViewController
 
 /** 背景图 */
 @property (nonatomic, strong) UIImage *backImage;
+/** 隐藏收藏 */
+@property (nonatomic, assign) BOOL hiddenCollection;
 
 @end

@@ -8,7 +8,6 @@
 
 #import "LYEmoticonPackageListViewController.h"
 #import "LYEmoticonPackageListCell.h"
-#import <GoogleMobileAds/GoogleMobileAds.h>
 #import "LYEmoticonModel.h"
 #import "LYEmoticonsGuideView.h"
 
@@ -58,7 +57,7 @@
     layout.minimumLineSpacing = 10.0f;
     layout.sectionInset = UIEdgeInsetsMake(10, 10.0f, 0, 10.0f);
     
-    CGFloat cellW = (kScreenWidth - 30)/2;
+    CGFloat cellW = (kScreenWidth - 40)/3;
     layout.itemSize = CGSizeMake(cellW, cellW);
     
 

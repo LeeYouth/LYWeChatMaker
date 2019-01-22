@@ -14,11 +14,12 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
-  - FMDB (2.5):
-    - FMDB/standard (= 2.5)
-  - FMDB/common (2.5)
-  - FMDB/standard (2.5):
-    - FMDB/common
+  - BGFMDB (2.0.13):
+    - BGFMDB/BG (= 2.0.13)
+    - BGFMDB/FMDB (= 2.0.13)
+  - BGFMDB/BG (2.0.13):
+    - BGFMDB/FMDB
+  - BGFMDB/FMDB (2.0.13)
   - Google-Mobile-Ads-SDK (7.36.0)
   - IQKeyboardManager (6.2.0)
   - JGProgressHUD (2.0.3)
@@ -38,13 +39,18 @@ PODS:
   - UMCPush (3.2.3):
     - UMCCommon
   - UMCSecurityPlugins (1.0.6)
+  - UMCShare/Core (6.9.5):
+    - UMCCommon
+  - UMCShare/Social/ReducedWeChat (6.9.5):
+    - UMCCommon
+    - UMCShare/Core
   - YYKit (1.0.9):
     - YYKit/no-arc (= 1.0.9)
   - YYKit/no-arc (1.0.9)
 
 DEPENDENCIES:
   - AFNetworking (= 3.1.0)
-  - FMDB (= 2.5)
+  - BGFMDB (~> 2.0.9)
   - Google-Mobile-Ads-SDK
   - IQKeyboardManager
   - JGProgressHUD
@@ -59,12 +65,13 @@ DEPENDENCIES:
   - UMCErrorCatch
   - UMCPush
   - UMCSecurityPlugins
+  - UMCShare/Social/ReducedWeChat
   - YYKit
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - AFNetworking
-    - FMDB
+    - BGFMDB
     - Google-Mobile-Ads-SDK
     - IQKeyboardManager
     - JGProgressHUD
@@ -79,11 +86,12 @@ SPEC REPOS:
     - UMCErrorCatch
     - UMCPush
     - UMCSecurityPlugins
+    - UMCShare
     - YYKit
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
-  FMDB: 96e8f1bcc1329e269330f99770ad4285d9003e52
+  BGFMDB: 48e6823027232402a678acc7f71484b1fc9171d0
   Google-Mobile-Ads-SDK: 5bb4d2cea811842e104a24780caef63b4808e1bd
   IQKeyboardManager: 6194101620b73af5e67900b8f89707a99de0b804
   JGProgressHUD: 12b20a8f4ffe05258f8635c1ab92816e451f904d
@@ -98,8 +106,9 @@ SPEC CHECKSUMS:
   UMCErrorCatch: 51f1b68f920233e90a3fa6d51f0456174507ec78
   UMCPush: 628b5c61be5a5036cb31eb9b3a3ab8dce7521691
   UMCSecurityPlugins: 0831a08f3988f3cea9f1d3a7626cd9bee4fef150
+  UMCShare: 552b29753f1b4da87b51d96545ed19e6263df397
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: dea4048b263f20e31165b4ddcacb30e6768354c7
+PODFILE CHECKSUM: 7f6740e9abf8c29104ba8ec7961f61ad7ba2599b
 
 COCOAPODS: 1.5.3

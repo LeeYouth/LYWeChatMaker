@@ -57,33 +57,58 @@ tmp;\
 #define LYBUNDLE_PLISTPATH(name)  [[NSBundle bundleWithPath:LYBUNDLE_PATH] pathForResource:(name) ofType:@"plist"]
 #define LYBUNDLE_IMAGEPATH(name)  [[NSBundle bundleWithPath:LYBUNDLE_PATH] pathForResource:(name) ofType:@"png"]
 
+//加载bundle图片
+#define LYLOADBUDLEIMAGE(bundleName,sourceName) ({\
+NSString *tmp = @"";\
+if ([[NSBundle bundleWithPath:[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent: (bundleName)]] pathForResource:(sourceName) ofType:@"jpg"].length) {\
+tmp = [[NSBundle bundleWithPath:[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent: (bundleName)]] pathForResource:(sourceName) ofType:@"jpg"];\
+}else{\
+tmp = [[NSBundle bundleWithPath:[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent: (bundleName)]] pathForResource:(sourceName) ofType:@"png"];\
+}\
+tmp;\
+})
+
 #define LYSystemFont(font)       [UIFont systemFontOfSize:(font)]
 
-//按钮颜色
-#define LYButtonThemeColor       LYColor(@"#428BCA")
-//首页的背景颜色
-#define LYHomePageColor       LYColor(@"#F0F1EB")
+//资源最后一张图片
+//熊猫人资源最后一张图片
+#define kXMRRESOURCELASTNAME @"10058"
+//蘑菇头资源最后一张图片
+#define kMGTRESOURCELASTNAME @"10037"
+
+//表情最后一张图片
+#define kMAKEMOJIFACERESOURCELASTNAME @"10052"
+//形象最后一张图片
+#define kMAKEMOJIEMCTICONESOURCELASTNAME @"10048"
+
 //主题颜色
 #define LYThemeColor       LYColor(@"#FE4365")
-//线的颜色
+//主题线的颜色
 #define LYCellLineColor       LYColor(@"#EEEEEE")
-//线的高度
+//主题线的高度
 #define LYCellLineHeight       0.7f
-
-//tableview背景色
+//主题tableview背景色
 #define LYTableViewBackColor       LYColor(@"#EEEDEE")
-
-//导航栏默认颜色
+//主题导航栏默认颜色
 #define LYNavBarBackColor       LYColor(@"#4687F0")
-//图片背景颜色
-#define LYImageBackColor       LYColor(LYBlackColorHex)
 //白色
 #define LYWhiteColorHex       @"#FFFFFF"
 //黑色
 #define LYBlackColorHex       @"#000000"
+#define LYClearColor       [UIColor clearColor]
+
+
+//按钮颜色
+#define LYButtonThemeColor       LYColor(@"#428BCA")
+//首页的背景颜色
+#define LYHomePageColor       LYColor(@"#ffffff")
+//图片背景颜色
+#define LYImageBackColor       LYColor(LYBlackColorHex)
 
 //样式高度
 #define LYWatermarkStyleViewH  (70 + kTabbarExtra)
+//样式颜色
+#define LYWatermarkStyleColor  LYColor(@"#ffffff")
 
 //样式的圆角
 #define kLYViewCornerRadius   2.f

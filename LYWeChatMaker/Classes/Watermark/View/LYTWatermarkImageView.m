@@ -134,10 +134,7 @@
 
 - (void)saveImageToPhotos:(UIImage*)savedImage
 {
-//    if (self.success) {
-//        self.success(savedImage);
-//    }
-    
+
     [LYToastTool showLoadingWithStatus:@""];
 
     UIImageWriteToSavedPhotosAlbum(savedImage, self, @selector(image:didFinishSavingWithError:contextInfo:), NULL);

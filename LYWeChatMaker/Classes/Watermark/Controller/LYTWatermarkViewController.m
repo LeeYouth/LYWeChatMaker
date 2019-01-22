@@ -13,6 +13,7 @@
 #import "LYTWatermarkBottomToolBar.h"
 #import "LYWatermarkInputConfig.h"
 #import "LYTWatermarkSaveSuccessController.h"
+#import "LYWaterMarkPopularStatementView.h"
 
 @interface LYTWatermarkViewController ()
 
@@ -135,6 +136,7 @@
 {
     if (sender.tag == 0) {
         //阴影
+        
         self.inputConfig.selectStroke = sender.selected;
     }else if (sender.tag == 1){
         //阴影
@@ -170,6 +172,7 @@
             [LYToastTool bottomShowWithText:@"保存成功" delay:1];
             LYTWatermarkSaveSuccessController *vc = [[LYTWatermarkSaveSuccessController alloc] init];
             vc.backImage = image;
+            vc.hiddenCollection = YES;
             [weakSelf.navigationController pushViewController:vc animated:YES];
         };
         imageV;

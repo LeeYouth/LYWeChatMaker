@@ -24,7 +24,7 @@
 - (instancetype)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = LYColor(LYWhiteColorHex);
+        self.backgroundColor = LYWatermarkStyleColor;
 
         [self _setupSubViews];
         

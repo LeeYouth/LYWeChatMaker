@@ -10,7 +10,13 @@
 
 
 // 友盟AppKey
-NSString *const UM_APPKEY = @"56287c81e0f55a3e9d0009b9";
+NSString *const UM_APPKEY = @"5bfd004ef1f55648fd0000c1";
+
+//微信分享
+NSString *const WECHAT_APPKEY    = @"wxba791f5ae0f3f394";
+NSString *const WECHAT_APPSECRET = @"17ec16fe5f475f2fd54b1474bbcd47f5";
+
+
 
 //谷歌广告APP ID
 NSString *const GOOGLEADS_APPID = @"pub-7294960211684834";
