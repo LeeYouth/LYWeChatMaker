@@ -54,11 +54,7 @@
         }
     };
     cell.success = ^(UIImage * _Nonnull image) {
-        [LYToastTool bottomShowWithText:@"保存成功" delay:1];
-        LYTWatermarkSaveSuccessController *vc = [[LYTWatermarkSaveSuccessController alloc] init];
-        vc.backImage = image;
-        vc.hiddenCollection = YES;
-        [weakSelf.navigationController pushViewController:vc animated:YES];
+        [weakSelf pushSuccessVCWithImage:image];
     };
     return cell;
 }
@@ -78,6 +74,18 @@
             [weakSelf dismissViewControllerAnimated:YES completion:nil];
         }
     };
+}
+
+- (void)pushSuccessVCWithImage:(UIImage *)image{
+    WEAKSELF(weakSelf);
+    [LYToastTool bottomShowWithText:@"保存成功" delay:1];
+    LYTWatermarkSaveSuccessController *vc = [[LYTWatermarkSaveSuccessController alloc] init];
+    vc.backImage = image;
+    vc.hiddenCollection = YES;
+    vc.dismissSuccess = ^{
+        [weakSelf dismissViewControllerAnimated:YES completion:nil];
+    };
+    [weakSelf.navigationController pushViewController:vc animated:YES];
 }
 
 

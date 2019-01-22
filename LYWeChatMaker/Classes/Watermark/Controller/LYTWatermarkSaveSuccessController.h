@@ -8,11 +8,16 @@
 
 #import "LYBaseTableViewController.h"
 
+typedef void(^LYTWatermarkSaveSuccessControllerBlock)();
+
 @interface LYTWatermarkSaveSuccessController : LYBaseTableViewController
 
 /** 背景图 */
 @property (nonatomic, strong) UIImage *backImage;
 /** 隐藏收藏 */
 @property (nonatomic, assign) BOOL hiddenCollection;
+
+@property (nonatomic, copy) LYTWatermarkSaveSuccessControllerBlock dismissSuccess;
+
 
 @end

@@ -42,6 +42,9 @@
 
 - (void)rightBarItemClick{
     [self.navigationController popToRootViewControllerAnimated:YES];
+    if (self.dismissSuccess) {
+        self.dismissSuccess();
+    }
 }
 
 - (void)loadDataRequest{

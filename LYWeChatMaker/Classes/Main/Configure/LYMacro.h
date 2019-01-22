@@ -118,7 +118,7 @@ tmp;\
 #define kLYViewBorderWidth   0.3
 
 
-#define LYWatermarkInputViewDefultText @"点击输入文字"
+#define LYWatermarkInputViewDefultText @"点击添加文字"
 
 
 #define kLYWatermarkColorsListViewH  70
