@@ -100,6 +100,7 @@
     self.lockBackView.hidden  = !model.isLock;
     self.lockImageView.hidden = !model.isLock;
     self.iconImageView.image  = [UIImage imageWithContentsOfFile:model.emoticonUrl];
+    
 }
 
 -(void)setFrame:(CGRect)frame

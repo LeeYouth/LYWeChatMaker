@@ -11,7 +11,7 @@
 @interface LYEmoticonListModel : LYBaseModel
 
 /** 0,熊猫人，1.蘑菇头 ，2.其他 */
-@property(nonatomic, copy) NSString *emoticonType;
+@property(nonatomic, copy) NSString *emoticonId;
 /** 表情包介绍 */
 @property(nonatomic, copy) NSString *emoticonIntro;
 /** 0,熊猫人，1.蘑菇头 ，2.其他 */

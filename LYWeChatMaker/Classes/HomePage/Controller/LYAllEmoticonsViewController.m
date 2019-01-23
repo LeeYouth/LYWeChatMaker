@@ -50,17 +50,18 @@
     if (self.dataArray.count) {
         [self.dataArray removeAllObjects];
     }
+
     
     for (int i = 0; i < 2; i++) {
         LYEmoticonListModel *model = [[LYEmoticonListModel alloc] init];
-        model.emoticonType = [NSString stringWithFormat:@"%d",i];
+
         if (i == 0) {
             model.emoticonIntro = @"斗图我从来不怂";
             model.emoticonName = @"熊猫人";
             model.canCopy      = NO;
             model.isLock       = ![[NSUserDefaults standardUserDefaults] boolForKey:kXMRUNLOCKSTATUS];
             model.emoticonUrl  = LYLOADBUDLEIMAGE(@"LYXMRImageResources.bundle", @"10001");
-            
+
         }else if (i == 1){
             model.emoticonIntro = @"您有我快吗";
             model.emoticonName = @"蘑菇头";
@@ -70,7 +71,7 @@
         }
         [self.dataArray addObject:model];
     }
-    
+
     [self.tableView reloadData];
 }
 

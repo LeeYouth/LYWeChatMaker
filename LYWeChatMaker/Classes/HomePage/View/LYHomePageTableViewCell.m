@@ -60,7 +60,7 @@
     
     CGFloat leftMargin = 14.f;
     [self.intrtoLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.iconImageView.mas_right).offset(6);
+        make.left.equalTo(self.iconImageView.mas_right).offset(10);
         make.right.equalTo(self.mas_right).offset(-leftMargin);
         make.top.mas_equalTo(@16);
         make.height.mas_equalTo(@16);

@@ -34,7 +34,37 @@
    
     [self loadNewData];
     
+    [self downLoadFiled];
 }
+
+- (void)downLoadFiled{
+    
+
+    
+    [LYNetworkHelper downloadWithURL:@"http://plrhxkqxe.bkt.clouddn.com/resourcemgtemoji.txt" fileDir:@"Documents" progress:^(NSProgress * _Nonnull progress) {
+       
+    } success:^(NSString * _Nonnull filePath) {
+        LYLog(@"downLoadPath = %@",filePath);
+        
+        NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:filePath]];
+        
+        NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        
+
+        NSError *error;
+
+        NSString *textFieldContents = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:&error];
+        NSLog(@"--textFieldContents---%@-----",textFieldContents);
+        if (textFieldContents==nil) {
+            NSLog(@"---error--%@",[error localizedDescription]);
+        }
+        NSArray *lines=[textFieldContents componentsSeparatedByString:@","];
+        NSLog(@"--lines---%@-----",lines);
+    } failure:^(NSError * _Nonnull error) {
+        
+    }] ;
+}
+
 - (void)setupSubViews{
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.navBarView.leftBarItemImage = nil;

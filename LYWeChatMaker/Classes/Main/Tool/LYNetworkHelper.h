@@ -51,6 +51,8 @@ typedef void(^NetworkState)(LYNetworkStatus status);
 /** 请求成功的Block */
 typedef void(^HttpRequestSuccess)(id responseObject);
 
+typedef void(^HttpRequestArraySuccess)(NSArray *resultArray);
+
 /** 请求失败的Block */
 typedef void(^HttpRequestFailed)(NSError *error);
 

@@ -30,6 +30,7 @@
 		CF3DEFFD21F31244000B8853 /* LYPopularSentenceResources.plist in Resources */ = {isa = PBXBuildFile; fileRef = CF3DEFFC21F31243000B8853 /* LYPopularSentenceResources.plist */; };
 		CF3DF00321F59C58000B8853 /* LYCustomTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3DF00221F59C58000B8853 /* LYCustomTextView.m */; };
 		CF3DF00521F5DA61000B8853 /* LYMakeEmoticonEmojisImageResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CF3DF00421F5DA61000B8853 /* LYMakeEmoticonEmojisImageResources.bundle */; };
+		CF3DF00A21F83C60000B8853 /* LYHomePageService.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3DF00921F83C60000B8853 /* LYHomePageService.m */; };
 		CF40606221EB1C500059B790 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = CF40606121EB1C4F0059B790 /* libc++.tbd */; };
 		CF40606521EB22650059B790 /* LYShareTool.m in Sources */ = {isa = PBXBuildFile; fileRef = CF40606421EB22650059B790 /* LYShareTool.m */; };
 		CF40606921EB460F0059B790 /* LYWaterMarkPopularStatementView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF40606821EB460F0059B790 /* LYWaterMarkPopularStatementView.m */; };
@@ -181,6 +182,8 @@
 		CF3DF00121F59C58000B8853 /* LYCustomTextView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LYCustomTextView.h; sourceTree = "<group>"; };
 		CF3DF00221F59C58000B8853 /* LYCustomTextView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LYCustomTextView.m; sourceTree = "<group>"; };
 		CF3DF00421F5DA61000B8853 /* LYMakeEmoticonEmojisImageResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = LYMakeEmoticonEmojisImageResources.bundle; sourceTree = "<group>"; };
+		CF3DF00821F83C60000B8853 /* LYHomePageService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LYHomePageService.h; sourceTree = "<group>"; };
+		CF3DF00921F83C60000B8853 /* LYHomePageService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LYHomePageService.m; sourceTree = "<group>"; };
 		CF40606121EB1C4F0059B790 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		CF40606321EB22650059B790 /* LYShareTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LYShareTool.h; sourceTree = "<group>"; };
 		CF40606421EB22650059B790 /* LYShareTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LYShareTool.m; sourceTree = "<group>"; };
@@ -436,6 +439,15 @@
 			path = SGEasyButton;
 			sourceTree = "<group>";
 		};
+		CF3DF00721F83C03000B8853 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				CF3DF00821F83C60000B8853 /* LYHomePageService.h */,
+				CF3DF00921F83C60000B8853 /* LYHomePageService.m */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
 		CF40606621EB45E60059B790 /* PopularStatement */ = {
 			isa = PBXGroup;
 			children = (
@@ -594,6 +606,7 @@
 		CF6C432721AFC535002287F9 /* HomePage */ = {
 			isa = PBXGroup;
 			children = (
+				CF3DF00721F83C03000B8853 /* Service */,
 				CF6C432821AFC535002287F9 /* Controller */,
 				CF6C432921AFC535002287F9 /* Model */,
 				CF6C432A21AFC535002287F9 /* View */,
@@ -1211,6 +1224,7 @@
 				CF6C42F621AE36C8002287F9 /* LYConst.m in Sources */,
 				CFFF0DB721E1D64B00060A2B /* LYEmoticonListModel.m in Sources */,
 				CFFF0D9921DF4EC700060A2B /* SVProgressHUD.m in Sources */,
+				CF3DF00A21F83C60000B8853 /* LYHomePageService.m in Sources */,
 				CFDB566A2125173200501905 /* main.m in Sources */,
 				CF706F1E21B7B63B00442D67 /* LYSettingViewController.m in Sources */,
 				CF706F1121B6169C00442D67 /* LYWatermarkInputConfig.m in Sources */,
