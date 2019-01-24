@@ -46,7 +46,6 @@
     [LYServerConfig setLYConfigEnv:LYServerEnvDevelop];
     
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
-//    [[UIApplication sharedApplication] setStatusBarHidden:YES];
     self.window = [[UIWindow alloc] init];
     LYBaseNavigationController *nav = [[LYBaseNavigationController alloc] initWithRootViewController:[[LYHomePageViewController alloc] init]];
     
