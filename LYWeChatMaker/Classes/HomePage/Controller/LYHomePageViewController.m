@@ -34,7 +34,7 @@
    
     [self loadNewData];
     
-    [self downLoadFiled];
+//    [self downLoadFiled];
 }
 
 - (void)downLoadFiled{

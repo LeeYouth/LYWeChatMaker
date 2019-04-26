@@ -21,6 +21,10 @@ NSString *const WECHAT_APPSECRET = @"17ec16fe5f475f2fd54b1474bbcd47f5";
 //谷歌广告APP ID
 NSString *const GOOGLEADS_APPID = @"pub-7294960211684834";
 
+//启动页谷歌广告单元ID
+NSString *const GOOGLEAD_LAUNCH_UNITID = @"ca-app-pub-7294960211684834/4879989455";
+
+
 //谷歌广告单元ID
 NSString *const GOOGLEAD_UNITID = @"ca-app-pub-7294960211684834/8430947225";
 //谷歌广告单元测试ID

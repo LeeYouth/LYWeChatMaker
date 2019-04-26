@@ -81,6 +81,9 @@
 		CF706FA421D319D400442D67 /* LYHomePageBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF706FA321D319D400442D67 /* LYHomePageBackgroundView.m */; };
 		CF706FAD21D3527E00442D67 /* LYEmoticonPackageListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF706FAC21D3527E00442D67 /* LYEmoticonPackageListViewController.m */; };
 		CF706FB021D3540000442D67 /* LYEmoticonPackageListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CF706FAF21D3540000442D67 /* LYEmoticonPackageListCell.m */; };
+		CFD41C362212BD77009BAAA2 /* LYMainViewServices.m in Sources */ = {isa = PBXBuildFile; fileRef = CFD41C352212BD77009BAAA2 /* LYMainViewServices.m */; };
+		CFD41C392212C127009BAAA2 /* LYLaunchModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CFD41C382212C127009BAAA2 /* LYLaunchModel.m */; };
+		CFD41C3C2212C636009BAAA2 /* LYADLaunchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFD41C3B2212C636009BAAA2 /* LYADLaunchViewController.m */; };
 		CFDB56642125173200501905 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CFDB56632125173200501905 /* Assets.xcassets */; };
 		CFDB566A2125173200501905 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CFDB56692125173200501905 /* main.m */; };
 		CFDB56742125173200501905 /* LYWeChatMakerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CFDB56732125173200501905 /* LYWeChatMakerTests.m */; };
@@ -276,6 +279,12 @@
 		CF706FAC21D3527E00442D67 /* LYEmoticonPackageListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LYEmoticonPackageListViewController.m; sourceTree = "<group>"; };
 		CF706FAE21D3540000442D67 /* LYEmoticonPackageListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LYEmoticonPackageListCell.h; sourceTree = "<group>"; };
 		CF706FAF21D3540000442D67 /* LYEmoticonPackageListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LYEmoticonPackageListCell.m; sourceTree = "<group>"; };
+		CFD41C342212BD77009BAAA2 /* LYMainViewServices.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LYMainViewServices.h; sourceTree = "<group>"; };
+		CFD41C352212BD77009BAAA2 /* LYMainViewServices.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LYMainViewServices.m; sourceTree = "<group>"; };
+		CFD41C372212C127009BAAA2 /* LYLaunchModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LYLaunchModel.h; sourceTree = "<group>"; };
+		CFD41C382212C127009BAAA2 /* LYLaunchModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LYLaunchModel.m; sourceTree = "<group>"; };
+		CFD41C3A2212C636009BAAA2 /* LYADLaunchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LYADLaunchViewController.h; sourceTree = "<group>"; };
+		CFD41C3B2212C636009BAAA2 /* LYADLaunchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LYADLaunchViewController.m; sourceTree = "<group>"; };
 		CFDB56572125172E00501905 /* LYWeChatMaker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LYWeChatMaker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFDB56632125173200501905 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CFDB56682125173200501905 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -851,6 +860,8 @@
 				CF6C431321AE6C5A002287F9 /* LYBaseNavigationController.m */,
 				CF6C431821AE7703002287F9 /* LYWKWebViewController.h */,
 				CF6C431921AE7703002287F9 /* LYWKWebViewController.m */,
+				CFD41C3A2212C636009BAAA2 /* LYADLaunchViewController.h */,
+				CFD41C3B2212C636009BAAA2 /* LYADLaunchViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -860,6 +871,8 @@
 			children = (
 				CFDB56AE212521BA00501905 /* LYBaseModel.h */,
 				CFDB56AF212521BA00501905 /* LYBaseModel.m */,
+				CFD41C372212C127009BAAA2 /* LYLaunchModel.h */,
+				CFD41C382212C127009BAAA2 /* LYLaunchModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -890,6 +903,8 @@
 		CFDB56A12125210E00501905 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				CFD41C342212BD77009BAAA2 /* LYMainViewServices.h */,
+				CFD41C352212BD77009BAAA2 /* LYMainViewServices.m */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -1215,6 +1230,7 @@
 				CF706F0321B26E2100442D67 /* LYWatermarkEditTextView.m in Sources */,
 				CF3DEFEF21F066DA000B8853 /* UIButton+SGImagePosition.m in Sources */,
 				CF6C431A21AE7703002287F9 /* LYWKWebViewController.m in Sources */,
+				CFD41C362212BD77009BAAA2 /* LYMainViewServices.m in Sources */,
 				CF706FB021D3540000442D67 /* LYEmoticonPackageListCell.m in Sources */,
 				CF6C431421AE6C5A002287F9 /* LYBaseNavigationController.m in Sources */,
 				CF6C42FC21AE36EC002287F9 /* LYServerConfig.m in Sources */,
@@ -1246,6 +1262,7 @@
 				CF3DEFC021EDC789000B8853 /* LYTWatermarkSuccessShareCell.m in Sources */,
 				CF706F0021B1077B00442D67 /* LYWatermarkInputView.m in Sources */,
 				CF3DEFD621EF050B000B8853 /* LYMakeEmoticonImageCell.m in Sources */,
+				CFD41C392212C127009BAAA2 /* LYLaunchModel.m in Sources */,
 				CF6C432D21AFC559002287F9 /* LYHomePageViewController.m in Sources */,
 				CF706F2421B7C2AD00442D67 /* LYAboutUsInfoView.m in Sources */,
 				CF706F4621BE647D00442D67 /* LYActionSheetView.m in Sources */,
@@ -1271,6 +1288,7 @@
 				CF3DEFC621EEFD95000B8853 /* LYMakeEmoticonViewController.m in Sources */,
 				CF3DEFF921F16725000B8853 /* LYNetworkHelper.m in Sources */,
 				CF3DEFF021F066DA000B8853 /* UIButton+SGEvent.m in Sources */,
+				CFD41C3C2212C636009BAAA2 /* LYADLaunchViewController.m in Sources */,
 				CF706F2A21B7C79C00442D67 /* LYNoviceManualViewController.m in Sources */,
 				CF3DEFF321F078CD000B8853 /* UIView+LYCorners.m in Sources */,
 				CFFF0D9721DF4EC700060A2B /* SVRadialGradientLayer.m in Sources */,

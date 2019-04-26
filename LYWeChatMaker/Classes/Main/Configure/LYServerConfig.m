@@ -28,4 +28,15 @@ static NSString *LYConfigEnv;//（00: 测试环境 01: 正式环境）
     }
     return LYServerEnvProduct;
 }
+
+// 获取服务器地址
++ (NSString *)getLYBaseServerAddress
+{
+    if ([LYConfigEnv isEqualToString:@"00"]) {
+        return LYURL_BASE_TEST_SERVER;
+    }else{
+        return LYURL_BASE_SERVER;
+    }
+}
+
 @end

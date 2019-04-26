@@ -10,8 +10,9 @@
 #import "AppDelegate+UMSocial.h"
 #import "LYHomePageViewController.h"
 #import "LYBaseNavigationController.h"
+#import "LYADLaunchViewController.h"
 
-@interface AppDelegate ()
+@interface AppDelegate ()<LYADLaunchViewControllerDelegate>
 
 @end
 
@@ -47,9 +48,17 @@
     
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
     self.window = [[UIWindow alloc] init];
-    LYBaseNavigationController *nav = [[LYBaseNavigationController alloc] initWithRootViewController:[[LYHomePageViewController alloc] init]];
     
-    [self.window setRootViewController: nav];
+    
+//    LYADLaunchViewController *adVC = [[LYADLaunchViewController alloc] init];
+//    adVC.delegate = self;
+//    [self.window setRootViewController:adVC];
+    
+    LYHomePageViewController *homeVC = [[LYHomePageViewController alloc] init];
+    LYBaseNavigationController *nav = [[LYBaseNavigationController alloc] initWithRootViewController:homeVC];
+    [self.window setRootViewController:nav];
+
+    
     [self.window makeKeyAndVisible];
     // 友盟UMSocial
     [self LYUMSocialApplication:application didFinishLaunchingWithOptions:launchOptions];
@@ -63,6 +72,11 @@
     return YES;
 }
 
+#pragma - LYADLaunchViewControllerDelegate
+- (void)launchSuccessAction:(LYADLaunchViewController *)launchViewController{
+    LYBaseNavigationController *nav = [[LYBaseNavigationController alloc] initWithRootViewController:[[LYHomePageViewController alloc] init]];
+    [self.window setRootViewController: nav];
+}
 
 
 - (void)applicationWillResignActive:(UIApplication *)application {

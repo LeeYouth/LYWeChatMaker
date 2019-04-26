@@ -13,6 +13,7 @@
 #import "LYBaseViewController.h"
 #import "LYBaseTableViewController.h"
 #import "LYConst.h"
+#import "LYURLConst.h"
 #import "LYToastTool.h"
 #import "LYServerConfig.h"
 #import "LYMacro.h"

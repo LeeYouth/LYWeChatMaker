@@ -19,6 +19,9 @@ UIKIT_EXTERN NSString *const WECHAT_APPSECRET;
 //谷歌广告ID
 UIKIT_EXTERN NSString *const GOOGLEADS_APPID;
 
+//启动页谷歌广告单元ID
+UIKIT_EXTERN NSString *const GOOGLEAD_LAUNCH_UNITID;
+
 //谷歌广告单元ID
 UIKIT_EXTERN NSString *const GOOGLEAD_UNITID;
 //谷歌广告单元测试ID

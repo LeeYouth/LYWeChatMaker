@@ -456,10 +456,8 @@ static NSMutableArray *_allSessionTask;
      AFCompoundResponseSerializer       组合
      */
     
-//    NSString *baseUrl = [LYServerConfig getLYServerAddress];
-//    _sessionManager = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:baseUrl]];
-    _sessionManager = [[AFHTTPSessionManager alloc] init];
-    //    [self loadCertificate:_sessionManager];
+    NSString *baseUrl = [LYServerConfig getLYBaseServerAddress];
+    _sessionManager = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:baseUrl]];
     
     // 设置请求参数的类型:JSON (AFJSONRequestSerializer:JSON,AFHTTPRequestSerializer:二进制格式)
     _sessionManager.requestSerializer = [AFHTTPRequestSerializer serializer];
@@ -471,19 +469,6 @@ static NSMutableArray *_allSessionTask;
     _sessionManager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/html", @"text/json", @"text/plain", @"text/javascript", @"text/xml", @"image/*", nil];
     // 打开状态栏的等待菊花
     [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
-}
-
-+ (void)loadCertificate:(AFHTTPSessionManager *) manager
-{
-    NSString *cerPath = [[NSBundle bundleWithPath:LYBUNDLE_PATH] pathForResource:@"uuuker" ofType:@"cer"];
-    NSData * certData =[NSData dataWithContentsOfFile:cerPath];
-    NSSet * certSet = [[NSSet alloc] initWithObjects:certData, nil];
-    AFSecurityPolicy *securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeCertificate];
-    // 是否允许,NO-- 不允许无效的证书
-    [securityPolicy setAllowInvalidCertificates:YES];
-    // 设置证书
-    [securityPolicy setPinnedCertificates:certSet];
-    [manager setSecurityPolicy:securityPolicy];
 }
 
 #pragma mark - 添加基础参数

@@ -25,4 +25,10 @@ typedef enum : NSUInteger {
  */
 + (LYServerEnvType)LYConfigEnv;
 
+
+/**
+ 获取服务器地址
+ */
++ (NSString *)getLYBaseServerAddress;
+
 @end
