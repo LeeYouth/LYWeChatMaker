@@ -141,16 +141,16 @@
 
 
 #pragma mark - LYEmoticonPackageListViewControllerDelegate
-- (void)emoticonPackageListViewController:(LYEmoticonPackageListViewController *)lister didFinishPickingPhotos:(NSArray<UIImage *> *)photos{
-    UIImage *cropImage = photos[0];
-    if (cropImage != nil) {
+- (void)emoticonPackageListViewController:(LYEmoticonPackageListViewController *)lister didFinishPickingPhotos:(NSArray<LYEmoticonModel *> *)photos{
+    LYEmoticonModel *model = photos[0];
+    if (model != nil) {
         
         LYMakeEmoticonViewController *makeVC = [[LYMakeEmoticonViewController alloc] init];
         makeVC.emoticonCtl = YES;
         makeVC.faceCtl     = NO;
         makeVC.sentenceCtl = YES;
         makeVC.emoticonCtlTitle = _selectIndex == 0?@"熊猫人":@"蘑菇头";
-        makeVC.defultEmojiImage  = cropImage;
+        makeVC.defultEmojiModel  = model;
         LYBaseNavigationController *nav = [[LYBaseNavigationController alloc] initWithRootViewController:makeVC];
         [self presentViewController:nav animated:YES completion:nil];
 
@@ -252,13 +252,12 @@
         for (int i = 10001; i <= [kXMRRESOURCELASTNAME intValue]; i++) {
             
             NSString *nameStr = [NSString stringWithFormat:@"%d",i];
-            NSString *fileName = LYLOADBUDLEIMAGE(@"LYXMRImageResources.bundle", nameStr);
+            NSString *fileName = @"LYXMRImageResources.bundle";
             
             LYEmoticonModel *model = [[LYEmoticonModel alloc] init];
             model.unLock        = [[NSUserDefaults standardUserDefaults] boolForKey:fileName];
-            model.emoticonImage = [UIImage imageWithContentsOfFile:fileName];
-            model.emoticonName  = @"";
-            model.emoticonUrl   = fileName;
+            model.bundleName       = fileName;
+            model.bundleImageName  = nameStr;
             [imageArray addObject:model];
         }
         _xmrDataArray = imageArray;
@@ -272,14 +271,13 @@
         NSMutableArray *imageArray = [NSMutableArray array];
         for (int i = 10001; i <= [kMGTRESOURCELASTNAME intValue]; i++) {
             
-            NSString *nameStr = [NSString stringWithFormat:@"%d",i];
-            NSString *fileName = LYLOADBUDLEIMAGE(@"LYMGTImageResources.bundle", nameStr);
+            NSString *nameStr  = [NSString stringWithFormat:@"%d",i];
+            NSString *fileName = @"LYMGTImageResources.bundle";
 
             LYEmoticonModel *model = [[LYEmoticonModel alloc] init];
             model.unLock        = [[NSUserDefaults standardUserDefaults] boolForKey:fileName];
-            model.emoticonImage = [UIImage imageWithContentsOfFile:fileName];
-            model.emoticonName  = @"";
-            model.emoticonUrl   = fileName;
+            model.bundleName       = fileName;
+            model.bundleImageName  = nameStr;
             [imageArray addObject:model];
         }
         _mgtDataArray = imageArray;

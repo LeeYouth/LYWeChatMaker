@@ -47,6 +47,8 @@
 @property (nonatomic, strong) NSMutableArray *sentenceDataSource;
 
 @property (nonatomic, assign) BOOL showFunctionCtrls;
+@property (nonatomic, strong) LYEmoticonModel *currentEmojiModel;
+@property (nonatomic, strong) LYEmoticonModel *currentFaceModel;
 
 @end
 
@@ -229,6 +231,9 @@
         //形象
         LYMakeEmoticonSelectPictureView *picAlertView = [LYMakeEmoticonSelectPictureView sharedInstance];
         picAlertView.didSelectBlock = ^(NSIndexPath * _Nonnull indexPath, LYEmoticonModel * _Nonnull model) {
+            
+            weakSelf.currentEmojiModel = model;
+            
             weakSelf.emoticonImageView.image = model.emoticonImage;
         };
         
@@ -248,6 +253,8 @@
         //表情
         LYMakeEmoticonSelectFaceView *picAlertView = [LYMakeEmoticonSelectFaceView sharedInstance];
         picAlertView.didSelectBlock = ^(NSIndexPath * _Nonnull indexPath, LYEmoticonModel * _Nonnull model) {
+            weakSelf.currentFaceModel = model;
+            
             [weakSelf.zoomView showContentViewBorder:weakSelf.showFunctionCtrls];
             [weakSelf.zoomView showScaleCtrl:weakSelf.showFunctionCtrls];
             weakSelf.faceImageView.image = model.emoticonImage;
@@ -321,6 +328,27 @@
         
     }else{
         msg = @"保存图片成功" ;
+        
+        //保存到本地（历史记录）
+        LYEmoticonHistoryModel *model = [[LYEmoticonHistoryModel alloc] init];
+        model.bg_tableName   = kLYEMOJIHISTORYTABLENAME;
+        model.historyDate    = [NSDate date];
+        model.historyText    = self.titleLabel.text;
+        model.compositeImage = image;
+        model.bundleName     = self.currentEmojiModel.bundleName.length?self.currentEmojiModel.bundleName:self.defultEmojiModel.bundleName;
+        model.bundleImageName = self.currentEmojiModel.bundleImageName.length?self.currentEmojiModel.bundleImageName:self.defultEmojiModel.bundleImageName;
+        
+        if (!self.addFaceButton.hidden) {
+            model.fromType       = 2;
+            model.faceBundleName = self.currentFaceModel.bundleName.length?self.currentFaceModel.bundleName:@"LYMakeEmoticonFaceImageResources.bundle";
+            model.faceBundleImageName = self.currentFaceModel.bundleImageName.length?self.currentFaceModel.bundleImageName:@"10041";
+        }else{
+            model.fromType        = 1;
+ 
+        }
+        [model bg_save];
+        
+       
         if (self.success) {
             self.success(image);
         }
@@ -336,17 +364,20 @@
     self.addImageButton.hidden = !show;
 }
 - (void)showeFaceCtls:(BOOL)show{
-    self.showFunctionCtrls = show;
+    self.showFunctionCtrls    = show;
     self.addFaceButton.hidden = !show;
-    self.zoomView.hidden = !show;
+    self.zoomView.hidden      = !show;
 }
 - (void)showeSentenceCtls:(BOOL)show{
     self.selectSentenceButton.hidden = !show;
 }
 
-- (void)setDefultEmojiImage:(UIImage *)defultEmojiImage{
-    _defultEmojiImage = defultEmojiImage;
-    self.emoticonImageView.image = defultEmojiImage;
+
+- (void)setDefultEmojiModel:(LYEmoticonModel *)defultEmojiModel{
+    _defultEmojiModel = defultEmojiModel;
+
+    self.emoticonImageView.image = defultEmojiModel.emoticonImage;
+
 }
 
 - (void)setEmoticonCtlTitle:(NSString *)emoticonCtlTitle{
@@ -468,15 +499,15 @@
         NSMutableArray *imageArray = [NSMutableArray array];
         for (int i = 10001; i <= [kMAKEMOJIEMCTICONESOURCELASTNAME intValue]; i++) {
             
-            NSString *nameStr = [NSString stringWithFormat:@"%d",i];
-            NSString *fileName = LYLOADBUDLEIMAGE(@"LYMakeEmoticonEmojisImageResources.bundle", nameStr);
+            NSString *nameStr  = [NSString stringWithFormat:@"%d",i];
+            NSString *fileName = @"LYMakeEmoticonEmojisImageResources.bundle";
 
             
             LYEmoticonModel *model = [[LYEmoticonModel alloc] init];
-            model.unLock        = [[NSUserDefaults standardUserDefaults] boolForKey:fileName];
-            model.emoticonImage = [UIImage imageWithContentsOfFile:fileName];
-            model.emoticonName  = @"";
-            model.emoticonUrl   = fileName;
+            model.bundleName       = fileName;
+            model.bundleImageName  = nameStr;
+            model.unLock           = [[NSUserDefaults standardUserDefaults] boolForKey:model.paddingSourceUrl];
+
             [imageArray addObject:model];
         }
         _emoticonDataSource = imageArray;
@@ -490,14 +521,13 @@
         NSMutableArray *imageArray = [NSMutableArray array];
         for (int i = 10001; i <= [kMAKEMOJIFACERESOURCELASTNAME intValue]; i++) {
             
-            NSString *nameStr = [NSString stringWithFormat:@"%d",i];
-            NSString *fileName = LYLOADBUDLEIMAGE(@"LYMakeEmoticonFaceImageResources.bundle", nameStr);
+            NSString *nameStr  = [NSString stringWithFormat:@"%d",i];
+            NSString *fileName = @"LYMakeEmoticonFaceImageResources.bundle";
             
             LYEmoticonModel *model = [[LYEmoticonModel alloc] init];
-            model.unLock        = [[NSUserDefaults standardUserDefaults] boolForKey:fileName];
-            model.emoticonImage = [UIImage imageWithContentsOfFile:fileName];
-            model.emoticonName  = @"";
-            model.emoticonUrl   = fileName;
+            model.bundleName       = fileName;
+            model.bundleImageName  = nameStr;
+            model.unLock           = [[NSUserDefaults standardUserDefaults] boolForKey:model.paddingSourceUrl];
             [imageArray addObject:model];
         }
         _faceDataSource = imageArray;
@@ -519,14 +549,13 @@
         NSMutableArray *imageArray = [NSMutableArray array];
         for (int i = 10001; i <= [kMGTRESOURCELASTNAME intValue]; i++) {
             
-            NSString *nameStr = [NSString stringWithFormat:@"%d",i];
-            NSString *fileName = LYLOADBUDLEIMAGE(@"LYMGTImageResources.bundle", nameStr);
+            NSString *nameStr  = [NSString stringWithFormat:@"%d",i];
+            NSString *fileName = @"LYMGTImageResources.bundle";
 
             LYEmoticonModel *model = [[LYEmoticonModel alloc] init];
-            model.unLock        = [[NSUserDefaults standardUserDefaults] boolForKey:fileName];
-            model.emoticonImage = [UIImage imageWithContentsOfFile:fileName];
-            model.emoticonName  = @"";
-            model.emoticonUrl   = fileName;
+            model.bundleName       = fileName;
+            model.bundleImageName  = nameStr;
+            model.unLock           = [[NSUserDefaults standardUserDefaults] boolForKey:model.paddingSourceUrl];
             [imageArray addObject:model];
         }
         _MGTDataSource = imageArray;
@@ -540,14 +569,13 @@
         NSMutableArray *imageArray = [NSMutableArray array];
         for (int i = 10001; i <= [kXMRRESOURCELASTNAME intValue]; i++) {
             
-            NSString *nameStr = [NSString stringWithFormat:@"%d",i];
-            NSString *fileName = LYLOADBUDLEIMAGE(@"LYXMRImageResources.bundle", nameStr);
+            NSString *nameStr  = [NSString stringWithFormat:@"%d",i];
+            NSString *fileName = @"LYXMRImageResources.bundle";
             
             LYEmoticonModel *model = [[LYEmoticonModel alloc] init];
-            model.unLock        = [[NSUserDefaults standardUserDefaults] boolForKey:fileName];
-            model.emoticonImage = [UIImage imageWithContentsOfFile:fileName];
-            model.emoticonName  = @"";
-            model.emoticonUrl   = fileName;
+            model.bundleName       = fileName;
+            model.bundleImageName  = nameStr;
+            model.unLock           = [[NSUserDefaults standardUserDefaults] boolForKey:model.paddingSourceUrl];
             [imageArray addObject:model];
         }
         _XMRDataSource = imageArray;

@@ -8,7 +8,6 @@
 
 #import "LYEmoticonPackageListViewController.h"
 #import "LYEmoticonPackageListCell.h"
-#import "LYEmoticonModel.h"
 #import "LYEmoticonsGuideView.h"
 
 @interface LYEmoticonPackageListViewController ()<UICollectionViewDataSource, UICollectionViewDelegate,GADInterstitialDelegate>
@@ -52,12 +51,12 @@
 - (void)_setupSubViews{
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
     //同一行相邻两个cell的最小间距
-    layout.minimumInteritemSpacing = 10.0f;
+    layout.minimumInteritemSpacing = 5.0f;
     //最小两行之间的间距
-    layout.minimumLineSpacing = 10.0f;
-    layout.sectionInset = UIEdgeInsetsMake(10, 10.0f, 0, 10.0f);
+    layout.minimumLineSpacing = 5.f;
+    layout.sectionInset = UIEdgeInsetsMake(5, 5, 0, 5);
     
-    CGFloat cellW = (kScreenWidth - 40)/3;
+    CGFloat cellW = (kScreenWidth - 20)/3;
     layout.itemSize = CGSizeMake(cellW, cellW);
     
 
@@ -107,7 +106,7 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
         
     LYEmoticonModel *model= self.dataListArray[indexPath.row];
-    NSArray *arr = [NSArray arrayWithObject:model.emoticonImage];
+    NSArray *arr = [NSArray arrayWithObject:model];
     if (self.delegate && [self.delegate respondsToSelector:@selector(emoticonPackageListViewController:didFinishPickingPhotos:)]) {
         [self.delegate emoticonPackageListViewController:self didFinishPickingPhotos:arr];
     }
@@ -160,8 +159,8 @@ didFailToReceiveAdWithError:(GADRequestError *)error {
     if (_currentIndex < 0) return;
     
     LYEmoticonModel *model = self.dataListArray[_currentIndex];
-    UIImage *savedImage = [UIImage imageWithContentsOfFile:model.emoticonUrl];
-    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:model.emoticonUrl];
+    UIImage *savedImage = model.emoticonImage;
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:model.paddingSourceUrl];
     model.unLock = YES;
     [self.collectionView reloadData];
     [self saveImageClick:savedImage];
@@ -181,8 +180,8 @@ didFailToReceiveAdWithError:(GADRequestError *)error {
 - (void)interstitialDidDismissScreen:(GADInterstitial *)ad {
     LYLog(@"interstitialDidDismissScreen");
     LYEmoticonModel *model = self.dataListArray[_currentIndex];
-    UIImage *savedImage = [UIImage imageWithContentsOfFile:model.emoticonUrl];
-    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:model.emoticonUrl];
+    UIImage *savedImage = model.emoticonImage;
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:model.paddingSourceUrl];
     model.unLock = YES;
     [self.collectionView reloadData];
     [self saveImageClick:savedImage];
@@ -193,8 +192,8 @@ didFailToReceiveAdWithError:(GADRequestError *)error {
 - (void)interstitialWillLeaveApplication:(GADInterstitial *)ad {
     LYLog(@"interstitialWillLeaveApplication");
     LYEmoticonModel *model = self.dataListArray[_currentIndex];
-    UIImage *savedImage = [UIImage imageWithContentsOfFile:model.emoticonUrl];
-    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:model.emoticonUrl];
+    UIImage *savedImage = model.emoticonImage;
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:model.paddingSourceUrl];
     model.unLock = YES;
     [self.collectionView reloadData];
     [self saveImageClick:savedImage];

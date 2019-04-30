@@ -7,6 +7,7 @@
 //  做表情包页
 
 #import "LYBaseTableViewController.h"
+#import "LYEmoticonModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -21,7 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 /** 表情功能按钮标题 */
 @property (nonatomic, copy) NSString *emoticonCtlTitle;
 /** 默认展示图片表情(必传参数) */
-@property (nonatomic, strong) UIImage *defultEmojiImage;
+@property (nonatomic, strong) LYEmoticonModel *defultEmojiModel;
 
 @end
 

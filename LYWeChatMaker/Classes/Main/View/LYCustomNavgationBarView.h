@@ -22,11 +22,15 @@ typedef void(^LYCustomNavgationBarViewBlcok)(UIButton *sender);
 @property (nonatomic, strong) UIImage *leftBarItemImage;
 /** 导航栏右侧侧按钮(默认为对号) */
 @property (nonatomic, strong) UIImage *rightBarItemImage;
+/** 标题图片 */
+@property (nonatomic, strong) UIImage *titleImage;
+
 /** 导航栏title */
 @property (nonatomic, copy) NSString *navBarTitle;
-/** 是否隐藏阴影(默认为NO) */
-@property (nonatomic, assign) BOOL hiddenShadow;
-
+/** 是否显示阴影(默认为NO) */
+@property (nonatomic, assign) BOOL showShadow;
+/** 隐藏分割线 (默认为no)*/
+@property (nonatomic, assign) BOOL hiddenLineView;
 
 @property(nonatomic, copy) LYCustomNavgationBarViewBlcok btnBlock;
 

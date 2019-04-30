@@ -28,7 +28,7 @@
     [super viewDidLoad];
     
     self.title = @"设置";
-    self.navBarView.leftBarItemImage = [UIImage imageNamed:@"bottomToolBar_close"];
+    self.navBarView.leftBarItemImage = [UIImage imageNamed:@"navBar_closeicon"];
     
     [self.view addSubview:self.tableView];
     [self.view addSubview:self.sloganView];

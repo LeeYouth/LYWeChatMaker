@@ -10,4 +10,5 @@
 
 @interface LYHomePageTitleView : UIView
 
++ (CGFloat)getViewHeight;
 @end

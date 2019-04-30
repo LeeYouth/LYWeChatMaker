@@ -86,11 +86,11 @@ tmp;\
 //主题线的颜色
 #define LYCellLineColor       LYColor(@"#EEEEEE")
 //主题线的高度
-#define LYCellLineHeight       0.7f
+#define LYCellLineHeight       0.8f
 //主题tableview背景色
 #define LYTableViewBackColor       LYColor(@"#EEEDEE")
 //主题导航栏默认颜色
-#define LYNavBarBackColor       LYColor(@"#4687F0")
+#define LYNavBarBackColor       LYColor(@"#ffffff")
 //白色
 #define LYWhiteColorHex       @"#FFFFFF"
 //黑色
@@ -123,6 +123,9 @@ tmp;\
 
 #define kLYWatermarkColorsListViewH  70
 #define kLYWatermarkBottomBtnsViewH 44.f
+
+#define kLYHomepageItemSizeLeft 36.f
+#define kLYHomepageItemSizeWidth ((kScreenWidth - 3*kLYHomepageItemSizeLeft)/2)
 
 #define kLYTWatermarkBottomToolBarH (kLYWatermarkColorsListViewH + kLYWatermarkBottomBtnsViewH + kTabbarExtra)
 

@@ -16,6 +16,7 @@
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UILabel *intrtoLabel;
 @property (nonatomic, strong) UIImageView *indicatorView;
+@property (nonatomic, strong) UIView *lineView;
 
 @end
 
@@ -40,15 +41,15 @@
 }
 
 + (CGFloat)getCellHeight{
-    return 92;
+    return (kScreenHeight - NAVBAR_HEIGHT - 50)/6;
 }
 -(void)setUpSubViews{
-    
     
     [self addSubview:self.iconImageView];
     [self addSubview:self.titleLabel];
     [self addSubview:self.intrtoLabel];
     [self addSubview:self.indicatorView];
+    [self addSubview:self.lineView];
 
     CGFloat iconW = 52;
     
@@ -79,6 +80,11 @@
         make.right.equalTo(self.mas_right).offset(-leftMargin);
     }];
     
+    [self.lineView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.bottom.equalTo(self);
+        make.height.mas_equalTo(@(LYCellLineHeight));
+    }];
+    
 }
 
 - (void)setModel:(NSDictionary *)model{
@@ -88,6 +94,9 @@
     self.titleLabel.text      = model[@"title"];
     self.iconImageView.image  = [UIImage imageWithContentsOfFile:LYBUNDLE_IMAGEPATH(model[@"image"])];
     self.indicatorView.image  = [UIImage imageNamed:@"homePage_cellRightindicator"];
+    
+//    self.backgroundColor = LYColor(model[@"color"]);
+
 }
 
 #pragma mark - lazy loading
@@ -116,8 +125,16 @@
 - (UILabel *)titleLabel{
     return LY_LAZY(_titleLabel, ({
         UILabel *view = [UILabel new];
-        view.textColor = LYColor(@"#E94447");
+//        view.textColor = LYColor(@"#E94447");
+        view.textColor = [UIColor blackColor];
         view.font = LYSystemFont(28.f);
+        view;
+    }));
+}
+- (UIView *)lineView{
+    return LY_LAZY(_lineView, ({
+        UIView *view = [UIView new];
+        view.backgroundColor = LYCellLineColor;
         view;
     }));
 }

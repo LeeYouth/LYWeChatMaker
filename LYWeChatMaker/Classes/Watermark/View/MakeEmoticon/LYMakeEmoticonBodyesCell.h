@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+@class LYEmoticonModel;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -25,7 +26,7 @@ typedef void(^LYMakeEmoticonBodyesCellBlock)(UIImage *image);
 /** 表情功能按钮标题 */
 @property (nonatomic, copy) NSString *emoticonCtlTitle;
 /** 默认展示图片表情 */
-@property (nonatomic, strong) UIImage *defultEmojiImage;
+@property (nonatomic, strong) LYEmoticonModel *defultEmojiModel;
 /** 保存图片成功回调 */
 @property(nonatomic, copy) LYMakeEmoticonBodyesCellBlock success;
 /** 按钮事件回调 */

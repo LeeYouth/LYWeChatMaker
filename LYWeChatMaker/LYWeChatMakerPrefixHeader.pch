@@ -36,6 +36,7 @@
 #import "SGEasyButton.h"
 #import "LYNetworkHelper.h"
 #import "LYStickerView.h"
+#import "LYEmoticonHistoryModel.h"
 
 #import <SDWebImage/UIButton+WebCache.h>
 #import "UIImageView+WebCache.h"

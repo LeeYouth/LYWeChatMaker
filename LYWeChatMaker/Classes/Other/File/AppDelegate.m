@@ -45,8 +45,9 @@
 
     //配置服务器类型
     [LYServerConfig setLYConfigEnv:LYServerEnvDevelop];
-    
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
+    bg_setDebug(YES);//打开调试模式,打印输出调试信息.
+
+//    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
     self.window = [[UIWindow alloc] init];
     
     
@@ -74,8 +75,8 @@
 
 #pragma - LYADLaunchViewControllerDelegate
 - (void)launchSuccessAction:(LYADLaunchViewController *)launchViewController{
-    LYBaseNavigationController *nav = [[LYBaseNavigationController alloc] initWithRootViewController:[[LYHomePageViewController alloc] init]];
-    [self.window setRootViewController: nav];
+//    LYBaseNavigationController *nav = [[LYBaseNavigationController alloc] initWithRootViewController:[[LYHomePageViewController alloc] init]];
+//    [self.window setRootViewController: nav];
 }
 
 

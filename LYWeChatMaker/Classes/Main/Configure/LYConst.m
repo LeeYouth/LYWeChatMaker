@@ -44,3 +44,7 @@ NSString *const GOOGLEVIDEOAD_TEST_UNITID = @"ca-app-pub-3940256099942544/171248
 NSString *const kXMRUNLOCKSTATUS = @"kXMRUNLOCKSTATUS";
 //蘑菇头解锁状态
 NSString *const kMGTUNLOCKSTATUS = @"kMGTUNLOCKSTATUS";
+
+
+//表情历史数据表名
+NSString *const kLYEMOJIHISTORYTABLENAME = @"lyHistoryEmojiTable";

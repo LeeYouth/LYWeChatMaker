@@ -32,10 +32,14 @@
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.mas_left).offset(18);
         make.right.bottom.equalTo(self);
-        make.height.mas_equalTo(@50);
+        make.height.mas_equalTo(@([LYHomePageTitleView getViewHeight]));
     }];
     
     self.titleLabel.text = @"开始";
+}
+
++ (CGFloat)getViewHeight{
+    return 50;
 }
 
 

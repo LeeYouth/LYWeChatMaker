@@ -21,7 +21,6 @@
 
     self.navBarView.navColor = LYColor(@"#F2F1F2");
     self.navBarView.leftBarItemImage = nil;
-    self.navBarView.hiddenShadow = YES;
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.backgroundColor = LYColor(@"#F2F1F2");
@@ -46,7 +45,7 @@
     [cell showeFaceCtls:self.faceCtl];
     [cell showeSentenceCtls:self.sentenceCtl];
     cell.emoticonCtlTitle = self.emoticonCtlTitle;
-    cell.defultEmojiImage = self.defultEmojiImage;
+    cell.defultEmojiModel = self.defultEmojiModel;
     cell.block = ^(UIButton *sender) {
         if (sender.tag == 3) {
             //返回

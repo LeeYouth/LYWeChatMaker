@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		9106B1F906CFCE73503ABAC9 /* libPods-LYWeChatMaker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 795A8BB7EFDD857CB82F5581 /* libPods-LYWeChatMaker.a */; };
+		CF0C51812275A5DF00338843 /* LYHomepageController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF0C51802275A5DF00338843 /* LYHomepageController.m */; };
+		CF0C51842276E14A00338843 /* LYHomepageCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CF0C51832276E14A00338843 /* LYHomepageCollectionViewCell.m */; };
 		CF3DEFBD21EDC5EA000B8853 /* LYTWatermarkSuccessHeadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3DEFBC21EDC5EA000B8853 /* LYTWatermarkSuccessHeadCell.m */; };
 		CF3DEFC021EDC789000B8853 /* LYTWatermarkSuccessShareCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3DEFBF21EDC788000B8853 /* LYTWatermarkSuccessShareCell.m */; };
 		CF3DEFC321EDD3C5000B8853 /* LYTWatermarkSuccessSectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3DEFC221EDD3C5000B8853 /* LYTWatermarkSuccessSectionCell.m */; };
@@ -34,6 +36,7 @@
 		CF40606221EB1C500059B790 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = CF40606121EB1C4F0059B790 /* libc++.tbd */; };
 		CF40606521EB22650059B790 /* LYShareTool.m in Sources */ = {isa = PBXBuildFile; fileRef = CF40606421EB22650059B790 /* LYShareTool.m */; };
 		CF40606921EB460F0059B790 /* LYWaterMarkPopularStatementView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF40606821EB460F0059B790 /* LYWaterMarkPopularStatementView.m */; };
+		CF4FDEA32272FCAA00398052 /* LYEmoticonHistoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CF4FDEA22272FCAA00398052 /* LYEmoticonHistoryModel.m */; };
 		CF5EE53C21ABDAE400A5DF78 /* LYTWatermarkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF5EE53B21ABDAE400A5DF78 /* LYTWatermarkViewController.m */; };
 		CF6C42E721AE336B002287F9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CF6C42E521AE336B002287F9 /* AppDelegate.m */; };
 		CF6C42EA21AE33BA002287F9 /* AppDelegate+UMSocial.m in Sources */ = {isa = PBXBuildFile; fileRef = CF6C42E921AE33BA002287F9 /* AppDelegate+UMSocial.m */; };
@@ -78,7 +81,6 @@
 		CF706F6F21C7571900442D67 /* LYWatermarkFontListView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF706F6E21C7571800442D67 /* LYWatermarkFontListView.m */; };
 		CF706F7221C7988800442D67 /* LYWatermarkStyleBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF706F7121C7988800442D67 /* LYWatermarkStyleBottomView.m */; };
 		CF706FA121D229A300442D67 /* LYXMRImageResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CF706FA021D229A300442D67 /* LYXMRImageResources.bundle */; };
-		CF706FA421D319D400442D67 /* LYHomePageBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF706FA321D319D400442D67 /* LYHomePageBackgroundView.m */; };
 		CF706FAD21D3527E00442D67 /* LYEmoticonPackageListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF706FAC21D3527E00442D67 /* LYEmoticonPackageListViewController.m */; };
 		CF706FB021D3540000442D67 /* LYEmoticonPackageListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CF706FAF21D3540000442D67 /* LYEmoticonPackageListCell.m */; };
 		CFD41C362212BD77009BAAA2 /* LYMainViewServices.m in Sources */ = {isa = PBXBuildFile; fileRef = CFD41C352212BD77009BAAA2 /* LYMainViewServices.m */; };
@@ -143,6 +145,10 @@
 		171A6CC3354DE77F478B5022 /* Pods-LYWeChatMaker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LYWeChatMaker.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LYWeChatMaker/Pods-LYWeChatMaker.debug.xcconfig"; sourceTree = "<group>"; };
 		795A8BB7EFDD857CB82F5581 /* libPods-LYWeChatMaker.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LYWeChatMaker.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8899E431ED47C36AEE1729E3 /* Pods-LYWeChatMaker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LYWeChatMaker.release.xcconfig"; path = "Pods/Target Support Files/Pods-LYWeChatMaker/Pods-LYWeChatMaker.release.xcconfig"; sourceTree = "<group>"; };
+		CF0C517F2275A5DF00338843 /* LYHomepageController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LYHomepageController.h; sourceTree = "<group>"; };
+		CF0C51802275A5DF00338843 /* LYHomepageController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LYHomepageController.m; sourceTree = "<group>"; };
+		CF0C51822276E14A00338843 /* LYHomepageCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LYHomepageCollectionViewCell.h; sourceTree = "<group>"; };
+		CF0C51832276E14A00338843 /* LYHomepageCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LYHomepageCollectionViewCell.m; sourceTree = "<group>"; };
 		CF3DEFBB21EDC5EA000B8853 /* LYTWatermarkSuccessHeadCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LYTWatermarkSuccessHeadCell.h; sourceTree = "<group>"; };
 		CF3DEFBC21EDC5EA000B8853 /* LYTWatermarkSuccessHeadCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LYTWatermarkSuccessHeadCell.m; sourceTree = "<group>"; };
 		CF3DEFBE21EDC788000B8853 /* LYTWatermarkSuccessShareCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LYTWatermarkSuccessShareCell.h; sourceTree = "<group>"; };
@@ -192,6 +198,8 @@
 		CF40606421EB22650059B790 /* LYShareTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LYShareTool.m; sourceTree = "<group>"; };
 		CF40606721EB460F0059B790 /* LYWaterMarkPopularStatementView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LYWaterMarkPopularStatementView.h; sourceTree = "<group>"; };
 		CF40606821EB460F0059B790 /* LYWaterMarkPopularStatementView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LYWaterMarkPopularStatementView.m; sourceTree = "<group>"; };
+		CF4FDEA12272FCAA00398052 /* LYEmoticonHistoryModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LYEmoticonHistoryModel.h; sourceTree = "<group>"; };
+		CF4FDEA22272FCAA00398052 /* LYEmoticonHistoryModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LYEmoticonHistoryModel.m; sourceTree = "<group>"; };
 		CF5EE53A21ABDAE400A5DF78 /* LYTWatermarkViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LYTWatermarkViewController.h; sourceTree = "<group>"; };
 		CF5EE53B21ABDAE400A5DF78 /* LYTWatermarkViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LYTWatermarkViewController.m; sourceTree = "<group>"; };
 		CF6C42E521AE336B002287F9 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -273,8 +281,6 @@
 		CF706F7021C7988700442D67 /* LYWatermarkStyleBottomView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LYWatermarkStyleBottomView.h; sourceTree = "<group>"; };
 		CF706F7121C7988800442D67 /* LYWatermarkStyleBottomView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LYWatermarkStyleBottomView.m; sourceTree = "<group>"; };
 		CF706FA021D229A300442D67 /* LYXMRImageResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = LYXMRImageResources.bundle; sourceTree = "<group>"; };
-		CF706FA221D319D400442D67 /* LYHomePageBackgroundView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LYHomePageBackgroundView.h; sourceTree = "<group>"; };
-		CF706FA321D319D400442D67 /* LYHomePageBackgroundView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LYHomePageBackgroundView.m; sourceTree = "<group>"; };
 		CF706FAB21D3527E00442D67 /* LYEmoticonPackageListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LYEmoticonPackageListViewController.h; sourceTree = "<group>"; };
 		CF706FAC21D3527E00442D67 /* LYEmoticonPackageListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LYEmoticonPackageListViewController.m; sourceTree = "<group>"; };
 		CF706FAE21D3540000442D67 /* LYEmoticonPackageListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LYEmoticonPackageListCell.h; sourceTree = "<group>"; };
@@ -628,6 +634,8 @@
 			children = (
 				CF6C432B21AFC559002287F9 /* LYHomePageViewController.h */,
 				CF6C432C21AFC559002287F9 /* LYHomePageViewController.m */,
+				CF0C517F2275A5DF00338843 /* LYHomepageController.h */,
+				CF0C51802275A5DF00338843 /* LYHomepageController.m */,
 				CFFF0D7121DEED7D00060A2B /* LYAllEmoticonsViewController.h */,
 				CFFF0D7221DEED7D00060A2B /* LYAllEmoticonsViewController.m */,
 				CF706FAB21D3527E00442D67 /* LYEmoticonPackageListViewController.h */,
@@ -643,6 +651,8 @@
 				CFFF0D7B21DEF10200060A2B /* LYEmoticonModel.m */,
 				CFFF0DB521E1D64B00060A2B /* LYEmoticonListModel.h */,
 				CFFF0DB621E1D64B00060A2B /* LYEmoticonListModel.m */,
+				CF4FDEA12272FCAA00398052 /* LYEmoticonHistoryModel.h */,
+				CF4FDEA22272FCAA00398052 /* LYEmoticonHistoryModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -650,8 +660,8 @@
 		CF6C432A21AFC535002287F9 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				CF706FA221D319D400442D67 /* LYHomePageBackgroundView.h */,
-				CF706FA321D319D400442D67 /* LYHomePageBackgroundView.m */,
+				CF0C51822276E14A00338843 /* LYHomepageCollectionViewCell.h */,
+				CF0C51832276E14A00338843 /* LYHomepageCollectionViewCell.m */,
 				CF706FAE21D3540000442D67 /* LYEmoticonPackageListCell.h */,
 				CF706FAF21D3540000442D67 /* LYEmoticonPackageListCell.m */,
 				CFFF0D7721DEEF5700060A2B /* LYAllEmoticonsTableCell.h */,
@@ -1217,6 +1227,7 @@
 				CF706F2D21B7CF8F00442D67 /* LYPrivacyAgreementInfoView.m in Sources */,
 				CF706F1721B669D400442D67 /* MBProgressHUD+LYHUD.m in Sources */,
 				CFFF0DC921E4964B00060A2B /* LYNoviceManualTableViewCell.m in Sources */,
+				CF0C51812275A5DF00338843 /* LYHomepageController.m in Sources */,
 				CFFF0DAE21DFADF400060A2B /* UIViewController+BackButtonHandler.m in Sources */,
 				CFFF0DC321E45BDF00060A2B /* LYHomePageTableViewCell.m in Sources */,
 				CFDB56AA2125212D00501905 /* LYBaseViewController.m in Sources */,
@@ -1252,6 +1263,7 @@
 				CF6C42F921AE36D9002287F9 /* LYURLConst.m in Sources */,
 				CFFF0D7921DEEF5700060A2B /* LYAllEmoticonsTableCell.m in Sources */,
 				CF706F1421B6237B00442D67 /* LYWatermarkInputLabel.m in Sources */,
+				CF4FDEA32272FCAA00398052 /* LYEmoticonHistoryModel.m in Sources */,
 				CF6C42E721AE336B002287F9 /* AppDelegate.m in Sources */,
 				CF6C430A21AE66C8002287F9 /* LYAdvertisementAlertView.m in Sources */,
 				CF5EE53C21ABDAE400A5DF78 /* LYTWatermarkViewController.m in Sources */,
@@ -1272,6 +1284,7 @@
 				CFDB56AD212521A300501905 /* LYTabbarViewController.m in Sources */,
 				CFFF0D7321DEED7D00060A2B /* LYAllEmoticonsViewController.m in Sources */,
 				CFFF0DBD21E3290600060A2B /* LYSettingTableViewCell.m in Sources */,
+				CF0C51842276E14A00338843 /* LYHomepageCollectionViewCell.m in Sources */,
 				CF3DEFD921EF070F000B8853 /* LYCustomEmojiCollectionView.m in Sources */,
 				CF6C430421AE4677002287F9 /* UIControl+LYUMTrack.m in Sources */,
 				CFFF0D8A21DF4D9A00060A2B /* MTProgressHUDManager.m in Sources */,
@@ -1279,7 +1292,6 @@
 				CFFF0DB121DFB58100060A2B /* LYWatermarkGuideView.m in Sources */,
 				CF3DEFEE21F066DA000B8853 /* UIButton+SGCountdown.m in Sources */,
 				CF6C432321AE7B57002287F9 /* LYAppTool.m in Sources */,
-				CF706FA421D319D400442D67 /* LYHomePageBackgroundView.m in Sources */,
 				CFDB56B0212521BA00501905 /* LYBaseModel.m in Sources */,
 				CF3DEFDC21F02645000B8853 /* LYBaseTableViewCell.m in Sources */,
 				CF3DEFCA21EF02CE000B8853 /* LYMakeEmoticonSelectPictureView.m in Sources */,

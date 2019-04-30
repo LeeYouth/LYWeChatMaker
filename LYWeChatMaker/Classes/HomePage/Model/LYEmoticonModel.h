@@ -12,11 +12,14 @@
 
 /** 表情包图片 */
 @property(nonatomic, strong) UIImage *emoticonImage;
-/** 表情包名字 */
-@property(nonatomic, copy) NSString *emoticonName;
-/** 对应图片 */
-@property(nonatomic, copy) NSString *emoticonUrl;
+/** 对应图片资源文件名 */
+@property(nonatomic, copy) NSString *bundleName;
+/** 对应图片资源图片名字 */
+@property(nonatomic, copy) NSString *bundleImageName;
+/** 拼接的地址*/
+@property(nonatomic, copy) NSString *paddingSourceUrl;
 /** 是否已解锁 */
 @property(nonatomic, assign) BOOL unLock;
+
 
 @end

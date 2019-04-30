@@ -32,7 +32,7 @@
 
 - (void)setModel:(LYEmoticonModel *)model{
     _model = model;
-    self.imageView.image = [UIImage imageWithContentsOfFile:model.emoticonUrl];
+    self.imageView.image = model.emoticonImage;
 }
 
 + (CGFloat)item

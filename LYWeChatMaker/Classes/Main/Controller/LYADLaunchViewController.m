@@ -49,7 +49,6 @@
     self.navBarView.leftBarItemImage  = nil;
     self.navBarView.rightBarItemImage = nil;
     self.navBarView.navColor =LYClearColor;
-    self.navBarView.hiddenShadow = YES;
     
     //预加载
     [self addGoogleAdmob];

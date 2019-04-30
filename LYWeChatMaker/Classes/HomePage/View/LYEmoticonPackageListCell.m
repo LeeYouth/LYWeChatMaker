@@ -53,7 +53,11 @@
 - (void)setModel:(LYEmoticonModel *)model{
     _model = model;
     
-    self.imageView.image = [UIImage imageWithContentsOfFile:model.emoticonUrl];
+    self.imageView.image = model.emoticonImage;
+}
+- (void)setHistoryModel:(LYEmoticonHistoryModel *)historyModel{
+    _historyModel = historyModel;
+    self.imageView.image = historyModel.compositeImage;
 }
 
 - (void)longPressClick:(UILongPressGestureRecognizer *)gesture
@@ -86,7 +90,7 @@
 
 - (void)saveImageClick
 {
-    UIImage *savedImage = [UIImage imageWithContentsOfFile:self.model.emoticonUrl];
+    UIImage *savedImage = [UIImage imageWithContentsOfFile:self.model.emoticonImage];
     UIImageWriteToSavedPhotosAlbum(savedImage, self, @selector(image:didFinishSavingWithError:contextInfo:), NULL);
 }
 

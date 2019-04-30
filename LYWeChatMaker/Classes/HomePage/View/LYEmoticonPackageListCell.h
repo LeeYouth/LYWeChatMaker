@@ -11,8 +11,9 @@
 
 @interface LYEmoticonPackageListCell : UICollectionViewCell
 
-/** 财视学院模型 */
 @property (nonatomic,strong) LYEmoticonModel *model;
+
+@property (nonatomic,strong) LYEmoticonHistoryModel *historyModel;
 
 + (instancetype)cellWithCollectionView:(UICollectionView *)collectionView forItemAtIndexPath:(NSIndexPath *)indexPath;
 

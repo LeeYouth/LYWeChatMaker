@@ -7,13 +7,14 @@
 //
 
 #import "LYBaseViewController.h"
+#import "LYEmoticonModel.h"
 @class LYEmoticonPackageListViewController;
 
 @protocol LYEmoticonPackageListViewControllerDelegate <NSObject>
 
 
 @optional
-- (void)emoticonPackageListViewController:(LYEmoticonPackageListViewController *)lister didFinishPickingPhotos:(NSArray<UIImage *> *)photos;
+- (void)emoticonPackageListViewController:(LYEmoticonPackageListViewController *)lister didFinishPickingPhotos:(NSArray<LYEmoticonModel *> *)photos;
 
 @end
 
