@@ -11,16 +11,17 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef enum : NSUInteger {
+    kLYMakeEmoticonView_DIYEmoji,//DIY表情
+    kLYMakeEmoticonView_xmrEmoji,//熊猫人
+    kLYMakeEmoticonView_mgtEmoji,//蘑菇头
+    kLYMakeEmoticonView_txt,//纯文字
+} kLYMakeEmoticonViewType;
+
 @interface LYMakeEmoticonViewController : LYBaseTableViewController
 
-/** 展示形象功能按钮 */
-@property (nonatomic, assign) BOOL emoticonCtl;
-/** 展示表情功能按钮 */
-@property (nonatomic, assign) BOOL faceCtl;
-/** 展示配文功能按钮(默认为YES) */
-@property (nonatomic, assign) BOOL sentenceCtl;
-/** 表情功能按钮标题 */
-@property (nonatomic, copy) NSString *emoticonCtlTitle;
+- (instancetype)initWithViewType:(kLYMakeEmoticonViewType)viewType;
+
 /** 默认展示图片表情(必传参数) */
 @property (nonatomic, strong) LYEmoticonModel *defultEmojiModel;
 

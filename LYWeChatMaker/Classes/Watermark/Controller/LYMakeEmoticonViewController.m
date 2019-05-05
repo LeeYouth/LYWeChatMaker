@@ -12,9 +12,19 @@
 
 @interface LYMakeEmoticonViewController ()
 
+@property (nonatomic ,assign) kLYMakeEmoticonViewType viewType;
+
 @end
 
 @implementation LYMakeEmoticonViewController
+
+- (instancetype)initWithViewType:(kLYMakeEmoticonViewType)viewType{
+    self = [super init];
+    if (self) {
+        self.viewType = viewType;
+    }
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -41,10 +51,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     WEAKSELF(weakSelf);
     LYMakeEmoticonBodyesCell *cell = [LYMakeEmoticonBodyesCell cellWithTableView:tableView];
-    [cell showeEmoticonCtls:self.emoticonCtl];
-    [cell showeFaceCtls:self.faceCtl];
-    [cell showeSentenceCtls:self.sentenceCtl];
-    cell.emoticonCtlTitle = self.emoticonCtlTitle;
+    cell.viewType = self.viewType;
     cell.defultEmojiModel = self.defultEmojiModel;
     cell.block = ^(UIButton *sender) {
         if (sender.tag == 3) {

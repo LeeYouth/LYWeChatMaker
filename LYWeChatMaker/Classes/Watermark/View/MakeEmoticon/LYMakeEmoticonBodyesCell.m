@@ -237,14 +237,10 @@
             weakSelf.emoticonImageView.image = model.emoticonImage;
         };
         
-        if (self.emoticonCtlTitle.length) {
-            if ([self.emoticonCtlTitle isEqualToString:@"熊猫人"]) {
-                picAlertView.dataSourece = self.XMRDataSource;
-            }else if ([self.emoticonCtlTitle isEqualToString:@"蘑菇头"]){
-                picAlertView.dataSourece = self.MGTDataSource;
-            }else{
-                picAlertView.dataSourece = self.emoticonDataSource;
-            }
+        if (self.viewType == kLYMakeEmoticonView_xmrEmoji) {
+            picAlertView.dataSourece = self.XMRDataSource;
+        }else if (self.viewType == kLYMakeEmoticonView_mgtEmoji){
+            picAlertView.dataSourece = self.MGTDataSource;
         }else{
             picAlertView.dataSourece = self.emoticonDataSource;
         }
@@ -303,6 +299,10 @@
     [self.zoomView showScaleCtrl:NO];
     [self showTitleViewBorder:NO];
     
+    if (self.viewType == kLYMakeEmoticonView_txt) {
+        [self hiddenAllViews];
+    }
+    
     UIGraphicsBeginImageContextWithOptions(self.imageBackView.size, NO, 0.0);
     //获取图像
     [self.imageBackView.layer renderInContext:UIGraphicsGetCurrentContext()];
@@ -329,24 +329,24 @@
     }else{
         msg = @"保存图片成功" ;
         
-        //保存到本地（历史记录）
-        LYEmoticonHistoryModel *model = [[LYEmoticonHistoryModel alloc] init];
-        model.bg_tableName   = kLYEMOJIHISTORYTABLENAME;
-        model.historyDate    = [NSDate date];
-        model.historyText    = self.titleLabel.text;
-        model.compositeImage = image;
-        model.bundleName     = self.currentEmojiModel.bundleName.length?self.currentEmojiModel.bundleName:self.defultEmojiModel.bundleName;
-        model.bundleImageName = self.currentEmojiModel.bundleImageName.length?self.currentEmojiModel.bundleImageName:self.defultEmojiModel.bundleImageName;
-        
-        if (!self.addFaceButton.hidden) {
-            model.fromType       = 2;
-            model.faceBundleName = self.currentFaceModel.bundleName.length?self.currentFaceModel.bundleName:@"LYMakeEmoticonFaceImageResources.bundle";
-            model.faceBundleImageName = self.currentFaceModel.bundleImageName.length?self.currentFaceModel.bundleImageName:@"10041";
-        }else{
-            model.fromType        = 1;
- 
-        }
-        [model bg_save];
+//        //保存到本地（历史记录）
+//        LYEmoticonHistoryModel *model = [[LYEmoticonHistoryModel alloc] init];
+//        model.bg_tableName   = kLYEMOJIHISTORYTABLENAME;
+//        model.historyDate    = [NSDate date];
+//        model.historyText    = self.titleLabel.text;
+//        model.compositeImage = image;
+//        model.bundleName     = self.currentEmojiModel.bundleName.length?self.currentEmojiModel.bundleName:self.defultEmojiModel.bundleName;
+//        model.bundleImageName = self.currentEmojiModel.bundleImageName.length?self.currentEmojiModel.bundleImageName:self.defultEmojiModel.bundleImageName;
+//
+//        if (!self.addFaceButton.hidden) {
+//            model.fromType       = 2;
+//            model.faceBundleName = self.currentFaceModel.bundleName.length?self.currentFaceModel.bundleName:@"LYMakeEmoticonFaceImageResources.bundle";
+//            model.faceBundleImageName = self.currentFaceModel.bundleImageName.length?self.currentFaceModel.bundleImageName:@"10041";
+//        }else{
+//            model.fromType        = 1;
+//
+//        }
+//        [model bg_save];
         
        
         if (self.success) {
@@ -360,6 +360,62 @@
     self.rectangleView.hidden = !show;
 }
 
+- (void)setViewType:(kLYMakeEmoticonViewType)viewType{
+    _viewType = viewType;
+    
+    BOOL showEmojiCtl    = NO;
+    BOOL showFaceCtl     = NO;
+    BOOL showSentenceCtl = NO;
+    NSString *ctlTitle = @"";
+    if (viewType == kLYMakeEmoticonView_DIYEmoji) {
+        showEmojiCtl    = YES;
+        showFaceCtl     = YES;
+        showSentenceCtl = YES;
+    }else if (viewType == kLYMakeEmoticonView_xmrEmoji){
+        showEmojiCtl    = YES;
+        showFaceCtl     = NO;
+        showSentenceCtl = YES;
+        ctlTitle        = @"熊猫人";
+    }else if (viewType == kLYMakeEmoticonView_mgtEmoji){
+        showEmojiCtl    = YES;
+        showFaceCtl     = NO;
+        showSentenceCtl = YES;
+        ctlTitle        = @"蘑菇头";
+        
+    }else if (viewType == kLYMakeEmoticonView_txt){
+        showEmojiCtl    = NO;
+        showFaceCtl     = NO;
+        showSentenceCtl = NO;
+    }
+    
+    [self showeEmoticonCtls:showEmojiCtl];
+    [self showeFaceCtls:showFaceCtl];
+    [self showeSentenceCtls:showSentenceCtl];
+    
+    CGFloat bottomMargin = 14.f;
+    if (viewType == kLYMakeEmoticonView_txt) {
+        [self hiddenAllViews];
+
+        CGFloat imageW = SCREEN_WIDTH - 2*LYMakeEmoticonBodyesCellLeftMargin;
+        CGFloat labelH = imageW - bottomMargin*2;
+
+        [self.titleLabel mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.height.mas_equalTo(@(labelH));
+            make.bottom.equalTo(self.imageBackView.mas_bottom).offset(-bottomMargin);
+        }];
+    }else{
+        CGFloat labelH = 40;
+        [self.titleLabel mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.height.mas_equalTo(@(labelH));
+            make.bottom.equalTo(self.imageBackView.mas_bottom).offset(-bottomMargin);
+        }];
+    }
+
+    if (ctlTitle.length) {
+        [self.addImageButton setTitle:ctlTitle forState:UIControlStateNormal];
+    }
+    
+}
 - (void)showeEmoticonCtls:(BOOL)show{
     self.addImageButton.hidden = !show;
 }
@@ -372,19 +428,21 @@
     self.selectSentenceButton.hidden = !show;
 }
 
+- (void)hiddenAllViews{
+    self.addImageButton.hidden = YES;
+    self.showFunctionCtrls    = YES;
+    self.addFaceButton.hidden = YES;
+    self.zoomView.hidden      = YES;
+    self.selectSentenceButton.hidden = YES;
+    self.emoticonImageView.hidden = YES;
+    self.faceImageView.hidden = YES;
+}
 
 - (void)setDefultEmojiModel:(LYEmoticonModel *)defultEmojiModel{
     _defultEmojiModel = defultEmojiModel;
 
     self.emoticonImageView.image = defultEmojiModel.emoticonImage;
-
-}
-
-- (void)setEmoticonCtlTitle:(NSString *)emoticonCtlTitle{
-    _emoticonCtlTitle = emoticonCtlTitle;
-    if (emoticonCtlTitle.length) {
-        [self.addImageButton setTitle:emoticonCtlTitle forState:UIControlStateNormal];
-    }
+    
 }
 
 #pragma mark - lazy loading

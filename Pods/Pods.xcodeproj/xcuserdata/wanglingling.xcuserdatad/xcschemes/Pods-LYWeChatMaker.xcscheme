@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0930"
+   LastUpgradeVersion = "1020"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "C0D86DDCA5EB18E8B3BB76394CF0D936"
+               BlueprintIdentifier = "4A060042BF5C746F8544825F44B87BE2"
+               BuildableName = "libPods-LYWeChatMaker.a"
                BlueprintName = "Pods-LYWeChatMaker"
-               ReferencedContainer = "container:Pods.xcodeproj"
-               BuildableName = "libPods-LYWeChatMaker.a">
+               ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

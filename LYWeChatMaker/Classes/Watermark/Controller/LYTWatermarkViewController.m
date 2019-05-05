@@ -46,9 +46,10 @@
 - (void)setupSubViews{
     
     
-    self.navBarView.leftBarItemImage = [UIImage imageNamed:@"navBar_closeicon"];
+    self.navBarView.leftBarItemImage = [UIImage imageNamed:@"bottomToolBar_close"];
     self.navBarView.rightBarItemImage = [UIImage imageNamed:@"bottomToolBar_next"];
     self.navBarView.navColor = LYColor(LYBlackColorHex);
+    self.navBarView.hiddenLineView = YES;
 
     [self.view addSubview:self.backImageView];
     [self.view addSubview:self.bottomToolBar];

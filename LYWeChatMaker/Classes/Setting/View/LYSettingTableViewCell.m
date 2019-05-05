@@ -10,9 +10,9 @@
 
 @interface LYSettingTableViewCell()
 
-@property (nonatomic, strong) UIView *backView;
+@property (nonatomic, strong) UIImageView *iconView;
 @property (nonatomic, strong) UILabel *titleLabel;
-@property (nonatomic, strong) UILabel *intrtoLabel;
+@property (nonatomic, strong) UIView *lineView;
 
 @end
 
@@ -30,49 +30,47 @@
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        self.layer.cornerRadius = kLYViewCornerRadius;
-        self.layer.borderColor  = kLYViewBorderColor.CGColor;
-        self.layer.borderWidth  = kLYViewBorderWidth;
+        self.backgroundColor = [UIColor whiteColor];
         [self setUpSubViews];
     }
     return self;
 }
 -(void)setUpSubViews{
-    [self addSubview:self.backView];
-    [self.backView addSubview:self.intrtoLabel];
-    [self.backView addSubview:self.titleLabel];
+    [self addSubview:self.iconView];
+    [self addSubview:self.titleLabel];
+    [self addSubview:self.lineView];
     
-    [self.backView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.equalTo(self);
-        make.top.equalTo(self.mas_top).offset(10);
-        make.bottom.equalTo(self.mas_bottom).offset(-10);
+    CGFloat leftMargin = 15;
+
+    [self.iconView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.size.mas_equalTo(CGSizeMake(24, 24));
+        make.left.equalTo(self.mas_left).offset(leftMargin);
+        make.centerY.equalTo(self.mas_centerY);
     }];
 
-    CGFloat leftMargin = 14.f;
-    [self.intrtoLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.backView.mas_left).offset(leftMargin);
-        make.right.equalTo(self.backView.mas_right).offset(-leftMargin);
-        make.top.mas_equalTo(@6);
+    [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.iconView.mas_right).offset(leftMargin);
+        make.right.equalTo(self.mas_right).offset(-leftMargin);
+        make.centerY.equalTo(self.mas_centerY);
         make.height.mas_equalTo(@16);
     }];
     
-    [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.backView.mas_left).offset(leftMargin);
-        make.right.equalTo(self.backView.mas_right).offset(-leftMargin);
-        make.top.equalTo(self.intrtoLabel.mas_bottom).offset(5);
-        make.bottom.equalTo(self.mas_bottom).offset(-10);
+    [self.lineView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.mas_left).offset(leftMargin);
+        make.right.bottom.equalTo(self);
+        make.height.mas_equalTo(@0.8);
     }];
-    
-    self.intrtoLabel.text = @"给我们加加油吧";
     self.titleLabel.text  = @"去评分";
-    
 }
 
-- (void)setIntroTitle:(NSString *)introTitle{
-    _introTitle = introTitle;
-    self.intrtoLabel.text = introTitle;
++ (CGFloat)getCellHeight{
+    return 56;
 }
 
+- (void)setIconName:(NSString *)iconName{
+    _iconName = iconName;
+    self.iconView.image = [UIImage imageNamed:iconName];
+}
 - (void)setTitle:(NSString *)title{
     _title = title;
     self.titleLabel.text  = title;
@@ -87,19 +85,16 @@
 }
 
 #pragma mark - lazyloading
-- (UIView *)backView{
-    return LY_LAZY(_backView, ({
+- (UIView *)lineView{
+    return LY_LAZY(_lineView, ({
         UIView *view = [UIView new];
-        view.backgroundColor = LYColor(LYWhiteColorHex);
-
+        view.backgroundColor = LYCellLineColor;
         view;
     }));
 }
-- (UILabel *)intrtoLabel{
-    return LY_LAZY(_intrtoLabel, ({
-        UILabel *view = [UILabel new];
-        view.textColor = LYColor(@"#999999");
-        view.font = LYSystemFont(12.f);
+- (UIImageView *)iconView{
+    return LY_LAZY(_iconView, ({
+        UIImageView *view = [UIImageView new];
         view;
     }));
 }
@@ -107,7 +102,7 @@
     return LY_LAZY(_titleLabel, ({
         UILabel *view = [UILabel new];
         view.textColor = LYColor(LYBlackColorHex);
-        view.font = LYSystemFont(28.f);
+        view.font = LYSystemFont(15.f);
         view;
     }));
 }

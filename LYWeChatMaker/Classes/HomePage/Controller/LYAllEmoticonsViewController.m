@@ -145,11 +145,7 @@
     LYEmoticonModel *model = photos[0];
     if (model != nil) {
         
-        LYMakeEmoticonViewController *makeVC = [[LYMakeEmoticonViewController alloc] init];
-        makeVC.emoticonCtl = YES;
-        makeVC.faceCtl     = NO;
-        makeVC.sentenceCtl = YES;
-        makeVC.emoticonCtlTitle = _selectIndex == 0?@"熊猫人":@"蘑菇头";
+        LYMakeEmoticonViewController *makeVC = [[LYMakeEmoticonViewController alloc] initWithViewType:_selectIndex == 0?kLYMakeEmoticonView_xmrEmoji:kLYMakeEmoticonView_mgtEmoji];
         makeVC.defultEmojiModel  = model;
         LYBaseNavigationController *nav = [[LYBaseNavigationController alloc] initWithRootViewController:makeVC];
         [self presentViewController:nav animated:YES completion:nil];

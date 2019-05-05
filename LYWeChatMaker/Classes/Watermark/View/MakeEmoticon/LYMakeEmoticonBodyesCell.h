@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LYMakeEmoticonViewController.h"
 @class LYEmoticonModel;
 
 NS_ASSUME_NONNULL_BEGIN
@@ -17,14 +18,8 @@ typedef void(^LYMakeEmoticonBodyesCellBlock)(UIImage *image);
 
 + (instancetype)cellWithTableView:(UITableView *)tableView;
 
-/** 展示形象功能按钮(默认为YES) */
-- (void)showeEmoticonCtls:(BOOL)show;
-/** 展示表情功能按钮(默认为NO) */
-- (void)showeFaceCtls:(BOOL)show;
-/** 展示配文功能按钮(默认为YES) */
-- (void)showeSentenceCtls:(BOOL)show;
-/** 表情功能按钮标题 */
-@property (nonatomic, copy) NSString *emoticonCtlTitle;
+/** 视图类型 */
+@property (nonatomic ,assign) kLYMakeEmoticonViewType viewType;
 /** 默认展示图片表情 */
 @property (nonatomic, strong) LYEmoticonModel *defultEmojiModel;
 /** 保存图片成功回调 */

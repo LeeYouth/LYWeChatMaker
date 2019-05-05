@@ -10,13 +10,14 @@
 #import "LYEmoticonPackageListCell.h"
 #import "LYEmoticonsGuideView.h"
 
-@interface LYEmoticonPackageListViewController ()<UICollectionViewDataSource, UICollectionViewDelegate,GADInterstitialDelegate>
+@interface LYEmoticonPackageListViewController ()<UICollectionViewDataSource, UICollectionViewDelegate,GADInterstitialDelegate,GADBannerViewDelegate>
 {
     NSInteger _currentIndex;
 }
 
-@property (nonatomic, weak) UICollectionView *collectionView;
+@property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic, strong) GADInterstitial *interstitial;//倒计时广告
+@property (nonatomic, strong) GADBannerView *bannerView;//底部广告
 
 @end
 
@@ -41,37 +42,40 @@
     self.view.backgroundColor = [UIColor whiteColor];
     
     [self _setupSubViews];
+    [self addGoogleAdmob];
     
     _currentIndex = -1;
     
-   
-
 }
 
 - (void)_setupSubViews{
-    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-    //同一行相邻两个cell的最小间距
-    layout.minimumInteritemSpacing = 5.0f;
-    //最小两行之间的间距
-    layout.minimumLineSpacing = 5.f;
-    layout.sectionInset = UIEdgeInsetsMake(5, 5, 0, 5);
+    [self.view addSubview:self.collectionView];
     
-    CGFloat cellW = (kScreenWidth - 20)/3;
-    layout.itemSize = CGSizeMake(cellW, cellW);
-    
-
-    UICollectionView *collectionView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:layout];
-    self.collectionView = collectionView;
-    collectionView.backgroundColor = LYCellLineColor;
-    collectionView.dataSource = self;
-    collectionView.delegate = self;
-    [self.view addSubview:collectionView];
-    
+    CGFloat adHeight = kGADAdSizeBanner.size.height + kTabbarExtra;
     CGFloat topMargin = NAVBAR_HEIGHT;
-    [collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.view.mas_top).offset(topMargin);
-        make.left.right.bottom.equalTo(self.view);
+        make.left.right.equalTo(self.view);
+        make.bottom.equalTo(self.view.mas_bottom).offset(-adHeight);
     }];
+    
+}
+
+- (void)addGoogleAdmob{
+    CGFloat adHeight = kGADAdSizeBanner.size.height;
+    LYLog(@"Google Mobile Ads SDK version: %@", [GADRequest sdkVersion]);
+    self.bannerView = [[GADBannerView alloc] initWithFrame:CGRectMake(0, kScreenHeight - adHeight - kTabbarExtra, SCREEN_WIDTH, adHeight)];
+    self.bannerView.delegate = self;
+    [self.view addSubview:self.bannerView];
+    
+    self.bannerView.adUnitID = [LYServerConfig LYConfigEnv] == LYServerEnvProduct?GOOGLEAD_UNITID:GOOGLEAD_TEST_UNITID;
+    self.bannerView.rootViewController = self;
+    GADRequest *request = [GADRequest request];
+    if ([LYServerConfig LYConfigEnv] != LYServerEnvProduct) {
+        request.testDevices = @[ kGADSimulatorID ];
+    }
+    [self.bannerView loadRequest:request];
+    
 }
 
 - (void)setDataListArray:(NSMutableArray *)dataListArray{
@@ -199,16 +203,18 @@ didFailToReceiveAdWithError:(GADRequestError *)error {
     [self saveImageClick:savedImage];
 }
 
+#pragma mark - GADBannerViewDelegate
+- (void)adView:(GADBannerView *)bannerView didFailToReceiveAdWithError:(GADRequestError *)error{
+    LYLog(@"GADBannerView:didFailToReceiveAdWithError: %@", [error localizedDescription]);
+}
 
-- (void)saveImageClick:(UIImage *)savedImage
-{
+- (void)saveImageClick:(UIImage *)savedImage{
     UIImageWriteToSavedPhotosAlbum(savedImage, self, @selector(image:didFinishSavingWithError:contextInfo:), NULL);
 }
 
 
 // 指定回调方法
-- (void)image: (UIImage *) image didFinishSavingWithError: (NSError *) error contextInfo: (void *) contextInfo
-{
+- (void)image: (UIImage *) image didFinishSavingWithError: (NSError *) error contextInfo: (void *) contextInfo{
     NSString *msg = nil ;
     if(error != NULL){
         msg = @"保存图片失败" ;
@@ -217,6 +223,30 @@ didFailToReceiveAdWithError:(GADRequestError *)error {
         msg = @"保存图片成功" ;
     }
     [LYToastTool bottomShowWithText:msg delay:1.5f];
+}
+
+
+#pragma mark - 懒加载
+- (UICollectionView *)collectionView{
+    if (!_collectionView) {
+        UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+        //同一行相邻两个cell的最小间距
+        layout.minimumInteritemSpacing = 5.0f;
+        //最小两行之间的间距
+        layout.minimumLineSpacing = 5.f;
+        layout.sectionInset = UIEdgeInsetsMake(5, 5, 0, 5);
+        
+        CGFloat cellW = (kScreenWidth - 20)/3;
+        layout.itemSize = CGSizeMake(cellW, cellW);
+        
+        
+        _collectionView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:layout];
+        _collectionView.backgroundColor = LYCellLineColor;
+        _collectionView.dataSource = self;
+        _collectionView.delegate = self;
+ 
+    }
+    return _collectionView;
 }
 
 @end

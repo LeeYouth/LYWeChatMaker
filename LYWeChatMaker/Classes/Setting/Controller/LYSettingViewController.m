@@ -17,6 +17,8 @@
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) UIImageView *sloganView;
+@property (nonatomic, strong) NSMutableArray *titleArray;
+@property (nonatomic, strong) NSMutableArray *imageArray;
 
 @end
 
@@ -35,7 +37,7 @@
 
     
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.navBarView.mas_bottom);
+        make.top.equalTo(self.view.mas_top).offset(NAVBAR_HEIGHT);
         make.left.right.bottom.equalTo(self.view);
     }];
     
@@ -46,63 +48,34 @@
     }];
     
 
+    [self.tableView reloadData];
 }
 
 - (void)backBarItemClick{
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 12;
-}
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    return 0.000001;
-}
-
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    UIView *view=[[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 12)];
-    view.backgroundColor = LYTableViewBackColor;
-    return view;
-}
-- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
-    return [[UIView alloc] init];
-}
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 5;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return 1;
 }
 
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.titleArray.count;
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 80;
+    return [LYSettingTableViewCell getCellHeight];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     LYSettingTableViewCell *cell = [LYSettingTableViewCell cellWithTableView:tableView];
-    if (indexPath.section == 0) {
-        cell.introTitle = @"看看新手怎么使用咧";
-        cell.title      = @"新手指南";
-        cell.showIndicator = YES;
-    }else if (indexPath.section == 1) {
-        cell.introTitle = @"给我们鼓励鼓励呗";
-        cell.title      = @"去评分";
-        cell.showIndicator = YES;
-    }else if (indexPath.section == 2){
-        cell.introTitle = @"我们很注重隐私(咳咳";
-        cell.title      = @"隐私协议";
-        cell.showIndicator = YES;
-    }else if (indexPath.section == 3){
-        cell.introTitle = @"您可以了解我们更多哦";
-        cell.title      = [NSString stringWithFormat: @"关于%@",[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleDisplayName"]];
-        cell.showIndicator = YES;
-    }else if (indexPath.section == 4){
-        cell.introTitle = @"我们现在的版本啦";
-        cell.title      = [NSString stringWithFormat: @"版本号v%@",[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]];
+    cell.title = self.titleArray[indexPath.row];
+    cell.iconName = self.imageArray[indexPath.row];
+    if (indexPath.row == 4) {
         cell.showIndicator = NO;
+    }else{
+        cell.showIndicator = YES;
     }
     return cell;
 }
@@ -110,22 +83,22 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    if (indexPath.section == 0) {
+    if (indexPath.row == 0) {
         
         LYNoviceManualViewController *xinVC = [[LYNoviceManualViewController  alloc] init];
         [self.navigationController pushViewController:xinVC animated:YES];
-    }else if (indexPath.section == 1) {
+    }else if (indexPath.row == 1) {
         
         [[UIApplication sharedApplication]openURL:[NSURL URLWithString:@"itms-apps://itunes.apple.com/app/id1444723537"]];
 
-    }else if (indexPath.section == 2){
+    }else if (indexPath.row == 2){
         LYWKWebViewController *viewController = [[LYWKWebViewController alloc] initWithURL:[NSURL fileURLWithPath:[[NSBundle bundleWithPath:LYBUNDLE_PATH] pathForResource:@"privacyAgreement" ofType:@"html"]]];
         viewController.titleStr = @"隐私协议";
         [self.navigationController pushViewController:viewController animated:YES];
-    }else if (indexPath.section == 3){
+    }else if (indexPath.row == 3){
         LYAboutUsViewController *viewController = [[LYAboutUsViewController alloc] init];
         [self.navigationController pushViewController:viewController animated:YES];
-    }else if (indexPath.section == 4){
+    }else if (indexPath.row == 4){
         NSString *str = [NSString stringWithFormat: @"当前版本号v%@",[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]];
         [LYToastTool bottomShowWithText:str delay:1.f];
     }
@@ -134,7 +107,7 @@
 #pragma mark - lazy loadig
 - (UITableView *)tableView{
     return LY_LAZY(_tableView, ({
-        UITableView *view = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
+        UITableView *view = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
         view.delegate = self;
         view.dataSource = self;
         view.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -151,6 +124,16 @@
         view;
     }));
 }
-
-
+- (NSMutableArray *)titleArray{
+    if (!_titleArray) {
+        _titleArray = [NSMutableArray arrayWithObjects:@"新手指南",@"去评分",@"隐私协议",[NSString stringWithFormat: @"关于%@",[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleDisplayName"]],[NSString stringWithFormat: @"版本号v%@",[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]], nil];
+    }
+    return _titleArray;
+}
+- (NSMutableArray *)imageArray{
+    if (!_imageArray) {
+        _imageArray = [NSMutableArray arrayWithObjects:@"setting_firstRead",@"setting_goStar",@"setting_protocol",@"setting_aboutUs",@"setting_version", nil];
+    }
+    return _imageArray;
+}
 @end

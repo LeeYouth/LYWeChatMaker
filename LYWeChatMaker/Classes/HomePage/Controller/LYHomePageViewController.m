@@ -14,7 +14,7 @@
 #import "LYMakeEmoticonViewController.h"
 #import "LYHomepageCollectionViewCell.h"
 
-@interface LYHomePageViewController ()<TZImagePickerControllerDelegate,UICollectionViewDataSource, UICollectionViewDelegate,LYEmoticonPackageListViewControllerDelegate>
+@interface LYHomePageViewController ()<UICollectionViewDataSource, UICollectionViewDelegate,LYEmoticonPackageListViewControllerDelegate>
 {
     NSInteger _selectIndex;
 }
@@ -79,34 +79,38 @@
 
 #pragma mark - 添加水印
 - (void)addWaterMark{
-    TZImagePickerController *imagePickerVc = [[TZImagePickerController alloc] initWithMaxImagesCount:1 columnNumber:3 delegate:self pushPhotoPickerVc:YES];
-    // 不让选择视频和原图
-    imagePickerVc.allowPickingVideo = NO;
-    imagePickerVc.allowPickingOriginalPhoto = YES;
-    imagePickerVc.allowTakePicture = NO;
-    imagePickerVc.showSelectBtn = NO;
-    imagePickerVc.allowCrop = NO;
-    imagePickerVc.allowPreview = NO;
-    imagePickerVc.naviBgColor = LYNavBarBackColor;
-    imagePickerVc.naviTitleColor = LYColor(LYWhiteColorHex);
-    imagePickerVc.barItemTextColor = LYColor(LYWhiteColorHex);
-    imagePickerVc.preferredLanguage = @"zh-Hans";
-    [self presentViewController:imagePickerVc animated:YES completion:nil];
-}
-
-#pragma mark TZImagePickerControllerDelegate
-- (void)imagePickerController:(TZImagePickerController *)picker didFinishPickingPhotos:(NSArray<UIImage *> *)photos sourceAssets:(NSArray *)assets isSelectOriginalPhoto:(BOOL)isSelectOriginalPhoto{
-    UIImage *cropImage = photos[0];
     
-    if (cropImage != nil) {
-        LYTWatermarkViewController *waterMarkVC = [[LYTWatermarkViewController alloc] init];
-        waterMarkVC.targetImage = cropImage;
-        [self.navigationController pushViewController:waterMarkVC animated:YES];
-    }
-    
+    HXPhotoManager *_manager = [[HXPhotoManager alloc] initWithType:HXPhotoManagerSelectedTypePhoto];
+    _manager.configuration.singleSelected = YES;
+    _manager.configuration.albumListTableView = ^(UITableView *tableView) {
+        //            NSSLog(@"%@",tableView);
+    };
+    _manager.configuration.singleJumpEdit = NO;
+    _manager.configuration.movableCropBox = YES;
+    _manager.configuration.movableCropBoxEditSize = YES;
+    _manager.configuration.albumShowMode = HXPhotoAlbumShowModePopup;
+    _manager.configuration.saveSystemAblum = YES;
+    HXWeakSelf
+    [self hx_presentSelectPhotoControllerWithManager:_manager didDone:^(NSArray<HXPhotoModel *> *allList, NSArray<HXPhotoModel *> *photoList, NSArray<HXPhotoModel *> *videoList, BOOL isOriginal, UIViewController *viewController, HXPhotoManager *manager) {
+        HXPhotoModel *model = allList.firstObject;
+        
+        if (model.subType == HXPhotoModelMediaSubTypePhoto) {
+            [weakSelf.view hx_showLoadingHUDText:@"获取图片中"];
+            [model requestPreviewImageWithSize:PHImageManagerMaximumSize startRequestICloud:nil progressHandler:nil success:^(UIImage *image, HXPhotoModel *model, NSDictionary *info) {
+                [weakSelf.view hx_handleLoading];
+                
+                LYTWatermarkViewController *waterMarkVC = [[LYTWatermarkViewController alloc] init];
+                waterMarkVC.targetImage = image;
+                [weakSelf.navigationController pushViewController:waterMarkVC animated:YES];
+            } failed:^(NSDictionary *info, HXPhotoModel *model) {
+                [weakSelf.view hx_handleLoading];
+                [weakSelf.view hx_showImageHUDText:@"获取失败"];
+            }];
+        }
+    } cancel:^(UIViewController *viewController, HXPhotoManager *manager) {
+        LYLog(@"取消了");
+    }];
 }
-
-
 
 #pragma mark <UICollectionViewDataSource>
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
@@ -150,11 +154,7 @@
     LYEmoticonModel *model = photos[0];
     if (model != nil) {
         
-        LYMakeEmoticonViewController *makeVC = [[LYMakeEmoticonViewController alloc] init];
-        makeVC.emoticonCtl = YES;
-        makeVC.faceCtl     = NO;
-        makeVC.sentenceCtl = YES;
-        makeVC.emoticonCtlTitle = _selectIndex == 0?@"熊猫人":@"蘑菇头";
+        LYMakeEmoticonViewController *makeVC = [[LYMakeEmoticonViewController alloc] initWithViewType:_selectIndex == 0?kLYMakeEmoticonView_xmrEmoji:kLYMakeEmoticonView_mgtEmoji];
         makeVC.defultEmojiModel  = model;
         LYBaseNavigationController *nav = [[LYBaseNavigationController alloc] initWithRootViewController:makeVC];
         [self presentViewController:nav animated:YES completion:nil];
@@ -182,23 +182,17 @@
         model.bundleName = @"LYMakeEmoticonEmojisImageResources.bundle";
         model.bundleImageName = @"10009";
         
-        LYMakeEmoticonViewController *makeVC = [[LYMakeEmoticonViewController alloc] init];
-        makeVC.emoticonCtl = YES;
-        makeVC.faceCtl     = YES;
-        makeVC.sentenceCtl = YES;
+        LYMakeEmoticonViewController *makeVC = [[LYMakeEmoticonViewController alloc] initWithViewType:kLYMakeEmoticonView_DIYEmoji];
         makeVC.defultEmojiModel = model;
         LYBaseNavigationController *nav = [[LYBaseNavigationController alloc] initWithRootViewController:makeVC];
         [self presentViewController:nav animated:YES completion:nil];
     }else if ([tagType isEqualToString:@"text"]){
-        //做表情
+        //纯文字
         LYEmoticonModel *model = [[LYEmoticonModel alloc] init];
         model.bundleName = @"LYMakeEmoticonEmojisImageResources.bundle";
         model.bundleImageName = @"10009";
         
-        LYMakeEmoticonViewController *makeVC = [[LYMakeEmoticonViewController alloc] init];
-        makeVC.emoticonCtl = YES;
-        makeVC.faceCtl     = YES;
-        makeVC.sentenceCtl = YES;
+        LYMakeEmoticonViewController *makeVC = [[LYMakeEmoticonViewController alloc] initWithViewType:kLYMakeEmoticonView_txt];
         makeVC.defultEmojiModel = model;
         LYBaseNavigationController *nav = [[LYBaseNavigationController alloc] initWithRootViewController:makeVC];
         [self presentViewController:nav animated:YES completion:nil];

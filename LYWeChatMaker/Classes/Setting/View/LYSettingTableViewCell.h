@@ -12,8 +12,9 @@
 
 + (instancetype)cellWithTableView:(UITableView *)tableView;
 
-@property(nonatomic, copy) NSString *introTitle;
+@property(nonatomic, copy) NSString *iconName;
 @property(nonatomic, copy) NSString *title;
 @property(nonatomic, assign) BOOL showIndicator;
++ (CGFloat)getCellHeight;
 
 @end

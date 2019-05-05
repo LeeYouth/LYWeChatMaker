@@ -12,10 +12,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LYImagesDownloadManager : NSObject
 
-+ (void)downloadImages:(NSArray<NSString *> *)imgsArray completion:(void(^)(NSArray *resultArray))completionBlock;
-
-+ (NSArray *)createDownloadResultArray:(NSDictionary *)dict count:(NSInteger)count;
-
 @end
 
 NS_ASSUME_NONNULL_END

@@ -44,7 +44,7 @@
 //
 
     //配置服务器类型
-    [LYServerConfig setLYConfigEnv:LYServerEnvDevelop];
+    [LYServerConfig setLYConfigEnv:LYServerEnvProduct];
     bg_setDebug(YES);//打开调试模式,打印输出调试信息.
 
 //    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];

@@ -23,8 +23,7 @@
 #import "UIColor+MTColorTool.h"
 #import <Masonry.h>
 #import "LYAppTool.h"
-#import "TZImagePickerController.h"
-#import "YYKit.h"
+#import <YYKit/YYKit.h>
 #import "MBProgressHUD.h"
 #import "MBProgressHUD+LYHUD.h"
 #import "UIViewController+BackButtonHandler.h"
@@ -37,9 +36,9 @@
 #import "LYNetworkHelper.h"
 #import "LYStickerView.h"
 #import "LYEmoticonHistoryModel.h"
+#import "HXPhotoPicker.h"
 
-#import <SDWebImage/UIButton+WebCache.h>
-#import "UIImageView+WebCache.h"
+#import <SDWebImage.h>
 
 
 #endif /* LYWeChatMakerPrefixHeader_pch */

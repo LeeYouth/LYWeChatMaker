@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0930"
+   LastUpgradeVersion = "1020"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "CEDBF6A2C25BCEA2B6879E985A7F9724"
+               BlueprintIdentifier = "5BF5D961C8A69DDF8E23B63F98EB679B"
+               BuildableName = "libBGFMDB.a"
                BlueprintName = "BGFMDB"
-               ReferencedContainer = "container:Pods.xcodeproj"
-               BuildableName = "libBGFMDB.a">
+               ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
